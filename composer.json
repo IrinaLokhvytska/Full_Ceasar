@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "test": "./vendor/bin/phpunit -c ./protected/tests/phpunit.xml --testsuite All"
+  },
+  "require": {
+    "php": ">=5.1.0",
+    "yiisoft/yii": "^1.1"
+  },
+  "autoload": {
+    "classmap": [
+      "./vendor/yiisoft/yii/framework/test/CWebTestCase.php"
+    ]
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~3.7",
+    "phpunit/phpunit-selenium": "^1.2"
+  }
+}

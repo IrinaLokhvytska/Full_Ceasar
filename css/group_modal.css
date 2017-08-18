@@ -1,0 +1,72 @@
+body {
+    min-width: 350px;
+}
+
+div#modal{
+    margin-top: 5%;
+    background-color: #171B65;
+    display: none;
+    width: 100%;
+    position: fixed;
+}
+
+div#dashed{
+    border-bottom: dashed 1px grey;
+}
+
+.groups {
+    width: 80%;
+    height: 80%;
+    margin-top: 4%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    background-color: white;
+    padding: 3%;
+    border-radius: 7px;
+}
+
+.button-area{
+    text-align: center;
+}
+
+.submit, .close-modal {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 0 rgba(0,0,0,.1)
+}
+
+.submit{
+    background-color: #171B65;
+}
+
+.close-modal {
+    background-color: #00b3ee;
+}
+
+.submit > span {
+    color: white;
+}
+
+.close-modal > span {
+    color: white;
+}
+
+.add-expert, .add-teacher{
+    color: black;
+}
+
+.errorName, .errorExperts, .errorDate{
+    color:red;
+}
+
+.groupName, .direction, .startDate, .finishDate, .teachers, .experts, .location {
+    min-width: 180px;
+    height: 30px;
+    border: solid 2px black;
+    border-radius: 2px;
+    box-shadow: 0 0 10px black;
+}
+

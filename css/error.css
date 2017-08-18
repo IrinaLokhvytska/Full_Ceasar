@@ -1,0 +1,11 @@
+.error-code {
+    margin-top: 10%;
+    font-size: 36px;
+    text-align: center;
+    background-color: #171B65;
+    color:white;
+}
+
+.error-box{
+    font-size: 24px;
+}

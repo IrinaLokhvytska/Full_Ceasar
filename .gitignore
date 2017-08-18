@@ -1,0 +1,14 @@
+vendor/
+node_modules/
+dist/
+.idea
+bower_components/
+
+
+### Yii template
+assets/*
+!assets/.gitkeep
+protected/runtime/*
+!protected/runtime/.gitkeep
+protected/data/*.db
+themes/classic/views/

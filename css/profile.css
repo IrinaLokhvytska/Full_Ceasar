@@ -1,0 +1,69 @@
+header {
+    position: relative;
+}
+
+.profile_picture {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.profile_block {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: #323232;
+    height: 100%;
+    width: 10%;
+}
+
+.active {
+    display: block;
+}
+
+.cogwheel_picture,
+.logout {
+    position: absolute;
+    right: 10%;
+    width: 20%;
+    cursor: pointer;
+}
+
+.cogwheel_picture {
+    top: 7%;
+}
+
+.logout {
+    bottom: 7%;
+}
+
+.user_info {
+    position: relative;
+    margin-top: 100%;
+}
+
+.user_picture {
+    margin-left: 5%;
+    width: 90%;
+}
+
+.user_name,
+.user_surname,
+.user_role {
+    text-align: center;
+    margin: 0;
+    color: white;
+}
+
+.user_name {
+    margin-top: 20px;
+}
+
+.user_role {
+    margin-top: 20px;
+}
+

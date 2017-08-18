@@ -1,0 +1,61 @@
+.login {
+    position: fixed;
+    top: 200px;
+    background-color: #171b65;
+    height: 200px;
+    z-index: 1;
+    width: 100%;
+}
+
+.login form {
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    width: 320px;
+    color: white;
+}
+
+.login p {
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    font-size: 18px;
+}
+
+.login label {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="submit"] {
+    margin-top: 2px;
+    float: right;
+    width: 180px;
+    color: black;
+}
+
+.login input[type="submit"] {
+    background: url("img/submit_button.png") no-repeat center;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.login input[type="submit"]:hover,
+.login input[type="submit"]:active,
+.login input[type="submit"]:focus
+{
+    background: url("img/submit_button_hover.png") no-repeat center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}

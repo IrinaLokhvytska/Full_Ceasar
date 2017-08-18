@@ -1,0 +1,20 @@
+{
+  "name": "PCPHP",
+  "version": "1.0.0",
+  "description": "SoftServe`s IT Academy educational project.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SSITA/PCPHP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SSITA/PCPHP/issues"
+  },
+  "homepage": "https://github.com/SSITA/PCPHP#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  }
+}

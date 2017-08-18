@@ -1,0 +1,65 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+    grid-template-rows: 4fr 1fr;
+    grid-template-areas: "left loc-list     right"
+                         "left modal-footer right";
+    grid-gap: 10px;
+    background-color: #171B65;
+    color: #444;
+}
+
+.left{
+    grid-area: left;
+}
+.right{
+    grid-area: right;
+}
+.footer{
+    grid-area: modal-footer;
+
+}
+.loc-list{
+    grid-area: loc-list;
+}
+.subgrid{
+    display: grid;
+    grid-template-columns: 150px 150px 150px 150px;
+    grid-template-rows: 90px 90px;
+    grid-gap: 10px;
+}
+
+.loc {
+    background-color: #3C78B5;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 150%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.checkedLocation{
+    background-color: #003366;
+}
+
+@media screen and (max-width: 992px){
+    .subgrid{
+        display: grid;
+        grid-template-columns: 100px 100px 100px 100px;
+        grid-template-rows: 70px 70px;
+        grid-gap: 10px;
+    }
+
+    .loc {
+        background-color: #3C78B5;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 120%;
+        text-align: center;
+        vertical-align: bottom;
+    }
+
+    .checkedLocation{
+        background-color: #003366;
+    }
+}
