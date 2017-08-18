@@ -1,13 +1,18 @@
 <?php require_once  Yii::app()->request->baseUrl . '/protected/views/site/modal.php'; ?>
 <div class="loc-container">
+    <header class="header box">SoftServe
+        <img class="profile_picture" src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/profile_picture.png">
+    </header>
     <div class="loc-name box">Dnipro</div>
     <div class="group-name box">Dp-119 Php</div>
     <div class="status box">Stage: in process</div>
     <div class="message box">Some message</div>
-    <aside class="local-groups box">Groups in location
+    <aside class="local-groups box">
         <?php require_once  Yii::app()->request->baseUrl . '/protected/views/site/groupsList.php'; ?>
     </aside>
-    <aside class="notif box">Notifications</aside>
+    <aside class="notif box">
+        <?php require_once  Yii::app()->request->baseUrl . '/protected/views/site/locations.php'; ?>
+    </aside>
     <main class="group-area box">
         <div class="gear">
             <a href="#">

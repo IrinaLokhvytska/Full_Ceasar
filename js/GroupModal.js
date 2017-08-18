@@ -7,12 +7,11 @@ class GroupModal {
     }
 
     defineElements (elements) {
-		this.addGroup = document.querySelector('.add-group');
-        this.modalGroup = document.querySelector('#modal');
         this.dateCourse = new DateCourse(elements);
         this.budgetOwner = new BudgetOwner(elements);
         this.teachers = new TeachersSelect(elements);
         this.experts = new ExpertsInput(elements);
+        this.modalGroup = document.querySelector('#groupModal');
         this.name = elements.querySelector('.groupName');
         this.location = elements.querySelector('.location');
         this.submit = elements.querySelector('.submit');
@@ -21,18 +20,13 @@ class GroupModal {
     }
 
     attachEvents () {
-		this.addGroup.addEventListener('click', () => {
-            this.modalGroup.style.display = "block";
-        });
         this.name.addEventListener('blur', () => {
             this.validateName()
         });
         this.submit.addEventListener('click', () => {
             this.save()
         });
-        this.closeModal.addEventListener('click', () => {
-            this.close();
-        });
+
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' || event.keyCode === 27) {
                 this.close();
@@ -90,7 +84,7 @@ class GroupModal {
     }
 
     close () {
-        this.modalGroup.style.display = "none";
+        this.closeModal.click();
     }
 
     _sendData (data) {

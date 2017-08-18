@@ -8,36 +8,37 @@ class Login {
     }
 
     defineElements(form) {
-        this.loginForm = form.querySelector('.login-form');
         this.login = form.querySelector('.input-login');
         this.password = form.querySelector('.input-password');
-        this.submit = form.querySelector('.input-submit');
         this.error = form.querySelector('.errorLoginForm');
+        this.submit = form.querySelector('.input-submit');
+        this.loginForm = form.querySelector('#login-form');
     }
 
     attachEvents() {
-        this.loginForm.addEventListener('submit', event => {
-            this.checkValidity();
+        this.login.addEventListener('blur', event => {
+            this.validateForm();
         });
 
-        this.loginForm.addEventListener('keydown', event => {
+        this.password.addEventListener('blur', event => {
+            this.validateForm();
+        });
+
+        document.addEventListener('keydown', event => {
             if (event.keyCode === 13) {
-                this.checkValidity();
+                this.validateForm();
             }
         });
 
-        this.loginForm.addEventListener('keydown', event => {
+        document.addEventListener('keydown', event => {
             if (event.keyCode === 27) {
-                this.login.value = "";
                 this.password.value = "";
             }
         });
-    }
 
-    checkValidity() {
-        if (!this.validateForm()) {
-            event.preventDefault();
-        }
+        this.submit.addEventListener ('click', event => {
+            this.validateForm();
+        });
     }
 
     validateForm() {
@@ -53,6 +54,7 @@ class Login {
         } else if (!this.password.value.match(/^[a-zA-Z0-9!@#$%^&*`~()_+-|\"';:/?.>,<]+$/g)) {
             this.showError();
         } else {
+
             this.loginForm.submit();
         }
     }

@@ -1,4 +1,5 @@
 'use strict';
+'use strict';
 class TeachersSelect {
     constructor (elements) {
         this.defineElements(elements);

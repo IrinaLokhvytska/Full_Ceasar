@@ -2,12 +2,10 @@ body {
     min-width: 350px;
 }
 
-div#modal{
+div#groupModal{
     margin-top: 5%;
     background-color: #171B65;
-    display: none;
     width: 100%;
-    position: fixed;
 }
 
 div#dashed{

@@ -12,6 +12,7 @@
 .header {
     grid-area: header;
     height: 40px;
+    margin: 10px;
     background-color: #171B65;
     color: white;
     font-size: 150%;

@@ -20,7 +20,7 @@ class LocationsList {
     }
 
     getLocations() {
-        return this.getXMLHttpRequest('mainpage/locs.php', 'getlocations', false);
+        return this.getXMLHttpRequest('/locations/getLocations', 'getLocations', false);
     }
 
     getXMLHttpRequest(url, request, async) {
@@ -72,7 +72,7 @@ class LocationsList {
 
     attachConfirmBtnEvent() {
         let confirm = this.locationModal.querySelector('#confirm');
-             confirm.addEventListener('click', this.sendSelectedGroups.bind(this));
+        confirm.addEventListener('click', this.sendSelectedGroups.bind(this));
     }
 
     sendSelectedGroups() {

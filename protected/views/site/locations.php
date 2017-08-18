@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-danger mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">
+<button type="button" class="btn btn-default mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">
     Choose location
 </button>
 

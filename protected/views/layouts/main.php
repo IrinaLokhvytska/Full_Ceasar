@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/error.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/bower_components/bootstrap/dist/css/bootstrap.css">
 
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/bower_components/jquery/dist/jquery.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupModal.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/DateCourse.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/BudgetOwner.js"></script>
@@ -26,15 +27,11 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupsList.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/group_model_init.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
-
-<header class="header box">SoftServe
-    <img class="profile_picture" src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/profile_picture.png">
-</header>
 
 <?php echo $content; ?>
 

@@ -1,3 +1,6 @@
+<div class="modal fade" id="groupModal">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
 <div class="container-fluid" id="modal">
     <div class="groups">
         <div id="dashed" class="row">
@@ -102,9 +105,12 @@
             <button type="button" class="submit">
                 <span class="glyphicon glyphicon-ok"></span>
             </button>
-            <button type="button" class="close-modal">
+            <button type="button" class="close-modal" data-dismiss="modal">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>
