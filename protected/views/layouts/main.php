@@ -14,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/studentList.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/groupsList.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/error.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/css/bootstrap.css">
 
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/bower_components/jquery/dist/jquery.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/jquery/dist/jquery.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupModal.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/DateCourse.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/BudgetOwner.js"></script>
@@ -27,7 +27,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupsList.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -37,11 +37,10 @@
 
 <div class="clear"></div>
 
-<!--<script>
+<script>
     window.addEventListener('DOMContentLoaded', () => {
         let groupsListMenu = new GroupsList("<?= Yii::app()->createUrl('groupsList/showGroupsList'); ?>");
     });
 </script>
--->
 </body>
 </html>
