@@ -45,7 +45,9 @@ class Group extends CActiveRecord
     {
         return [
             'location' =>[self::HAS_ONE, 'Locations', 'id'],
-            'direction' =>[self::HAS_ONE, 'Directions', 'id']
+            'direction' =>[self::HAS_ONE, 'Directions', 'id'],
+            'teachers' => [self::MANY_MANY, 'Teachers', 'user_groups(group, user)'],
+            'experts' => [self::MANY_MANY, 'Experts', 'group_experts(group, name)']
         ];
     }
 

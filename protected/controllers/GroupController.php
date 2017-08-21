@@ -134,4 +134,5 @@ class GroupController extends BaseController
 
         $this->renderJson(["success" => true]);
     }
+
 }
