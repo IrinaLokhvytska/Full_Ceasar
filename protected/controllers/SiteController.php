@@ -1,6 +1,6 @@
 <?php
 
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /*public function actionIndex()
     {
