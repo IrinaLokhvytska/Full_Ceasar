@@ -24,4 +24,14 @@ class Locations extends CActiveRecord
 
         return $locations;
     }
+
+    public function getLocationsIdList($locations)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->select = 'id';
+        $criteria->addInCondition('name', $locations);
+        $locationsIdArray = Locations::model()->findAll($criteria);
+
+        return $locationsIdArray;
+    }
 }
