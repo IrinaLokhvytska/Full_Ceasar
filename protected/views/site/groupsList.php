@@ -1,10 +1,7 @@
 <nav id="groupsNav">
     <div>
-        <!--<button type="button" class="add-group">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#groupModal">
             &#43;add group
-        </button>-->
-        <button type="button" class="btn btn-default mt-4" id="locationBtn" data-toggle="modal" data-target="#groupModal">
-            Choose location
         </button>
         <div class="pagination">
             <button class="prevPage">

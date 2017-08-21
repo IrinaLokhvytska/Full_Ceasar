@@ -4,19 +4,19 @@
 <div class="container-fluid" id="modal">
     <div class="groups">
         <div id="dashed" class="row">
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="groupName">Croup Name:</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <div class="error">
                     <span class="errorName"></span>
                 </div>
                 <input type="text" name="groupName" class="groupName" title="groupName" required>
             </div>
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="budgetOwner">Budget owner</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default active" id="SsOwner">
                         <input type="radio" name="budgetOwner" value="SoftServe" class="SoftServe"> SoftServe
@@ -29,19 +29,19 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="direction">Direction</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <select class="direction" title="direction" required>
                     <option>MQC</option>
                     <option>PHP</option>
                 </select>
             </div>
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="startDate">Start date:</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <div class="error">
                     <span class="errorDate"></span>
                 </div>
@@ -50,27 +50,27 @@
         </div>
         <br>
         <div id="dashed" class="row">
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="location">Location</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <select class="location" title="location" disabled>
                     <option>Locations</option>
                 </select>
             </div>
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="finishDate">Finish date:</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <input type="date"  name="finishDate" title="finishDate" class="finishDate" disabled>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="teachers">Teachers</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <div class="teachers-container">
                     <select class="teachers" title="teachers">
                     </select>
@@ -83,10 +83,10 @@
                     <span class="glyphicon glyphicon-plus"> one more teacher</span>
                 </a>
             </div>
-            <div class="col-md-2 col-xs-12 col-sm-2">
+            <div class="col-md-2 col-xs-12 col-sm-12">
                 <label for="experts">Experts</label>
             </div>
-            <div class="col-md-4 col-xs-12 col-sm-4">
+            <div class="col-md-4 col-xs-12 col-sm-12">
                 <div class="error">
                     <span class="errorExperts"></span>
                 </div>
