@@ -1,4 +1,4 @@
-<?php require_once 'modal.php'; ?>
+<?php require Yii::app()->basePath . '/views/site/modal.php'; ?>
 <div class="loc-container">
     <header class="header box">SoftServe
         <img class="profile_picture" src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/profile_picture.png">
@@ -8,10 +8,10 @@
     <div class="status box">Stage: in process</div>
     <div class="message box">Some message</div>
     <aside class="local-groups box">
-        <?php require 'groupsList.php'; ?>
+        <?php require Yii::app()->basePath . '/views/site/groupsList.php'; ?>
     </aside>
     <aside class="notif box">
-        <?php require_once 'locations.php'; ?>
+        <?php require Yii::app()->basePath . '/views/site/locations.php'; ?>
     </aside>
     <main class="group-area box">
         <div class="gear">
@@ -33,7 +33,7 @@
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/envelope.png" class="tab-icons tabNotification" alt="envelope icon">
             </a>
         </div>
-        <?php require_once 'groupInfo.php'; ?>
+        <?php require Yii::app()->basePath . '/views/site/groupInfo.php'; ?>
     </main>
 
     <div class="profile_block">
