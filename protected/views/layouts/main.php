@@ -28,6 +28,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupsList.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/LocationsList.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/MyGroupsListFilter.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
