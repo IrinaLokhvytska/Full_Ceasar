@@ -5,12 +5,12 @@ class TeachersSelect {
         this.defineElements(elements);
         this.attachEvents();
         this.teachersList = [
-            {id : 0, name : 'J Doe'},
+             {id : 0, name : 'J Doe'},
             {id: 1, name: 'L Smith'},
             {id: 2, name: 'B Foo'}
         ];
         // this.getTeachersFromDb((teachers) => {
-        //     this.teachersList = teachers;
+        //      this.teachersList = teachers;
         // });
         this.unusedTeachersList = this.teachersList.slice();
         this.initTeachersList();
@@ -31,8 +31,8 @@ class TeachersSelect {
         });
     }
 
-    getTeachersFromDb (callback) {
-        this.getXMLHttpRequest('group/data', 'teachers', callback);
+    getTeachersFromDb (teachers) {
+        this.getXMLHttpRequest('/group/getteacherslist', 'teachers', teachers);
     }
 
     getXMLHttpRequest (url, request, callback) {
