@@ -18,6 +18,7 @@ class UserIdentity extends CUserIdentity
             $this->setState('lastname', $user->last_name);
             $this->setState('type', $user->type);
             $this->setState('location', $user->location_id);
+            $this->setState('picture', $user->picture);
 
             $this->errorCode=self::ERROR_NONE;
         }
