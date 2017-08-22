@@ -20,10 +20,10 @@ class GroupModal {
 
     attachEvents () {
         this.name.addEventListener('blur', () => {
-            this.validateName()
+            this.validateName();
         });
         this.submit.addEventListener('click', () => {
-            this.save()
+            this.save();
         });
 
         document.addEventListener('keydown', event => {

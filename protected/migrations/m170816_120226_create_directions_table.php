@@ -20,7 +20,7 @@ class m170816_120226_create_directions_table extends CDbMigration
 
         $this->execute('
             ALTER TABLE `groups`
-            ADD CONSTRAINT `direction` FOREIGN KEY (`direction`) REFERENCES `directions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+            ADD CONSTRAINT `direction` FOREIGN KEY (`direction_id`) REFERENCES `directions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
         ');
 	}
 

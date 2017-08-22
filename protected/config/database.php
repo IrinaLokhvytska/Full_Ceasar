@@ -5,7 +5,9 @@ return [
     // uncomment the following lines to use a MySQL database
     'connectionString' => 'mysql:host=localhost;dbname=caesar',
     'emulatePrepare' => true,
+
+    //change this lines to use your database
     'username' => 'root',
-    'password' => 'admin',
+    'password' => '',
     'charset' => 'utf8',
 ];

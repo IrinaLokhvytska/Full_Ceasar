@@ -1,7 +1,6 @@
 .group-area-content {
     display: grid;
-    grid-template-areas: "group-coordination middle-space group-info"
-                         "coordination-table middle-space info-table";
+    grid-template-areas: "group-coordination middle-space group-info" "coordination-table middle-space info-table";
     grid-template-columns: 4fr 2fr 4fr;
     grid-template-rows: 1fr 8fr;
 }
@@ -31,7 +30,6 @@
 .coordination-table {
     grid-area: coordination-table;
     margin-left: 30px;
-
 }
 
 .coordination-table td:nth-child(2n+2) {
@@ -43,8 +41,8 @@ table, th, td {
     border-collapse: collapse;
 }
 
-th, td {
-    padding: 8px;
+.group-info-tables th, .group-info-tables td {
+    padding: 12px;
 }
 
 th {
@@ -61,10 +59,7 @@ th {
 
 @media screen and (max-width: 926px) {
     .group-area-content {
-        grid-template-areas: "group-coordination"
-                             "coordination-table"
-                             "group-info"
-                             "info-table";
+        grid-template-areas: "group-coordination" "coordination-table" "group-info" "info-table";
         grid-template-columns: 100%;
         grid-template-rows: 1fr auto 1fr auto;
     }
