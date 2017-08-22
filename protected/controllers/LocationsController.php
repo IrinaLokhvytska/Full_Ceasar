@@ -8,8 +8,8 @@ class LocationsController extends BaseController
         $this->renderJSON($locations);
     }
 
-    public function actionShowLocations($locations)
+    public function actionShowLocations($par)
     {
-        $this->renderJSON($locations);
+        $this->renderJSON($par);
     }
 }
