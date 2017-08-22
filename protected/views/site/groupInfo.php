@@ -1,7 +1,7 @@
 <div class="group-area-content">
     <div class="group-coordination"><span class="text">Group coordination:</span></div>
     <div class="group-info"><span class="text">Group info:</span></div>
-    <table class="coordination-table">
+    <table class="coordination-table group-info-tables">
         <tr>
             <th><br/></th>
             <th></th>
@@ -15,7 +15,7 @@
             <td>Yuriy Osypchuk</td>
         </tr>
     </table>
-    <table class="info-table">
+    <table class="info-table group-info-tables">
         <tr>
             <th><br/></th>
             <th></th>
