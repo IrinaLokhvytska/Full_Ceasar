@@ -4,16 +4,18 @@ class TeachersSelect {
     constructor (elements) {
         this.defineElements(elements);
         this.attachEvents();
-        this.teachersList = [
-            {id : 0, name : 'J Doe'},
-            {id: 1, name: 'L Smith'},
-            {id: 2, name: 'B Foo'}
-        ];
+        // this.teachersList = [
+        //      {id : 0, name : 'J Doe'},
+        //     {id: 1, name: 'L Smith'},
+        //     {id: 2, name: 'B Foo'}
+        // ];
         // this.getTeachersFromDb((teachers) => {
-        //     this.teachersList = teachers;
+        //      this.teachersList = teachers;
         // });
+        this.teachersList = [];
+        this.getTeachersFromDb();
         this.unusedTeachersList = this.teachersList.slice();
-        this.initTeachersList();
+        //this.initTeachersList();
     }
 
     defineElements (elements) {
@@ -31,27 +33,22 @@ class TeachersSelect {
         });
     }
 
-    getTeachersFromDb (callback) {
-        this.getXMLHttpRequest('group/data', 'teachers', callback);
+    getTeachersFromDb () {
+        return Frame.ajaxResponse('GET', '/group/getteacherslist', this.saveTeachers.bind(this));
+        //this.getXMLHttpRequest('/group/getteacherslist', 'teachers', teachers);
     }
 
-    getXMLHttpRequest (url, request, callback) {
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('GET', url + '?' + request);
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                callback(JSON.parse(xhr.responseText));
-            }
-        };
-        xhr.send();
+    saveTeachers(data) {
+        this.teachersList = data;
+        this.initTeachersList();
     }
 
     initTeachersList () {
         this.teachersList.forEach((teacher) => {
             let opt = document.createElement('option');
+            console.log(teacher);
             opt.value = teacher.id;
-            opt.innerHTML = teacher.name;
+            opt.innerHTML = teacher.first_name +' '+teacher.last_name;
             this.teachers.appendChild(opt);
         });
     }

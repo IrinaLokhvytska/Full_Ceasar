@@ -35,8 +35,6 @@
             </div>
             <div class="col-md-4 col-xs-12 col-sm-12">
                 <select class="direction" title="direction" required>
-                    <option>MQC</option>
-                    <option>PHP</option>
                 </select>
             </div>
             <div class="col-md-2 col-xs-12 col-sm-12">

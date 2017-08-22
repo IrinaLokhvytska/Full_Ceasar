@@ -4,6 +4,8 @@ class DateCourse {
     constructor (elements) {
         this.defineElements(elements);
         this.attachEvents();
+        this.directionList = [];
+        this.getDirectionsFromDb();
     }
 
     defineElements (elements) {
@@ -22,6 +24,24 @@ class DateCourse {
         });
         this.startDate.addEventListener('blur', () => {
             this.validateDate()
+        });
+    }
+
+    getDirectionsFromDb () {
+        return Frame.ajaxResponse('GET', '/group/getdirectionslist', this.saveDirections.bind(this));
+    }
+
+    saveDirections(data) {
+        this.directionList = data;
+        this.initDirectionList();
+    }
+
+    initDirectionList () {
+        this.directionList.forEach((direction) => {
+            let opt = document.createElement('option');
+            opt.value = direction.id;
+            opt.innerHTML = direction.name;
+            this.direction.appendChild(opt);
         });
     }
 

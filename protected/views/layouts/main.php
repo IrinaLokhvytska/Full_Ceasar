@@ -47,6 +47,10 @@
                 "<?= Yii::app()->createUrl('GroupsList/ShowGroup'); ?>"]);
 //            myGroupsListFilter = new MyGroupsListFilter([
 //                "<?//= Yii::app()->createUrl('GroupsList/GetMyGroupsList'); ?>//"]);
+
+        groupsListMenu.xname = 'pizdec';
+        sessionStorage.setItem('groupsListObj', groupsListMenu);
+        console.log(sessionStorage.getItem('groupsListObj').xname);
     });
 </script>
 </body>

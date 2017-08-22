@@ -5,20 +5,15 @@ class GroupController extends BaseController
     public function actionCreate()
     {
         $createFormAttributes = Yii::app()->request->getPost('CreateForm', []);
-
         if (empty($createFormAttributes)) {
             throw new CHttpException(400, 'Invalid data');
         }
-
         $newGroup = new GroupForm();
         $newGroup->attributes = $createFormAttributes;
-
         if (!$newGroup->validate()) {
             throw new CHttpException(400, 'error in request');
         }
-
         $attributesGroup = $newGroup->getAttributes();
-
         Yii::app()->db->createCommand()
             ->insert(
                 'groups',
@@ -31,13 +26,11 @@ class GroupController extends BaseController
                     'date_finish' => $attributesGroup['finishDate']
                 ]
             );
-
         $groupID = Yii::app()->db->createCommand()
             ->select('id')
             ->from('groups')
             ->where('name=:name', [':name' => $attributesGroup['groupName']])
             ->queryAll();
-
         Yii::app()->db->createCommand()
             ->insert(
                 'user_groups',
@@ -46,7 +39,6 @@ class GroupController extends BaseController
                     'user_id' => $attributesGroup['teacherID']
                 ]
             );
-
         Yii::app()->db->createCommand()
             ->insert(
                 'experts',
@@ -55,18 +47,14 @@ class GroupController extends BaseController
                     'name' => $attributesGroup['expertName']
                 ]
             );
-
         $this->renderJson(["success" => true]);
     }
-
     public function actionDelete()
     {
         Yii::app()->db->createCommand()
             ->delete('groups', 'id=:id', [':id' => Yii::app()->request->getParam('id')]);
-
         $this->renderJson(["success" => true]);
     }
-
     public function actionGetTeachersList()
     {
         $teachers = Yii::app()->db->createCommand()
@@ -75,36 +63,27 @@ class GroupController extends BaseController
             ->join('users u', 'u.id=ur.id')
             ->where('role=1')
             ->queryAll();
-
         $teachers = empty($teachers) ? [] : $teachers;
-
         $this->renderJson($teachers);
     }
-
     public function actionGetLocationsList()
     {
         $locations = Yii::app()->db->createCommand()
             ->select('name, id')
             ->from('user_roles')
             ->queryAll();
-
         $locations = empty($locations) ? [] : $locations;
-
         $this->renderJson($locations);
     }
-
     public function actionGetDirectionsList()
     {
         $directions = Yii::app()->db->createCommand()
             ->select('name, id')
             ->from('directions')
             ->queryAll();
-
         $directions = empty($directions) ? [] : $directions;
-
         $this->renderJson($directions);
     }
-
     public function actionGetGroup()
     {
         $teachers = Yii::app()->db->createCommand()
@@ -114,6 +93,7 @@ class GroupController extends BaseController
             ->where('ug.id=:id', [':id' => Yii::app()->request->getParam('id')])
             ->queryAll();
 
+
 //        $experts = Yii::app()->db->createCommand()
 //            ->select('name')
 //            ->from('experts')
@@ -122,6 +102,7 @@ class GroupController extends BaseController
 
         $group = Yii::app()->db->createCommand()
             ->select('g.id, l.full_name, d.name, start_date, finish_date, budget, expert')
+
             ->from('groups g')
             ->join('directions d', 'g.direction_id=d.id')
             ->join('locations l', 'g.location_id=l.id')
@@ -145,27 +126,22 @@ class GroupController extends BaseController
         //$groups[] = $experts;
 
         $this->renderJson($group);
-    }
 
+    }
     public function actionEdit()
     {
         $editFormAttributes = Yii::app()->request->getPost('EditForm', []);
-
         if (empty($editFormAttributes)) {
             throw new CHttpException(400, 'Invalid data');
         }
-
         $editedGroup = new GroupForm();
         $editedGroup->scenario = 'edit';
         $editedGroup->attributes = $editFormAttributes;
-
         if (!$editedGroup->validate()) {
             throw new CHttpException(400, 'error in request');
         }
-
         $editedGroup->id = Yii::app()->request->getPost('id');
         $attributesGroup = $editedGroup->getAttributes();
-
         Yii::app()->db->createCommand()
             ->update(
                 'groups',
@@ -180,7 +156,6 @@ class GroupController extends BaseController
                 'id_group=:id',
                 [':id'=>$attributesGroup['id']]
             );
-
         Yii::app()->db->createCommand()
             ->insert(
                 'user_groups',
@@ -189,7 +164,6 @@ class GroupController extends BaseController
                     'user_id' => $attributesGroup['teacherID']
                 ]
             );
-
         Yii::app()->db->createCommand()
             ->insert(
                 'experts',
@@ -198,7 +172,6 @@ class GroupController extends BaseController
                     'name' => $attributesGroup['expertName']
                 ]
             );
-
         $this->renderJson(["success" => true]);
     }
 }

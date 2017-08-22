@@ -1,5 +1,4 @@
 <?php
-
 class Group extends CActiveRecord
 {
     public $id;
@@ -9,17 +8,14 @@ class Group extends CActiveRecord
     public $start_date;
     public $finish_date;
     public $budget;
-
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
     }
-
     public function tableName()
     {
         return 'groups';
     }
-
     protected function instantiate($attributes)
     {
         $class = get_class($this);
@@ -32,15 +28,12 @@ class Group extends CActiveRecord
             $attributes['finish_date'],
             $attributes['budget']
         );
-
         return $model;
     }
-
     public static function getGroups()
     {
         return self::model()->findAll();
     }
-
     public function relations ()
     {
         return [
@@ -50,6 +43,4 @@ class Group extends CActiveRecord
             'experts' => [self::MANY_MANY, 'Experts', 'group_experts(group, name)']
         ];
     }
-
-
 }
