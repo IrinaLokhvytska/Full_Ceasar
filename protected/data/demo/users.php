@@ -151,7 +151,7 @@ return [
         'password' => 'softserve',
         'location_id' => 3,
         'type' => 'itacademy',
-        'picture' => '/users_picture/profile_picture.png',
+        'picture' => '/users_picture/taras.jpg',
     ],
     [
         'first_name' => 'Nataliia',
