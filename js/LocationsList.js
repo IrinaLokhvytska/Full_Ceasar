@@ -69,9 +69,11 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
-        // let groupsListObj = localStorage.getItem('groupsListObj');
-        // groupsListObj.getGroupsList(this.selectedLocations);
-        let selectedLocations = JSON.stringify(this.selectedLocations);
-        Frame.ajaxRequest('GET', this.urlShowLocations + selectedLocations);
+        let groupsListObj = sessionStorage.getItem('groupsListObj');
+        console.log(groupsListObj.xname + '!');
+        console.log(this.selectedLocations);
+        groupsListObj.getGroupsList(this.selectedLocations);
+        // let selectedLocations = JSON.stringify(this.selectedLocations);
+        // Frame.ajaxRequest('GET', this.urlShowLocations + selectedLocations);
     }
 }

@@ -4,7 +4,9 @@ class GroupsListController extends BaseController
 {
     public function actionGetGroupsList($par)
     {
-        $groupsList = GroupsList::model()->getGroupsList($par);
+        /** @var GroupListComponent $component */
+        $component = Yii::app()->getComponent('GroupListComponent');
+        $groupsList = $component->get();
         $this->renderJSON($groupsList);
     }
 
