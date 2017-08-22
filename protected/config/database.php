@@ -6,6 +6,6 @@ return [
     'connectionString' => 'mysql:host=localhost;dbname=caesar',
     'emulatePrepare' => true,
     'username' => 'root',
-    'password' => 'admin',
+    'password' => '',
     'charset' => 'utf8',
 ];
