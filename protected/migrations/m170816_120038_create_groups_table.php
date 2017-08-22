@@ -20,7 +20,7 @@ class m170816_120038_create_groups_table extends CDbMigration
 
         $this->execute('
             ALTER TABLE `groups`
-            ADD CONSTRAINT `group_location` FOREIGN KEY (`location`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+            ADD CONSTRAINT `group_location` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
         ');
 	}
 

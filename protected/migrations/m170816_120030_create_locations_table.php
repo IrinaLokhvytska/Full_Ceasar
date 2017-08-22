@@ -15,7 +15,7 @@ class m170816_120030_create_locations_table extends CDbMigration
 
         $this->execute('
             ALTER TABLE `users`
-            ADD CONSTRAINT `user_location` FOREIGN KEY (`location`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+            ADD CONSTRAINT `user_location` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
         ');
 	}
 
