@@ -50,6 +50,8 @@ class ExpertsInput {
                 }
             }
         }
+
+        return true;
     }
 
     addExpertInput () {
