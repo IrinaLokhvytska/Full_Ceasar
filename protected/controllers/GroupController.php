@@ -27,8 +27,9 @@ class GroupController extends BaseController
                     'direction_id' => $attributesGroup['directionID'],
                     'location_id' => $attributesGroup['locationID'],
                     'budget' => $attributesGroup['budgetOwner'],
-                    'date_start' => $attributesGroup['startDate'],
-                    'date_finish' => $attributesGroup['finishDate']
+                    'start_date' => $attributesGroup['startDate'],
+                    'finish_date' => $attributesGroup['finishDate'],
+                    'expert' => ''
                 ]
             );
 
@@ -42,19 +43,19 @@ class GroupController extends BaseController
             ->insert(
                 'user_groups',
                 [
-                    'id_group' => $groupID,
-                    'user_id' => $attributesGroup['teacherID']
+                    'group' => $groupID[0]['id'],
+                    'user' => $attributesGroup['teacherID']
                 ]
             );
 
-        Yii::app()->db->createCommand()
-            ->insert(
-                'experts',
-                [
-                    'id_group' => $groupID,
-                    'name' => $attributesGroup['expertName']
-                ]
-            );
+//        Yii::app()->db->createCommand()
+//            ->insert(
+//                'experts',
+//                [
+//                    'id_group' => $groupID,
+//                    'name' => $attributesGroup['expertName']
+//                ]
+//            );
 
         $this->renderJson(["success" => true]);
     }
@@ -200,7 +201,7 @@ class GroupController extends BaseController
                     'name' => $attributesGroup['expertName']
                 ]
             );
-        
+
         $this->renderJson(["success" => true]);
     }
 }
