@@ -5,6 +5,7 @@ class GroupController extends BaseController
     public function actionCreate()
     {
         $createFormAttributes = Yii::app()->request->getPost('CreateForm', []);
+        
 
         if (empty($createFormAttributes)) {
             throw new CHttpException(400, 'Invalid data');

@@ -94,7 +94,7 @@ class GroupModal {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open("POST", "group/receive", false);
+        xmlhttp.open("POST", "group/create", false);
         xmlhttp.send(data);
         
         this.close();
