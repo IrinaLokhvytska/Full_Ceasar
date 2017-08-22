@@ -5,7 +5,7 @@ return [
         'last_name' => 'Bezhachnyuk',
         'username' => 'ybezh',
         'password' => 'softserve',
-        'location' => 1,
+        'location_id' => 1,
         'type' => 'itacademy',
     ],
     [
@@ -13,7 +13,7 @@ return [
         'last_name' => 'Demchyna',
         'username' => 'mdemch',
         'password' => 'softserve',
-        'location' => 1,
+        'location_id' => 1,
         'type' => 'itacademy',
     ],
     [
@@ -21,7 +21,7 @@ return [
         'last_name' => 'Pereymybida',
         'username' => 'aperey',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -29,7 +29,7 @@ return [
         'last_name' => 'Romaniv',
         'username' => 'kroman',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -37,7 +37,7 @@ return [
         'last_name' => 'Lopatynska',
         'username' => 'mlopat',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -45,7 +45,7 @@ return [
         'last_name' => 'Plesha',
         'username' => 'mplesh',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -53,7 +53,7 @@ return [
         'last_name' => 'Ryazhska',
         'username' => 'vryazh',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -61,7 +61,7 @@ return [
         'last_name' => 'Korkuna',
         'username' => 'akorku',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -69,7 +69,7 @@ return [
         'last_name' => 'Halamaha',
         'username' => 'lhalam',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -77,7 +77,7 @@ return [
         'last_name' => 'Harasym',
         'username' => 'yharas',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -85,7 +85,7 @@ return [
         'last_name' => 'V.Kohut',
         'username' => 'ivkohu',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -93,7 +93,7 @@ return [
         'last_name' => 'Klakovych',
         'username' => 'lklako',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -101,7 +101,7 @@ return [
         'last_name' => 'Koldovskyi',
         'username' => 'vkoldo',
         'password' => 'softserve',
-        'location' => 2,
+        'location_id' => 2,
         'type' => 'itacademy',
     ],
     [
@@ -109,7 +109,7 @@ return [
         'last_name' => 'Petin',
         'username' => 'dpetin',
         'password' => 'softserve',
-        'location' => 3,
+        'location_id' => 3,
         'type' => 'itacademy',
     ],
     [
@@ -117,7 +117,7 @@ return [
         'last_name' => 'Shvets',
         'username' => 'oshvet',
         'password' => 'softserve',
-        'location' => 3,
+        'location_id' => 3,
         'type' => 'itacademy',
     ],
     [
@@ -125,7 +125,7 @@ return [
         'last_name' => 'Reuta',
         'username' => 'oreuta',
         'password' => 'softserve',
-        'location' => 3,
+        'location_id' => 3,
         'type' => 'itacademy',
     ],
     [
@@ -133,7 +133,7 @@ return [
         'last_name' => 'Mykolayev',
         'username' => 'tmykol',
         'password' => 'softserve',
-        'location' => 3,
+        'location_id' => 3,
         'type' => 'itacademy',
     ],
     [
@@ -141,7 +141,7 @@ return [
         'last_name' => 'Romanenko',
         'username' => 'nroman',
         'password' => 'softserve',
-        'location' => 4,
+        'location_id' => 4,
         'type' => 'itacademy',
     ],
     [
@@ -149,7 +149,7 @@ return [
         'last_name' => 'Udovychenko',
         'username' => 'yudovy',
         'password' => 'softserve',
-        'location' => 5,
+        'location_id' => 5,
         'type' => 'itacademy',
     ],
     [
@@ -157,7 +157,7 @@ return [
         'last_name' => 'Minochkin',
         'username' => 'dminoc',
         'password' => 'softserve',
-        'location' => 5,
+        'location_id' => 5,
         'type' => 'itacademy',
     ],
     [
@@ -165,7 +165,7 @@ return [
         'last_name' => 'Khudoliy',
         'username' => 'mkhudo',
         'password' => 'softserve',
-        'location' => 6,
+        'location_id' => 6,
         'type' => 'itacademy',
     ],
     [
@@ -173,7 +173,7 @@ return [
         'last_name' => 'Omelchuk',
         'username' => 'momelc',
         'password' => 'softserve',
-        'location' => 7,
+        'location_id' => 7,
         'type' => 'itacademy',
     ],
     [
@@ -181,7 +181,7 @@ return [
         'last_name' => 'Boyanov',
         'username' => 'yboyan',
         'password' => 'softserve',
-        'location' => 8,
+        'location_id' => 8,
         'type' => 'itacademy',
     ]
 ];
