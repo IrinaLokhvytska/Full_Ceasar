@@ -11,7 +11,6 @@ class GroupModal {
         this.budgetOwner = new BudgetOwner(elements);
         this.teachers = new TeachersSelect(elements);
         this.experts = new ExpertsInput(elements);
-        this.modalGroup = document.querySelector('#groupModal');
         this.name = elements.querySelector('.groupName');
         this.location = elements.querySelector('.location');
         this.submit = elements.querySelector('.submit');
@@ -21,19 +20,17 @@ class GroupModal {
 
     attachEvents () {
         this.name.addEventListener('blur', () => {
-            this.validateName()
+            this.validateName();
         });
         this.submit.addEventListener('click', () => {
-            this.save()
+            this.save();
         });
 
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' || event.keyCode === 27) {
                 this.close();
-            }
-        });
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Enter' || event.keyCode === 71) {
+            } else if (event.key === 'Enter' || event.keyCode === 71) {
+                event.preventDefault();
                 this.save();
             }
         });
@@ -99,6 +96,8 @@ class GroupModal {
 
         xmlhttp.open("POST", "group/receive", false);
         xmlhttp.send(data);
+        
+        this.close();
     }
 
     _getFormData () {

@@ -1,5 +1,4 @@
 <?php
-
 class LocationsController extends BaseController
 {
     public function actionGetLocations()
@@ -7,10 +6,8 @@ class LocationsController extends BaseController
         $locations = Locations::model()->getLocations();
         $this->renderJSON($locations);
     }
-
     public function actionShowLocations($par)
     {
-
         $this->renderJSON($par);
     }
 }
