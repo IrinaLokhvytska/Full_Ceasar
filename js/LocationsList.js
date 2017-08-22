@@ -1,40 +1,33 @@
 'use strict';
 
 class LocationsList {
-    constructor(locationModalElement) {
+    constructor(locationModalElement, urlArray) {
+        this.urlGetLocations = urlArray[0];
+        this.urlShowLocations = urlArray[1];
         this.selectedLocations = [];
         this.locationModal = locationModalElement;
-        this.createLocationsList();
+        this.getLocations();
         this.attachConfirmBtnEvent();
+        this.locations = [];
     }
 
     createLocationsList() {
-        let locations = this.getLocations(),
-            locQuantity = locations.length;
+        let locQuantity = this.locations.length;
 
         for (let i = 0; i < locQuantity; i++) {
-            this.createLocation(locations[i]['FULL_NAME']);
+            this.createLocation(this.locations[i]['full_name']);
         }
 
         this.attachLocationsEvents();
     }
 
     getLocations() {
-        return this.getXMLHttpRequest('/locations/getLocations', 'getLocations', false);
+        return Frame.ajaxResponse('GET', this.urlGetLocations, this.saveLocations.bind(this));
     }
 
-    getXMLHttpRequest(url, request, async) {
-        let xhr = new XMLHttpRequest(url, request, async),
-            arr = '';
-
-        xhr.open('GET', url + '?' + request, async);
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                arr = JSON.parse(xhr.responseText);
-            }
-        };
-        xhr.send();
-        return arr;
+    saveLocations(data) {
+        this.locations = data;
+        this.createLocationsList();
     }
 
     createLocation(cityName) {
@@ -76,7 +69,9 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
+        // let groupsListObj = localStorage.getItem('groupsListObj');
+        // groupsListObj.getGroupsList(this.selectedLocations);
         let selectedLocations = JSON.stringify(this.selectedLocations);
-        Frame.ajaxRequest('GET', 'index.php', selectedLocations);
+        Frame.ajaxRequest('GET', this.urlShowLocations + selectedLocations);
     }
 }

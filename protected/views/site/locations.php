@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-default mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">
+<button type="button" class="btn btn-primary mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">
     Choose location
 </button>
 
@@ -18,3 +18,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', locationsInit);
+
+    function locationsInit() {
+        let locationModal = document.querySelector('#locationModal'),
+            urlArray = [
+                "<?= Yii::app()->createUrl('Locations/GetLocations'); ?>",
+                "<?= Yii::app()->createUrl('Locations/ShowLocations'); ?>"
+            ];
+        locationsListModal = null;
+        locationsListModal = (locationsListModal === null)
+            ? new LocationsList(locationModal, urlArray)
+            : locationsListModal;
+    }
+</script>
