@@ -72,6 +72,8 @@ class LocationsList {
         // let groupsListObj = localStorage.getItem('groupsListObj');
         // groupsListObj.getGroupsList(this.selectedLocations);
         let selectedLocations = JSON.stringify(this.selectedLocations);
-        Frame.ajaxRequest('GET', this.urlShowLocations + selectedLocations);
+        Frame.ajaxRequest('GET', this.urlShowLocations + /par/ + selectedLocations);
+        // alert(JSON.stringify(this.selectedLocations));
+        alert(this.selectedLocations.join("\n"));
     }
 }
