@@ -1,24 +1,16 @@
 'use strict';
 
 class Frame {
-    static ajaxRequest(method, request, async) {
+    static ajaxRequest(method, request, async = true) {
         let xhr = new XMLHttpRequest();
-
-        if (async === undefined) {
-            async = true;
-        }
 
         xhr.open(method, request, async);
         xhr.send();
     }
 
-    static ajaxResponse(method, request, callback, async) {
+    static ajaxResponse(method, request, callback, async = true) {
         let xhr = new XMLHttpRequest(),
             data = '';
-
-        if (async === undefined) {
-            async = true;
-        }
 
         xhr.open(method, request, async);
         xhr.onreadystatechange = () => {

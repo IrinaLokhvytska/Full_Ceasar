@@ -2,14 +2,21 @@
 
 class GroupsListController extends BaseController
 {
-    public function actionGetGroupsList()
+    public function actionGetGroupsList($par)
     {
-        $groupsList = GroupsList::model()->getGroupsList();
+        $groupsList = GroupsList::model()->getGroupsList($par);
         $this->renderJSON($groupsList);
     }
 
-    public function actionShowGroup($groupName)
+    public function actionShowGroup($par)
     {
-        $this->renderJSON($groupName);
+//        $groupInfo = GroupInfo::model()->getGroupInfo($groupName);
+//        $this->renderJSON($groupInfo);
+    }
+
+    public function actionGetMyGroupsList()
+    {
+        $groupsList = GroupsList::model()->getMyGroupsList();
+        $this->renderJSON($groupsList);
     }
 }
