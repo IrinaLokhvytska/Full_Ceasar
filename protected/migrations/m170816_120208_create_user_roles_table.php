@@ -15,7 +15,7 @@ class m170816_120208_create_user_roles_table extends CDbMigration
 
         $this->execute('
             ALTER TABLE `user_roles`
-            ADD CONSTRAINT `user_role` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `user_role` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
             ADD CONSTRAINT `role` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
         ');
 	}

@@ -52,8 +52,8 @@ class DemoDataCommand extends CConsoleCommand
     public function actionFillOutTableUserRoles() {
         $user_roles = require_once Yii::app()->basePath . '/data/demo/user_roles.php';
         $command = Yii::app()->db->createCommand();
-        foreach ($user_roles as $user_roles) {
-            $command->insert('user_roles', $user_roles);
+        foreach ($user_roles as $user_role) {
+            $command->insert('user_roles', $user_role);
         }
     }
 }
