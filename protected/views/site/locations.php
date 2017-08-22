@@ -1,6 +1,3 @@
-<!--<button type="button" class="btn btn-primary mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">-->
-<!--    Choose location-->
-<!--</button>-->
 <a data-toggle="modal" href="#locationModal">
     <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/globe.png" class="globe-img" alt="globe icon">
 </a>
@@ -11,11 +8,11 @@
             <div class="wrapper">
                 <aside class="left"></aside>
                 <aside class="right"></aside>
-                <div class="loc-list pt-5 pb-5 subgrid">
+                <div class="loc-list">
                 </div>
                 <div class="footer">
-                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal" id="confirm">Confirm</button>
-                    <button type="button" class="btn btn-secondary float-right mr-3" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal" id="confirm">Confirm</button>
+                    <button type="button" class="btn btn-secondary pull-right btnClose" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
