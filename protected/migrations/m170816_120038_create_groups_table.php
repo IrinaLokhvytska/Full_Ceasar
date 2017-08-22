@@ -13,7 +13,6 @@ class m170816_120038_create_groups_table extends CDbMigration
             `start_date` datetime DEFAULT NULL,
             `finish_date` datetime DEFAULT NULL,
             `budget` VARCHAR(45) NOT NULL,
-            `expert` VARCHAR(50) NOT NULL,
             PRIMARY KEY (`id`))
             ENGINE = InnoDB DEFAULT CHARSET=utf8;
         ');
