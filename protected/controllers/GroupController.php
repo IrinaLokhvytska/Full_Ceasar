@@ -49,14 +49,14 @@ class GroupController extends BaseController
                 ]
             );
 
-//        Yii::app()->db->createCommand()
-//            ->insert(
-//                'experts',
-//                [
-//                    'id_group' => $groupID,
-//                    'name' => $attributesGroup['expertName']
-//                ]
-//            );
+        Yii::app()->db->createCommand()
+            ->insert(
+                'group_experts',
+                [
+                    'group' => $groupID,
+                    'name' => $attributesGroup['expertName']
+                ]
+            );
 
         $this->renderJson(["success" => true]);
     }
@@ -118,7 +118,7 @@ class GroupController extends BaseController
 
 //        $experts = Yii::app()->db->createCommand()
 //            ->select('name')
-//            ->from('experts')
+//            ->from('group_experts')
 //            ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
 //            ->queryAll();
 
@@ -150,6 +150,7 @@ class GroupController extends BaseController
         $this->renderJson($group);
 
     }
+
     public function actionEdit()
     {
         $editFormAttributes = Yii::app()->request->getPost('EditForm', []);
@@ -178,27 +179,27 @@ class GroupController extends BaseController
                     'direction_id' => $attributesGroup['directionID'],
                     'location_id' => $attributesGroup['locationID'],
                     'budget' => $attributesGroup['budgetOwner'],
-                    'date_start' => $attributesGroup['startDate'],
-                    'date_finish' => $attributesGroup['finishDate']
+                    'start_date' => $attributesGroup['startDate'],
+                    'finish_date' => $attributesGroup['finishDate']
                 ],
-                'id_group=:id',
-                [':id'=>$attributesGroup['id']]
+                'id=:id',
+                [':id' => $attributesGroup['id']]
             );
 
         Yii::app()->db->createCommand()
             ->insert(
                 'user_groups',
                 [
-                    'id_group' => $attributesGroup['id'],
-                    'user_id' => $attributesGroup['teacherID']
+                    'group' => $attributesGroup['id'],
+                    'user' => $attributesGroup['teacherID']
                 ]
             );
 
         Yii::app()->db->createCommand()
             ->insert(
-                'experts',
+                'group_experts',
                 [
-                    'id_group' => $attributesGroup['id'],
+                    'group' => $attributesGroup['id'],
                     'name' => $attributesGroup['expertName']
                 ]
             );
