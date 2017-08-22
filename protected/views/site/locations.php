@@ -1,6 +1,9 @@
-<button type="button" class="btn btn-primary mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">
-    Choose location
-</button>
+<!--<button type="button" class="btn btn-primary mt-4" id="locationBtn" data-toggle="modal" data-target="#locationModal">-->
+<!--    Choose location-->
+<!--</button>-->
+<a data-toggle="modal" href="#locationModal">
+    <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/globe.png" class="globe-img" alt="globe icon">
+</a>
 
 <div class="modal fade" id="locationModal">
     <div class="modal-dialog  modal-lg">
