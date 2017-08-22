@@ -58,11 +58,10 @@ class GroupController extends BaseController
     public function actionGetTeachersList()
     {
         $teachers = Yii::app()->db->createCommand()
-            ->select('firstname, lastname, id, location')
+            ->select('first_name, last_name, full_name')
             ->from('user_roles ur')
             ->join('users u', 'ur.id=u.id')
-            ->join('locations l', 'ur.location.id=l.id')
-            ->where('role=1')
+            ->join('locations l', 'u.location=l.id')
             ->queryAll();
         $teachers = empty($teachers) ? [] : $teachers;
         $this->renderJson($teachers);
