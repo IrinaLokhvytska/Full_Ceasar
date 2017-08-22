@@ -16,22 +16,16 @@ class Login {
     }
 
     attachEvents() {
-        this.login.addEventListener('blur', event => {
-            this.validateForm();
-        });
-
-        this.password.addEventListener('blur', event => {
-            this.validateForm();
-        });
-
         document.addEventListener('keydown', event => {
             if (event.keyCode === 13) {
+                event.preventDefault();
                 this.validateForm();
             }
         });
 
         document.addEventListener('keydown', event => {
             if (event.keyCode === 27) {
+                this.login.value = "";
                 this.password.value = "";
             }
         });
@@ -41,20 +35,42 @@ class Login {
         });
     }
 
-    validateForm() {
-        let loginValue = this.login.value,
-            passwordValue = this.password.value;
+    validateLogin () {
+        let loginValue = this.login.value;
 
         if (!loginValue.match(/^[a-zA-Z]+$/g)) {
             this.showError();
-        } else if (loginValue.length < 4 || loginValue.length > 20) {
-            this.showError();
-        } else if (passwordValue.length < 4 || passwordValue.length > 10) {
-            this.showError();
-        } else if (!this.password.value.match(/^[a-zA-Z0-9!@#$%^&*`~()_+-|\"';:/?.>,<]+$/g)) {
-            this.showError();
+            return false;
         } else {
+            if (loginValue.length < 4 || loginValue.length > 10) {
+                this.showError();
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
 
+    validatePassword() {
+        let passwordValue = this.password.value;
+
+        if (passwordValue.length < 4 || passwordValue.length > 10) {
+            this.showError();
+            return false;
+        } else {
+            if (!this.password.value.match(/^[a-zA-Z0-9!@#$%^&*`~()_+-|\"';:/?.>,<]+$/g)) {
+                this.showError();
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    validateForm() {
+        let loginValid = this.validateLogin(),
+            passwordValid = this.validatePassword();
+        if (loginValid && passwordValid) {
             this.loginForm.submit();
         }
     }

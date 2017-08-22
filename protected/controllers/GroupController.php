@@ -27,8 +27,9 @@ class GroupController extends BaseController
                     'direction_id' => $attributesGroup['directionID'],
                     'location_id' => $attributesGroup['locationID'],
                     'budget' => $attributesGroup['budgetOwner'],
-                    'date_start' => $attributesGroup['startDate'],
-                    'date_finish' => $attributesGroup['finishDate']
+                    'start_date' => $attributesGroup['startDate'],
+                    'finish_date' => $attributesGroup['finishDate'],
+                    'expert' => ''
                 ]
             );
 
@@ -42,19 +43,19 @@ class GroupController extends BaseController
             ->insert(
                 'user_groups',
                 [
-                    'id_group' => $groupID,
-                    'user_id' => $attributesGroup['teacherID']
+                    'group' => $groupID[0]['id'],
+                    'user' => $attributesGroup['teacherID']
                 ]
             );
 
-        Yii::app()->db->createCommand()
-            ->insert(
-                'experts',
-                [
-                    'id_group' => $groupID,
-                    'name' => $attributesGroup['expertName']
-                ]
-            );
+//        Yii::app()->db->createCommand()
+//            ->insert(
+//                'experts',
+//                [
+//                    'id_group' => $groupID,
+//                    'name' => $attributesGroup['expertName']
+//                ]
+//            );
 
         $this->renderJson(["success" => true]);
     }
@@ -70,10 +71,10 @@ class GroupController extends BaseController
     public function actionGetTeachersList()
     {
         $teachers = Yii::app()->db->createCommand()
-            ->select('first_name, last_name, full_name')
+            ->select('first_name, last_name, u.id')
             ->from('user_roles ur')
-            ->join('users u', 'ur.id=u.id')
-            ->join('locations l', 'u.location=l.id')
+            ->join('users u', 'u.id=ur.id')
+            ->where('role=1')
             ->queryAll();
 
         $teachers = empty($teachers) ? [] : $teachers;
@@ -108,37 +109,46 @@ class GroupController extends BaseController
     public function actionGetGroup()
     {
         $teachers = Yii::app()->db->createCommand()
-            ->select('firstname, lastname, id')
+            ->select('first_name, last_name')
             ->from('user_groups ug')
-            ->join('users u', 'ug.user_id = u.id')
-            ->where('group_id=:id', [':id' => Yii::app()->request->getParam('id')])
+            ->join('users u', 'ug.id = u.id')
+            ->where('ug.id=:id', [':id' => Yii::app()->request->getParam('id')])
             ->queryAll();
 
-        $experts = Yii::app()->db->createCommand()
-            ->select('name, id')
-            ->from('experts')
-            ->where('group_id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
+//        $experts = Yii::app()->db->createCommand()
+//            ->select('name')
+//            ->from('experts')
+//            ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
+//            ->queryAll();
 
-        $groups = Yii::app()->db->createCommand()
-            ->select('*')
+        $group = Yii::app()->db->createCommand()
+            ->select('g.id, l.full_name, d.name, start_date, finish_date, budget, expert')
+
             ->from('groups g')
-            ->join('directions d', 'g.direction_id = d.id')
-            ->join('locations l', 'g.location_id = l.id')
+            ->join('directions d', 'g.direction_id=d.id')
+            ->join('locations l', 'g.location_id=l.id')
+            ->where('g.id=:id', [':id' => Yii::app()->request->getParam('id')])
+            ->queryAll();
+
+        $groupName = Yii::app()->db->createCommand()
+            ->select('name')
+            ->from('groups')
             ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
             ->queryAll();
 
-        $groups = empty($groups) ? [] : $groups;
+        $group[] = $groupName;
+
+        $group = empty($group) ? [] : $group;
 
         $teachers = empty($teachers) ? [] : $teachers;
-        $experts = empty($experts) ? [] : $experts;
+        //$experts = empty($experts) ? [] : $experts;
 
-        $groups[] = $teachers;
-        $groups[] = $experts;
+        $group[] = $teachers;
+        //$groups[] = $experts;
 
-        $this->renderJson($groups);
+        $this->renderJson($group);
+
     }
-
     public function actionEdit()
     {
         $editFormAttributes = Yii::app()->request->getPost('EditForm', []);
@@ -156,6 +166,7 @@ class GroupController extends BaseController
         }
 
         $editedGroup->id = Yii::app()->request->getPost('id');
+
         $attributesGroup = $editedGroup->getAttributes();
 
         Yii::app()->db->createCommand()

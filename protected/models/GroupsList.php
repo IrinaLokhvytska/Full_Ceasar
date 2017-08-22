@@ -9,7 +9,39 @@ class GroupsList extends CActiveRecord
 
     public function tableName()
     {
-        return 'groups';
+        return 'directions';
+    }
+
+    public function getGroupsList($locations)
+    {
+        if (!isset($locations) || $locations === 'undefined') {
+            $locations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        } else {
+            $locations = $this->requestParametersParse($locations);
+        }
+
+
+//        $criteria = new CDbCriteria();
+////        $criteria->alias = 'directions d'
+////        $criteria->select = 'directions.name, groups.name';
+////        $criteria->addInCondition('location', $locations);
+//        $criteria->join = "INNER JOIN groups ON id = groups.direction";
+//        $groupsList = GroupsList::model()->findAll($criteria);
+
+//        $groups = Yii::app()->db->createCommand()
+//            ->select('groups.name, directions.name')
+//            ->from('groups, directions')
+//            ->join('directions', 'groups.direction=directions.id')
+//            ->queryRow();
+
+//        $criteria = new CDbCriteria();
+//        $criteria->select = ['directions.name', 'groups.name'];
+//        $criteria->join = 'INNER JOIN groups g ON directions.id = groups.direction';
+//        $groupsList = GroupsList::model()->findAll($criteria);
+
+        $groupsList = Yii::app()->db->createCommand('SELECT d.name as direction_name, g.name as group_name FROM directions d INNER JOIN groups g ON d.id = g.direction')->queryAll();
+
+        return empty($groupsList) ? [] : $groupsList;
     }
 
     public function requestParametersParse($params)
@@ -21,65 +53,6 @@ class GroupsList extends CActiveRecord
         }
 
         return $params;
-    }
-
-    public function getGroupsList($locations)
-    {
-        $locations = $this->requestParametersParse($locations);
-
-        if (!isset($locations) || $locations === 'undefined') {
-            $locations = [2];
-        }
-
-        $criteria = new CDbCriteria();
-        $criteria->select = 'name, direction';
-        $criteria->addInCondition('location', $locations);
-        $groupsList = GroupsList::model()->findAll($criteria);
-//
-//        if (strpos($locations, ',')) {
-//            $locations = explode(',', $locations);
-//        }
-//
-//
-//        $groupsList = [
-//            ['groupName' => 'LV17', 'groupDirection' => 'Java'],
-//            ['groupName' => 'DP19', 'groupDirection' => 'PHP'],
-//            ['groupName' => 'KH20', 'groupDirection' => 'JS'],
-//            ['groupName' => 'ZP11', 'groupDirection' => 'JS'],
-//            ['groupName' => 'DP12', 'groupDirection' => 'Java'],
-//            ['groupName' => 'RV18', 'groupDirection' => 'PHP'],
-//            ['groupName' => 'CH14', 'groupDirection' => 'GO'],
-//            ['groupName' => 'KV13', 'groupDirection' => 'Java'],
-//            ['groupName' => 'LV22', 'groupDirection' => 'JS'],
-//            ['groupName' => 'KH24', 'groupDirection' => 'PHP'],
-//            ['groupName' => 'ZP21', 'groupDirection' => 'Java'],
-//            ['groupName' => 'DP23', 'groupDirection' => 'JS'],
-//        ];
-//
-//        if (is_array($locations)) {
-//            if ($locations[0] === 'DP') {
-//                $groupsList = [
-//                    ['groupName' => 'LV17', 'groupDirection' => 'Java'],
-//                    ['groupName' => 'DP19', 'groupDirection' => 'PHP'],
-//                    ['groupName' => 'KH20', 'groupDirection' => 'JS'],
-//                ];
-//            }
-//            if ($locations[1] === 'LV')
-//            {
-//                $groupsList[] = ['groupName' => 'LV22', 'groupDirection' => 'JS'];
-//            }
-//        } else {
-//            if ($locations === 'DP') {
-//                $groupsList = [
-//                    ['groupName' => 'LV17', 'groupDirection' => 'Java'],
-//                    ['groupName' => 'KH20', 'groupDirection' => 'JS'],
-//                ];
-//            }
-//        }
-//
-//
-
-        return $groupsList;
     }
 
     public function getMyGroupsList()

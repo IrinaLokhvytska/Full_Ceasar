@@ -1,6 +1,6 @@
 <?php
 
-class Directions extends CActiveRecord
+class Direction extends CActiveRecord
 {
     public $id;
     public $name;
@@ -15,5 +15,5 @@ class Directions extends CActiveRecord
     {
         return 'directions';
     }
-    
+
 }

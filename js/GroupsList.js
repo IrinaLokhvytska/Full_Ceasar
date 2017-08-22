@@ -40,7 +40,7 @@ class GroupsList {
       if (i === arrLen - 1 && i % 2 === 0) {
         addLastOddGroupClass = true;
       }
-      this.createGroup(groups[firstGroupNumber + i - 1]['groupName'], groups[firstGroupNumber + i - 1]['groupDirection'], addLastOddGroupClass);
+      this.createGroup(groups[firstGroupNumber + i - 1]['name'], groups[firstGroupNumber + i - 1]['direction'], addLastOddGroupClass);
     }
 
     this.pageNumberElement.innerHTML = newPageNumber;
@@ -113,8 +113,8 @@ class GroupsList {
     }
     group.setAttribute('id', gName);
     groupName.innerHTML = gName;
-    groupName.className = 'groupName';
+    groupName.className = 'grName';
     groupDirection.innerHTML = gDirection;
-    groupDirection.className = 'groupDirection';
+    groupDirection.className = 'grDirection';
   }
 }
