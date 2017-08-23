@@ -1,7 +1,7 @@
 'use strict';
-'use strict';
 class TeachersSelect {
-    constructor (elements) {
+    constructor (url, elements) {
+        this.getTeachersListUrl = url;
         this.defineElements(elements);
         this.attachEvents();
         this.teachersList = [];
@@ -24,7 +24,7 @@ class TeachersSelect {
     }
 
     getTeachersFromDb () {
-        return Frame.ajaxResponse('GET', '/group/getteacherslist', this.saveTeachers.bind(this));
+        return Frame.ajaxResponse('GET', this.getTeachersListUrl, this.saveTeachers.bind(this));
     }
 
     saveTeachers(data) {

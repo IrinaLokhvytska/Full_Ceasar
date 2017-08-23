@@ -1,7 +1,8 @@
 'use strict';
 class DateCourse {
 
-    constructor (elements) {
+    constructor (url, elements) {
+        this.getDirectionsListUrl = url;
         this.defineElements(elements);
         this.attachEvents();
         this.directionList = [];
@@ -28,7 +29,7 @@ class DateCourse {
     }
 
     getDirectionsFromDb () {
-        return Frame.ajaxResponse('GET', '/group/getdirectionslist', this.saveDirections.bind(this));
+        return Frame.ajaxResponse('GET', this.getDirectionsListUrl, this.saveDirections.bind(this));
     }
 
     saveDirections(data) {
@@ -51,13 +52,13 @@ class DateCourse {
             this.startDate.style.borderColor = "red";
 
             return false;
-            
+
         } else {
             this.messageBox.style.display = "none";
             this.startDate.style.borderColor = "black";
 
             return true;
-            
+
         }
     }
 
