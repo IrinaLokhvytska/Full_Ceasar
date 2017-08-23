@@ -22,7 +22,7 @@ class m170822_203353_create_table_experts extends CDbMigration
 	public function down()
 	{
         $this->dropForeignKey('group_id', 'experts');
-        $this->dropTable('experts')
+        $this->dropTable('experts');
 	}
 
 	/*
