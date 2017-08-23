@@ -54,7 +54,6 @@
             </div>
             <div class="col-md-4 col-xs-12 col-sm-12">
                 <select class="location" title="location" disabled>
-                    <option value="3">Locations</option>
                 </select>
             </div>
             <div class="col-md-2 col-xs-12 col-sm-12">

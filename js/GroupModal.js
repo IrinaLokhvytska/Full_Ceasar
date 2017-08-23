@@ -4,6 +4,7 @@ class GroupModal {
     constructor (elements) {
         this.defineElements(elements);
         this.attachEvents();
+        this.getLocationFromDb();
     }
 
     defineElements (elements) {
@@ -16,6 +17,7 @@ class GroupModal {
         this.submit = elements.querySelector('.submit');
         this.closeModal = elements.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
+        this.locationData = '';
     }
 
     attachEvents () {
@@ -33,6 +35,19 @@ class GroupModal {
                 event.preventDefault();
                 this.save();
             }
+        });
+    }
+
+    getLocationFromDb () {
+        return Frame.ajaxResponse('GET', '/group/getlocationslist', this.initLocation.bind(this));
+    }
+
+    initLocation (data) {
+        data.forEach((location)=> {
+            let opt = document.createElement('option');
+            opt.value = location.id;
+            opt.innerHTML = location.full_name;
+            this.location.appendChild(opt);
         });
     }
 

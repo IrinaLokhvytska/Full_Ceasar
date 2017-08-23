@@ -86,13 +86,14 @@ class GroupController extends BaseController
 
     public function actionGetLocationsList()
     {
+        $user_location = Yii::app()->user->location;
         $locations = Yii::app()->db->createCommand()
-            ->select('name, id')
-            ->from('user_roles')
+            ->select('id, full_name')
+            ->from('locations')
+            ->where("id = {$user_location}")
             ->queryAll();
-
+        
         $locations = empty($locations) ? [] : $locations;
-
         $this->renderJson($locations);
     }
 

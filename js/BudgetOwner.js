@@ -8,6 +8,7 @@ class BudgetOwner {
 
     defineElements (elements) {
         this.budgetOwner = 'Soft Serve';
+        console.log(this.budgetOwner);
         this.SsOwner = elements.querySelector('.SoftServe');
         this.OgOwner = elements.querySelector('.Open-group');
         this.labelSS = elements.querySelector('#SsOwner');
