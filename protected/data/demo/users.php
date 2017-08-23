@@ -7,6 +7,7 @@ return [
         'password' => 'softserve',
         'location_id' => 1,
         'type' => 'itacademy',
+        'picture' => '/users_picture/ybezgachnyuk.png',
     ],
     [
         'first_name' => 'Mykola',
@@ -15,6 +16,7 @@ return [
         'password' => 'softserve',
         'location_id' => 1,
         'type' => 'itacademy',
+        'picture' => '/users_picture/Demchyna.png',
     ],
     [
         'first_name' => 'Andriy',
@@ -23,6 +25,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/aperey1.png',
     ],
     [
         'first_name' => 'Khrystyna',
@@ -31,6 +34,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/profile_picture.png',
     ],
     [
         'first_name' => 'Maryana',
@@ -39,6 +43,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/mlopat.bmp',
     ],
     [
         'first_name' => 'Mykhaylo',
@@ -47,6 +52,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/mplesha.png',
     ],
     [
         'first_name' => 'Viktoriya',
@@ -55,6 +61,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/vryazh.png',
     ],
     [
         'first_name' => 'Andriy',
@@ -63,6 +70,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/akorkuna1.png',
     ],
     [
         'first_name' => 'Liubomyr',
@@ -71,6 +79,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/lhalam.png',
     ],
     [
         'first_name' => 'Yaroslav',
@@ -79,6 +88,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/yharasym1.jpg',
     ],
     [
         'first_name' => 'Ihor',
@@ -87,6 +97,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/ikohut.jpg',
     ],
     [
         'first_name' => 'Lesya',
@@ -95,6 +106,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/Klakovych.png',
     ],
     [
         'first_name' => 'Viacheslav',
@@ -103,6 +115,7 @@ return [
         'password' => 'softserve',
         'location_id' => 2,
         'type' => 'itacademy',
+        'picture' => '/users_picture/vkoldovskyy.png',
     ],
     [
         'first_name' => 'Dmytro',
@@ -111,6 +124,7 @@ return [
         'password' => 'softserve',
         'location_id' => 3,
         'type' => 'itacademy',
+        'picture' => '/users_picture/dpetin.jpg',
     ],
     [
         'first_name' => 'Oleg',
@@ -119,6 +133,7 @@ return [
         'password' => 'softserve',
         'location_id' => 3,
         'type' => 'itacademy',
+        'picture' => '/users_picture/oshvets.png',
     ],
     [
         'first_name' => 'Olexander',
@@ -127,6 +142,7 @@ return [
         'password' => 'softserve',
         'location_id' => 3,
         'type' => 'itacademy',
+        'picture' => '/users_picture/oreuta.png',
     ],
     [
         'first_name' => 'Taras',
@@ -135,6 +151,7 @@ return [
         'password' => 'softserve',
         'location_id' => 3,
         'type' => 'itacademy',
+        'picture' => '/users_picture/taras.jpg',
     ],
     [
         'first_name' => 'Nataliia',
@@ -143,6 +160,7 @@ return [
         'password' => 'softserve',
         'location_id' => 4,
         'type' => 'itacademy',
+        'picture' => '/users_picture/nroman1.png',
     ],
     [
         'first_name' => 'Yevheniy',
@@ -151,6 +169,7 @@ return [
         'password' => 'softserve',
         'location_id' => 5,
         'type' => 'itacademy',
+        'picture' => '/users_picture/profile_picture.png',
     ],
     [
         'first_name' => 'Dmytro',
@@ -159,6 +178,7 @@ return [
         'password' => 'softserve',
         'location_id' => 5,
         'type' => 'itacademy',
+        'picture' => '/users_picture/profile_picture.png',
     ],
     [
         'first_name' => 'Maksym',
@@ -167,6 +187,7 @@ return [
         'password' => 'softserve',
         'location_id' => 6,
         'type' => 'itacademy',
+        'picture' => '/users_picture/profile_picture.png'
     ],
     [
         'first_name' => 'Mykhailo',
@@ -175,6 +196,7 @@ return [
         'password' => 'softserve',
         'location_id' => 7,
         'type' => 'itacademy',
+        'picture' => '/users_picture/momel.png'
     ],
     [
         'first_name' => 'Yulian',
@@ -183,5 +205,6 @@ return [
         'password' => 'softserve',
         'location_id' => 8,
         'type' => 'itacademy',
+        'picture' => '/users_picture/profile_picture.png'
     ]
 ];
