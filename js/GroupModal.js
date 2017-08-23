@@ -124,8 +124,7 @@ class GroupModal {
             expertsIDs.push(expertInput.value);
         });
         data.experts = expertsIDs;
-
-        console.log(data);
+        data = JSON.stringify(data);
 
         return data;
     }

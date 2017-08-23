@@ -4,61 +4,63 @@ class GroupController extends BaseController
 {
     public function actionCreate()
     {
-        $createFormAttributes = Yii::app()->request->getPost('CreateForm', []);
-        
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);
 
-        if (empty($createFormAttributes)) {
-            throw new CHttpException(400, 'Invalid data');
-        }
 
-        $newGroup = new GroupForm();
-        $newGroup->attributes = $createFormAttributes;
 
-        if (!$newGroup->validate()) {
-            throw new CHttpException(400, 'error in request');
-        }
+//        if (empty($createFormAttributes)) {
+//            throw new CHttpException(400, 'Invalid data');
+//        }
+//
+//        $newGroup = new GroupForm();
+//        $newGroup->attributes = $data;
 
-        $attributesGroup = $newGroup->getAttributes();
+//        if (!$newGroup->validate()) {
+//            throw new CHttpException(400, 'error in request');
+//        }
+
+//        $attributesGroup = $newGroup->getAttributes();
 
         Yii::app()->db->createCommand()
             ->insert(
                 'groups',
                 [
-                    'name' => $attributesGroup['groupName'],
-                    'direction_id' => $attributesGroup['directionID'],
-                    'location_id' => $attributesGroup['locationID'],
-                    'budget' => $attributesGroup['budgetOwner'],
-                    'start_date' => $attributesGroup['startDate'],
-                    'finish_date' => $attributesGroup['finishDate'],
-                    'expert' => ''
+                    'name' => $data['name'],
+                    'direction' => $data['direction'],
+                    'location' => $data['location'],
+                    'budget' => $data['budgetOwner'],
+                    'start_date' => $data['startDate'],
+                    'finish_date' => $data['finishDate'],
+                    'expert' =>''
                 ]
             );
 
-        $groupID = Yii::app()->db->createCommand()
-            ->select('id')
-            ->from('groups')
-            ->where('name=:name', [':name' => $attributesGroup['groupName']])
-            ->queryAll();
-
-        Yii::app()->db->createCommand()
-            ->insert(
-                'user_groups',
-                [
-                    'group' => $groupID[0]['id'],
-                    'user' => $attributesGroup['teacherID']
-                ]
-            );
-
-        Yii::app()->db->createCommand()
-            ->insert(
-                'group_experts',
-                [
-                    'group' => $groupID,
-                    'name' => $attributesGroup['expertName']
-                ]
-            );
-
-        $this->renderJson(["success" => true]);
+//        $groupID = Yii::app()->db->createCommand()
+//            ->select('id')
+//            ->from('groups')
+//            ->where('name=:name', [':name' => $attributesGroup['groupName']])
+//            ->queryAll();
+//
+//        Yii::app()->db->createCommand()
+//            ->insert(
+//                'user_groups',
+//                [
+//                    'group' => $groupID[0]['id'],
+//                    'user' => $attributesGroup['teacherID']
+//                ]
+//            );
+//
+//        Yii::app()->db->createCommand()
+//            ->insert(
+//                'group_experts',
+//                [
+//                    'group' => $groupID,
+//                    'name' => $attributesGroup['expertName']
+//                ]
+//            );
+//
+//        $this->renderJson(["success" => true]);
     }
 
     public function actionDelete()

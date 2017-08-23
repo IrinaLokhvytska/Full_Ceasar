@@ -3,8 +3,8 @@ class Group extends CActiveRecord
 {
     public $id;
     public $name;
-    public $location_id;
-    public $direction_id;
+    public $location;
+    public $direction;
     public $start_date;
     public $finish_date;
     public $budget;
@@ -22,8 +22,8 @@ class Group extends CActiveRecord
         $model = new $class(
             $attributes['id'],
             $attributes['name'],
-            $attributes['location_id'],
-            $attributes['direction_id'],
+            $attributes['location'],
+            $attributes['direction'],
             $attributes['start_date'],
             $attributes['finish_date'],
             $attributes['budget']
@@ -37,8 +37,8 @@ class Group extends CActiveRecord
     public function relations ()
     {
         return [
-            'location_id' =>[self::HAS_ONE, 'Locations', 'id'],
-            'direction_id' =>[self::HAS_ONE, 'Directions', 'id'],
+            'location' =>[self::HAS_ONE, 'Locations', 'id'],
+            'direction' =>[self::HAS_ONE, 'Direction', 'id'],
             'teachers' => [self::MANY_MANY, 'Teachers', 'user_groups(group, user)'],
             'experts' => [self::MANY_MANY, 'Experts', 'group_experts(group, name)']
         ];
