@@ -31,8 +31,7 @@ class GroupController extends BaseController
                     'location' => $data['location'],
                     'budget' => $data['budgetOwner'],
                     'start_date' => $data['startDate'],
-                    'finish_date' => $data['finishDate'],
-                    'expert' =>''
+                    'finish_date' => $data['finishDate']
                 ]
             );
 
