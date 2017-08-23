@@ -1,16 +1,19 @@
 'use strict';
 class GroupModal {
-    
-    constructor (elements) {
+
+    constructor (urlArray, elements) {
+        this.getLocationsUrl = urlArray[0];
+        this.getTeachersListUrl = urlArray[1];
+        this.getDirectionsListUrl = urlArray[2];
         this.defineElements(elements);
         this.attachEvents();
         this.getLocationFromDb();
     }
 
     defineElements (elements) {
-        this.dateCourse = new DateCourse(elements);
+        this.dateCourse = new DateCourse(this.getDirectionsListUrl, elements);
         this.budgetOwner = new BudgetOwner(elements);
-        this.teachers = new TeachersSelect(elements);
+        this.teachers = new TeachersSelect(this.getTeachersListUrl, elements);
         this.experts = new ExpertsInput(elements);
         this.name = elements.querySelector('.groupName');
         this.location = elements.querySelector('.location');
@@ -38,7 +41,7 @@ class GroupModal {
     }
 
     getLocationFromDb () {
-        return Frame.ajaxResponse('GET', '/group/getlocationslist', this.initLocation.bind(this));
+        return Frame.ajaxResponse('GET', this.getLocationsUrl, this.initLocation.bind(this));
     }
 
     initLocation (data) {
@@ -86,7 +89,7 @@ class GroupModal {
 
     save () {
         if (this.isValid()) {
-            
+
             this._sendData(this._getFormData());
         } else {
 
@@ -110,7 +113,7 @@ class GroupModal {
 
         xmlhttp.open("POST", "/group/create", false);
         xmlhttp.send(data);
-        
+
         this.close();
     }
 
