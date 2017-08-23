@@ -30,7 +30,7 @@ class Locations extends CActiveRecord
         $criteria = new CDbCriteria();
         $criteria->select = 'id';
         $criteria->addInCondition('name', $locations);
-        $locationsIdArray = Locations::model()->findAll($criteria);
+        $locationsIdArray = self::model()->findAll($criteria);
 
         return $locationsIdArray;
     }
