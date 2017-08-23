@@ -41,17 +41,26 @@
 <div class="clear"></div>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        let groupsListMenu = new GroupsList([
+    document.addEventListener('DOMContentLoaded', locationsInit);
+
+    function locationsInit() {
+        let locationModal = document.querySelector('#locationModal'),
+            urlArray = [
+                "<?= Yii::app()->createUrl('Locations/GetLocations'); ?>",
+                "<?= Yii::app()->createUrl('Locations/ShowLocations'); ?>"
+            ],
+            groupsListMenu = new GroupsList([
                 "<?= Yii::app()->createUrl('GroupsList/GetGroupsList'); ?>",
                 "<?= Yii::app()->createUrl('GroupsList/ShowGroup'); ?>"]);
 //            myGroupsListFilter = new MyGroupsListFilter([
 //                "<?//= Yii::app()->createUrl('GroupsList/GetMyGroupsList'); ?>//"]);
 
-        groupsListMenu.xname = 'pizdec';
-        sessionStorage.setItem('groupsListObj', groupsListMenu);
-        console.log(sessionStorage.getItem('groupsListObj').xname);
-    });
+        locationsListModal = null;
+        locationsListModal = (locationsListModal === null)
+            ? new LocationsList(locationModal, urlArray, groupsListMenu)
+            : locationsListModal;
+    }
 </script>
+
 </body>
 </html>

@@ -18,19 +18,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', locationsInit);
-
-    function locationsInit() {
-        let locationModal = document.querySelector('#locationModal'),
-            urlArray = [
-                "<?= Yii::app()->createUrl('Locations/GetLocations'); ?>",
-                "<?= Yii::app()->createUrl('Locations/ShowLocations'); ?>"
-            ];
-        locationsListModal = null;
-        locationsListModal = (locationsListModal === null)
-            ? new LocationsList(locationModal, urlArray)
-            : locationsListModal;
-    }
-</script>
