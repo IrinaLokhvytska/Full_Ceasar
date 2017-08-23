@@ -18,9 +18,16 @@ class GroupsList {
         this.attachNavMenuEvents();
     }
 
-    getGroupsList() {
-        console.log('getting groups list');
-        Frame.ajaxResponse('GET', this.urlGetGroupsList + '/par/' + this.locationsList, this.saveGroupsList.bind(this));
+    getGroupsList(locations) {
+        let locs;
+
+        if (locations === undefined) {
+            locs = this.locationsList;
+        } else {
+            locs = locations;
+        }
+
+        Frame.ajaxResponse('GET', this.urlGetGroupsList + '/par/' + locs, this.saveGroupsList.bind(this));
     }
 
     saveGroupsList(data) {
@@ -35,6 +42,8 @@ class GroupsList {
             firstGroupNumber = (newPageNumber - 1) * 10 + 1,
             tempNum = groupsQuantity < 10 ? groupsQuantity : groupsQuantity - (newPageNumber - 1) * 10,
             arrLen = tempNum < 10 ? tempNum : 10;
+
+        this.deleteGroups();
 
         for (let i = 0; i < arrLen; i++) {
             let addLastOddGroupClass = false;
