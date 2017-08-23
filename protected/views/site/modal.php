@@ -2,10 +2,10 @@
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
             <div class="container-fluid" id="modal">
-                <div class="groups">
+                <div class="groups"> 
                     <div id="dashed" class="row">
                         <div class="col-md-2 col-xs-12 col-sm-12">
-                            <label for="groupName">Croup Name:</label>
+                            <label for="groupName">Group Name:</label>
                         </div>
                         <div class="col-md-4 col-xs-12 col-sm-12">
                             <div class="error">
