@@ -1,11 +1,12 @@
 'use strict';
 
 class LocationsList {
-    constructor(locationModalElement, urlArray) {
+    constructor(locationModalElement, urlArray, groupListMenuObj) {
         this.urlGetLocations = urlArray[0];
         this.urlShowLocations = urlArray[1];
         this.selectedLocations = [];
         this.locationModal = locationModalElement;
+        this.groupListMenu = groupListMenuObj;
         this.getLocations();
         this.attachConfirmBtnEvent();
         this.locations = [];
@@ -69,11 +70,6 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
-        // let groupsListObj = localStorage.getItem('groupsListObj');
-        // groupsListObj.getGroupsList(this.selectedLocations);
-        let selectedLocations = JSON.stringify(this.selectedLocations);
-        Frame.ajaxRequest('GET', this.urlShowLocations + /par/ + selectedLocations);
-        // alert(JSON.stringify(this.selectedLocations));
-        alert(this.selectedLocations.join("\n"));
+        this.groupListMenu.getGroupsList(this.selectedLocations);
     }
 }

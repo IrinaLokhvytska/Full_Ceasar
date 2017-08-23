@@ -32,3 +32,8 @@
         </div>
     </div>
 </nav>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+    });
+</script>
