@@ -116,6 +116,7 @@ class GroupModal {
         xmlhttp.send(data);
 
         this.close();
+        location.reload();
     }
 
     _getFormData () {
