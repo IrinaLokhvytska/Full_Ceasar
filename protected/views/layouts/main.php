@@ -18,19 +18,19 @@
           href="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/css/bootstrap.css">
 
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/jquery/dist/jquery.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupModal.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/DateCourse.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/BudgetOwner.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/DateCourse.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/TeachersSelect.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/ExpertsInput.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/group_model_init.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupsList.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/LocationsList.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/MyGroupsListFilter.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 

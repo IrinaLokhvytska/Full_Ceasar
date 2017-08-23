@@ -17,7 +17,6 @@ class GroupModal {
         this.submit = elements.querySelector('.submit');
         this.closeModal = elements.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
-        this.locationData = '';
     }
 
     attachEvents () {

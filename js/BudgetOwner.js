@@ -7,13 +7,10 @@ class BudgetOwner {
     }
 
     defineElements (elements) {
-        this.budgetOwner = 'Soft Serve';
-        console.log(this.budgetOwner);
-        this.SsOwner = elements.querySelector('.SoftServe');
-        this.OgOwner = elements.querySelector('.Open-group');
-        this.labelSS = elements.querySelector('#SsOwner');
-        this.labelOG = elements.querySelector('#OgOwner');
+        this.SsOwner = elements.querySelector('#SsOwner');
+        this.OgOwner = elements.querySelector('#OgOwner');
         this.classLabel = "active";
+        this.budgetOwner = 'Soft Serve';
     }
 
     attachEvents () {
@@ -26,14 +23,14 @@ class BudgetOwner {
     }
 
     setSsOwner () {
-        this.labelSS.classList.add(this.classLabel);
-        this.labelOG.classList.remove(this.classLabel);
+        this.SsOwner.classList.add(this.classLabel);
+        this.OgOwner.classList.remove(this.classLabel);
         this.budgetOwner = 'Soft Serve';
     }
 
     setOgOwner () {
-        this.labelOG.classList.add(this.classLabel);
-        this.labelSS.classList.remove(this.classLabel);
+        this.OgOwner.classList.add(this.classLabel);
+        this.SsOwner.classList.remove(this.classLabel);
         this.budgetOwner = 'Open group';
     }
 
