@@ -32,9 +32,14 @@ class SiteController extends Controller
 
     public function actionMain()
     {
-        $this->layout = "main";
+        if (Yii::app()->user->id) {
+            $this->layout = "main";
 
-        $this->render('main');
+            $this->render('main');
+        } else {
+            $this->redirect(Yii::app()->request->baseUrl . "/site/index");
+        }
+
     }
 
     public function actionLogout()

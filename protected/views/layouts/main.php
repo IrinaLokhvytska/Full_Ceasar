@@ -56,7 +56,8 @@
             groupModalMenu = new GroupModal([
                 "<?= Yii::app()->createUrl('Group/GetLocationsList'); ?>",
                 "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
-                "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>"],
+                "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
+                "<?= Yii::app()->createUrl('Group/Create'); ?>"],
                 groupModalMenuElement);
 //            myGroupsListFilter = new MyGroupsListFilter([
 //                "<?//= Yii::app()->createUrl('GroupsList/GetMyGroupsList'); ?>//"]);

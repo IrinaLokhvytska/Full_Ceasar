@@ -5,6 +5,7 @@ class GroupModal {
         this.getLocationsUrl = urlArray[0];
         this.getTeachersListUrl = urlArray[1];
         this.getDirectionsListUrl = urlArray[2];
+        this.sendUrl = urlArray[3];
         this.defineElements(elements);
         this.attachEvents();
         this.getLocationFromDb();
@@ -111,10 +112,11 @@ class GroupModal {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open("POST", "/group/create", false);
+        xmlhttp.open("POST", this.sendUrl, false);
         xmlhttp.send(data);
 
         this.close();
+        location.reload();
     }
 
     _getFormData () {
