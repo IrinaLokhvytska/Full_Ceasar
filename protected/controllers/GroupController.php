@@ -13,8 +13,8 @@ class GroupController extends BaseController
 
         $group = new Group();
         $group->setAttribute('name', $data['name']);
-        $group->setAttribute('direction', $data['direction']);
-        $group->setAttribute('location', $data['location']);
+        $group->setAttribute('direction_id', $data['direction']);
+        $group->setAttribute('location_id', $data['location']);
         $group->setAttribute('budget', $data['budgetOwner']);
         $group->setAttribute('start_date', $data['startDate']);
         $group->setAttribute('finish_date', $data['finishDate']);
