@@ -14,20 +14,16 @@ class GroupList {
         this.groups = [];
         this.pageNumber = 1;
         this.pageQuantity = 1;
-        this.getGroupList();
+        this.getGroupList(this.locationsList);
         this.attachNavMenuEvents();
     }
 
     getGroupList(locations) {
-        let locs;
-
-        if (locations === undefined) {
-            locs = this.locationsList;
-        } else {
-            locs = locations;
+        if (locations !== this.locationsList) {
+            this.locationsList = locations;
         }
 
-        Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + locs, this.saveGroupList.bind(this));
+        Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + this.locationsList, this.saveGroupList.bind(this));
     }
 
     saveGroupList(data) {

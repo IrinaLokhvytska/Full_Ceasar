@@ -23,6 +23,7 @@
     <div class="groupList">
     </div>
 
+    <?php if (Yii::app()->user->type === 'itacademy'): ?>
     <div>
         <button class="myGroups">My groups</button>
         <div>
@@ -31,4 +32,5 @@
             <input type="radio" name="myGroups" value="planned"/>
         </div>
     </div>
+    <?php endif; ?>
 </nav>

@@ -4,11 +4,11 @@ class GroupComponent extends CApplicationComponent
 {
     public function getList($locationNames)
     {
-        if ($locationNames !== 'undefined') {
+        if ($locationNames === Yii::app()->user->location) {
+            $locations = [Yii::app()->user->location];
+        } else {
             $locationNames = json_encode($locationNames);
             $locations = $this->getLocationsId($locationNames);
-        } else {
-            $locations = [Yii::app()->user->location];
         }
 
         $criteria = new CDbCriteria();
