@@ -70,6 +70,6 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
-        this.groupListMenu.getGroupsList(this.selectedLocations);
+        this.groupListMenu.getGroupList(JSON.stringify(this.selectedLocations));
     }
 }

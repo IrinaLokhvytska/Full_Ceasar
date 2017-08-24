@@ -75,7 +75,8 @@ return [
                 */
             ],
         ],
-        'GroupListComponent' => ['class' => 'GroupListComponent'],
+
+        'Group' => ['class' => 'GroupComponent'],
 
     ],
 

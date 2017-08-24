@@ -8,7 +8,7 @@
     <div class="status box">Stage: in process</div>
     <div class="message box">Some message</div>
     <aside class="local-groups box">
-        <?php require Yii::app()->basePath . '/views/site/groupsList.php'; ?>
+        <?php require Yii::app()->basePath . '/views/site/groupList.php'; ?>
     </aside>
     <aside class="notif box">
         <?php require Yii::app()->basePath . '/views/site/locations.php'; ?>

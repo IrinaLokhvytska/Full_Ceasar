@@ -16,29 +16,12 @@ class Group extends CActiveRecord
     {
         return 'groups';
     }
-    protected function instantiate($attributes)
-    {
-        $class = get_class($this);
-        $model = new $class(
-            $attributes['id'],
-            $attributes['name'],
-            $attributes['location'],
-            $attributes['direction'],
-            $attributes['start_date'],
-            $attributes['finish_date'],
-            $attributes['budget']
-        );
-        return $model;
-    }
-    public static function getGroups()
-    {
-        return self::model()->findAll();
-    }
+
     public function relations ()
     {
         return [
-            'location' =>[self::HAS_ONE, 'Locations', 'id'],
-            'direction' =>[self::HAS_ONE, 'Direction', 'id'],
+            'location' =>[self::BELONGS_TO, 'Locations', 'location'],
+            'direction' =>[self::BELONGS_TO, 'Direction', 'direction'],
             'teachers' => [self::MANY_MANY, 'Teachers', 'user_groups(group, user)'],
             'experts' => [self::MANY_MANY, 'Experts', 'group_experts(group, name)']
         ];
