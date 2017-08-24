@@ -41,9 +41,9 @@
         <div class="user_info">
             <img class="user_picture" src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/profile_picture.png">
             <p class="user_name">Name: <?php echo Yii::app()->user->firstname; ?></p>
-            <p class="user_surname">Surname  <?php echo Yii::app()->user->lastname; ?></p>
-
-            <p class="user_role">Type <?php echo Yii::app()->user->type; ?></p>
+            <p class="user_surname">Surname:  <?php echo Yii::app()->user->lastname; ?></p>
+            <p class="user_role">Type: <?php echo Yii::app()->user->type; ?></p>
+            
         </div>
 
         <a href="<?php echo Yii::app()->createAbsoluteUrl('site/logout'); ?>">

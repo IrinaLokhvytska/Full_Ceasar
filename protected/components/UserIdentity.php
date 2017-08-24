@@ -13,11 +13,11 @@ class UserIdentity extends CUserIdentity
         } else if ($user->password !== $this->password ){ // Invalid password! Sha1
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         }else { // Okay!
-            $this->_id=$user->id;
+            $this->_id = $user->id;
             $this->setState('firstname', $user->first_name);
             $this->setState('lastname', $user->last_name);
             $this->setState('type', $user->type);
-            $this->setState('location', $user->location);
+            $this->setState('location', $user->location_id);
 
             $this->errorCode=self::ERROR_NONE;
         }
