@@ -42,13 +42,13 @@ class GroupComponent extends CApplicationComponent
         $locationList = Locations::model()->findAll($criteria);
 
         foreach ($locationNames as $locationName) {
-            foreach ($locationList as $locationId) {
-                if ($locationName === $locationId['full_name']) {
-                    $locationIdList[] = $locationId['id'];
+            $locationName = preg_replace('/[^A-Za-z0-9\-]/', '', $locationName);
+            foreach ($locationList as $location) {
+                if ($locationName === $location->full_name) {
+                    $locationIdList[] = $location->id;
                 }
             }
         }
-
         return $locationIdList;
     }
 }
