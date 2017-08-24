@@ -30,10 +30,12 @@ class Group extends CActiveRecord
         );
         return $model;
     }
+    
     public static function getGroups()
     {
         return self::model()->findAll();
     }
+    
     public function relations ()
     {
         return [
