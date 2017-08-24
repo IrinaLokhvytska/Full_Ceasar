@@ -1,42 +1,37 @@
 'use strict';
 
-class GroupsList {
+class GroupList {
     constructor(urlArray, locationsList) {
         this.locationsList = locationsList;
-        this.urlGetGroupsList = urlArray[0];
+        this.urlGetGroupList = urlArray[0];
         this.urlShowGroup = urlArray[1];
         this.groupsNav = document.querySelector('#groupsNav');
         this.pageNumberElement = this.groupsNav.querySelector('.pagination .pageNumber');
         this.pageQuantityElement = this.groupsNav.querySelector('.pagination .numberOfPages');
         this.pagePrevElement = this.groupsNav.querySelector('.pagination .prevPage');
         this.pageNextElement = this.groupsNav.querySelector('.pagination .nextPage');
-        this.groupsListElement = this.groupsNav.querySelector('.groupsList');
+        this.groupListElement = this.groupsNav.querySelector('.groupList');
         this.groups = [];
         this.pageNumber = 1;
         this.pageQuantity = 1;
-        this.getGroupsList();
+        this.getGroupList(this.locationsList);
         this.attachNavMenuEvents();
     }
 
-    getGroupsList(locations) {
-        let locs;
-
-        if (locations === undefined) {
-            locs = this.locationsList;
-        } else {
-            locs = locations;
+    getGroupList(locations) {
+        if (locations !== this.locationsList) {
+            this.locationsList = locations;
         }
 
-        Frame.ajaxResponse('GET', this.urlGetGroupsList + '/par/' + locs, this.saveGroupsList.bind(this));
+        Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + this.locationsList, this.saveGroupList.bind(this));
     }
 
-    saveGroupsList(data) {
+    saveGroupList(data) {
         this.groups = data;
-        console.log(this.groups);
-        this.createGroupsList(this.pageNumber, this.groups);
+        this.createGroupList(this.pageNumber, this.groups);
     }
 
-    createGroupsList(newPageNumber, groupsArray) {
+    createGroupList(newPageNumber, groupsArray) {
         let groups = groupsArray,
             groupsQuantity = groups.length,
             firstGroupNumber = (newPageNumber - 1) * 10 + 1,
@@ -50,7 +45,7 @@ class GroupsList {
             if (i === arrLen - 1 && i % 2 === 0) {
                 addLastOddGroupClass = true;
             }
-            this.createGroup(groups[firstGroupNumber + i - 1]['name'], groups[firstGroupNumber + i - 1]['direction'], addLastOddGroupClass);
+            this.createGroup(groups[firstGroupNumber + i - 1]['group_name'], groups[firstGroupNumber + i - 1]['direction_name'], addLastOddGroupClass);
         }
 
         this.pageNumberElement.innerHTML = newPageNumber;
@@ -90,7 +85,7 @@ class GroupsList {
                 this.pageNumber--;
                 this.pageNumberElement.innerHTML = this.pageNumber;
                 this.deleteGroups();
-                this.createGroupsList(this.pageNumber, this.groups);
+                this.createGroupList(this.pageNumber, this.groups);
             }
         });
 
@@ -99,19 +94,19 @@ class GroupsList {
                 this.pageNumber++;
                 this.pageNumberElement.innerHTML = this.pageNumber;
                 this.deleteGroups();
-                this.createGroupsList(this.pageNumber, this.groups);
+                this.createGroupList(this.pageNumber, this.groups);
             }
         });
     }
 
     deleteGroups() {
-        while (this.groupsListElement.firstChild) {
-            this.groupsListElement.removeChild(this.groupsListElement.firstChild);
+        while (this.groupListElement.firstChild) {
+            this.groupListElement.removeChild(this.groupListElement.firstChild);
         }
     }
 
     createGroup(gName, gDirection, addLastOddGroupClass) {
-        let group = this.groupsListElement.appendChild(document.createElement('DIV')),
+        let group = this.groupListElement.appendChild(document.createElement('DIV')),
             groupName = group.appendChild(document.createElement('SPAN')),
             groupDirection = group.appendChild(document.createElement('SPAN'));
         group.dataset.name = gName;

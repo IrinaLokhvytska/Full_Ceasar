@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/notifications.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/schedule.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/studentList.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/groupsList.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/groupList.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/error.css">
     <link rel="stylesheet" type="text/css"
           href="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/css/bootstrap.css">
@@ -28,9 +28,9 @@
 <!--    <script src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/js/group_model_init.js"></script>-->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupsList.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupList.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/LocationsList.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/MyGroupsListFilter.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/MyGroupListFilter.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -45,13 +45,14 @@
 
     function locationsInit() {
         let locationModal = document.querySelector('#locationModal'),
-            urlArray = [
+            locationsListModalUrlArray = [
                 "<?= Yii::app()->createUrl('Locations/GetLocations'); ?>",
                 "<?= Yii::app()->createUrl('Locations/ShowLocations'); ?>"
             ],
-            groupsListMenu = new GroupsList([
-                "<?= Yii::app()->createUrl('GroupsList/GetGroupsList'); ?>",
-                "<?= Yii::app()->createUrl('GroupsList/ShowGroup'); ?>"]),
+            groupListMenu = new GroupList([
+                "<?= Yii::app()->createUrl('GroupList/GetGroupList'); ?>",
+                "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>"],
+                <?= Yii::app()->user->location; ?>),
             groupModalMenuElement = document.querySelector('#groupModal .groups'),
             groupModalMenu = new GroupModal([
                 "<?= Yii::app()->createUrl('Group/GetLocationsList'); ?>",
@@ -59,12 +60,12 @@
                 "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
                 "<?= Yii::app()->createUrl('Group/Create'); ?>"],
                 groupModalMenuElement);
-//            myGroupsListFilter = new MyGroupsListFilter([
-//                "<?//= Yii::app()->createUrl('GroupsList/GetMyGroupsList'); ?>//"]);
+//            myGroupListFilter = new MyGroupListFilter([
+//                "<?//= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>//"]);
 
         locationsListModal = null;
         locationsListModal = (locationsListModal === null)
-            ? new LocationsList(locationModal, urlArray, groupsListMenu)
+            ? new LocationsList(locationModal, locationsListModalUrlArray, groupListMenu)
             : locationsListModal;
     }
 </script>
