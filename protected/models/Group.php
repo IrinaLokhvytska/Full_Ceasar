@@ -8,14 +8,17 @@ class Group extends CActiveRecord
     public $start_date;
     public $finish_date;
     public $budget;
+
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
     }
+
     public function tableName()
     {
         return 'groups';
     }
+    
     public function relations ()
     {
         return [

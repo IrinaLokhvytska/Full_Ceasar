@@ -24,11 +24,9 @@ class GroupController extends BaseController
         }
 
         $group->save();
-
-        $groupTeachers = $data['teachers'];
-
         $groupID = $group->id;
 
+        $groupTeachers = $data['teachers'];
         foreach ($groupTeachers as $person){
             $teacher = new Teacher();
             $teacher->group = $groupID;
@@ -37,17 +35,16 @@ class GroupController extends BaseController
         }
         
         $experts = $data['experts'];
-//
-//        Yii::app()->db->createCommand()
-//            ->insert(
-//                'group_experts',
-//                [
-//                    'group' => $groupID,
-//                    'name' => $attributesGroup['expertName']
-//                ]
-//            );
-//
-//        $this->renderJson(["success" => true]);
+        if($experts){
+            foreach ($experts as $person){
+                $expert = new Expert();
+                $expert->group = $groupID;
+                $expert->name = $person;
+                $expert->save();
+            }
+        }
+
+       $this->renderJson(["success" => true]);
     }
 
     public function actionDelete()
