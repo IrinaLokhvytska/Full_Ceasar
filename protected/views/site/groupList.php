@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="groupsList">
+    <div class="groupList">
     </div>
 
     <div>

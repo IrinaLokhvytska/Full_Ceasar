@@ -1,15 +1,20 @@
 'use strict';
 class GroupModal {
-    
-    constructor (elements) {
+
+    constructor (urlArray, elements) {
+        this.getLocationsUrl = urlArray[0];
+        this.getTeachersListUrl = urlArray[1];
+        this.getDirectionsListUrl = urlArray[2];
+        this.sendUrl = urlArray[3];
         this.defineElements(elements);
         this.attachEvents();
+        this.getLocationFromDb();
     }
 
     defineElements (elements) {
-        this.dateCourse = new DateCourse(elements);
+        this.dateCourse = new DateCourse(this.getDirectionsListUrl, elements);
         this.budgetOwner = new BudgetOwner(elements);
-        this.teachers = new TeachersSelect(elements);
+        this.teachers = new TeachersSelect(this.getTeachersListUrl, elements);
         this.experts = new ExpertsInput(elements);
         this.name = elements.querySelector('.groupName');
         this.location = elements.querySelector('.location');
@@ -33,6 +38,19 @@ class GroupModal {
                 event.preventDefault();
                 this.save();
             }
+        });
+    }
+
+    getLocationFromDb () {
+        return Frame.ajaxResponse('GET', this.getLocationsUrl, this.initLocation.bind(this));
+    }
+
+    initLocation (data) {
+        data.forEach((location)=> {
+            let opt = document.createElement('option');
+            opt.value = location.id;
+            opt.innerHTML = location.full_name;
+            this.location.appendChild(opt);
         });
     }
 
@@ -72,7 +90,7 @@ class GroupModal {
 
     save () {
         if (this.isValid()) {
-            
+
             this._sendData(this._getFormData());
         } else {
 
@@ -94,10 +112,11 @@ class GroupModal {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open("POST", "group/receive", false);
+        xmlhttp.open("POST", this.sendUrl, false);
         xmlhttp.send(data);
-        
+
         this.close();
+        location.reload();
     }
 
     _getFormData () {
@@ -124,8 +143,7 @@ class GroupModal {
             expertsIDs.push(expertInput.value);
         });
         data.experts = expertsIDs;
-
-        console.log(data);
+        data = JSON.stringify(data);
 
         return data;
     }

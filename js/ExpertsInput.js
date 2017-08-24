@@ -28,27 +28,30 @@ class ExpertsInput {
     validateExperts () {
         let expert = this.experts.value,
             pattern = /^[а-яА-Я-\. ]{5,25}$|^[a-zA-Z-\. ]{5,25}$/;
-
-        if(25 < expert.length || expert.length <5) {
-            this.messageBox.innerHTML = ('The length of experts:5-25 chars');
-            this.experts.style.borderColor = "red";
-
-            return false;
-
-        } else {
-            if (!pattern.test(expert)) {
-                this.messageBox.innerHTML = ('You use invalid characters');
+        if(expert){
+            if(25 < expert.length || expert.length <5) {
+                this.messageBox.innerHTML = ('The length of experts:5-25 chars');
                 this.experts.style.borderColor = "red";
 
                 return false;
 
             } else {
-                this.messageBox.style.display = "none";
-                this.experts.style.borderColor = "black";
+                if (!pattern.test(expert)) {
+                    this.messageBox.innerHTML = ('You use invalid characters');
+                    this.experts.style.borderColor = "red";
 
-                return true;
+                    return false;
+
+                } else {
+                    this.messageBox.style.display = "none";
+                    this.experts.style.borderColor = "black";
+
+                    return true;
+                }
             }
         }
+
+        return true;
     }
 
     addExpertInput () {

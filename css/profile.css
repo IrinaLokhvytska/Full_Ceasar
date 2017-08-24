@@ -3,8 +3,10 @@ header {
 }
 
 .profile_picture {
-    width: 40px;
-    height: 40px;
+    margin-top: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     position: absolute;
     right: 10px;
     cursor: pointer;
