@@ -1,10 +1,11 @@
 'use strict';
 
 class GroupList {
-    constructor(urlArray, locationsList, groupInfoElement) {
+    constructor(urlArray, groupInfoElement, locationsList) {
         this.locationsList = locationsList;
         this.urlGetGroupList = urlArray[0];
         this.urlShowGroup = urlArray[1];
+        this.urlShowMyGroupList = urlArray[2];
         this.groupInfoElement = groupInfoElement;
         this.groupsNav = document.querySelector('#groupsNav');
         this.pageNumberElement = this.groupsNav.querySelector('.pagination .pageNumber');
@@ -12,24 +13,40 @@ class GroupList {
         this.pagePrevElement = this.groupsNav.querySelector('.pagination .prevPage');
         this.pageNextElement = this.groupsNav.querySelector('.pagination .nextPage');
         this.groupListElement = this.groupsNav.querySelector('.groupList');
-        this.groups = [];
+        this.myGroupListBtnElement = document.querySelector('.myGroupListBtn');
+        this.groupList = [];
+        this.myGroupList = [];
         this.pageNumber = 1;
         this.pageQuantity = 1;
         this.getGroupList(this.locationsList);
+        this.getMyGroupList();
         this.attachNavMenuEvents();
     }
 
-    getGroupList(locations) {
-        if (locations !== this.locationsList) {
-            this.locationsList = locations;
-        }
-
-        Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + this.locationsList, this.saveGroupList.bind(this));
+    getMyGroupList() {
+        Frame.ajaxResponse('GET', this.urlShowMyGroupList, this.saveMyGroupList.bind(this));
     }
 
-    saveGroupList(data) {
-        this.groups = data;
-        this.createGroupList(this.pageNumber, this.groups);
+    saveMyGroupList(array) {
+        this.myGroupList = array;
+    }
+
+    getGroupList(locations, outerRequest = false) {
+        if (outerRequest === true) {
+            this.filterOn = false;
+            this.myGroupListBtnElement.innerHTML = "My groups";
+        }
+
+        if (locations !== this.locationsList) {
+                this.locationsList = locations;
+            }
+
+            Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + this.locationsList, this.saveGroupList.bind(this));
+    }
+
+    saveGroupList(array) {
+        this.groupList = array;
+        this.createGroupList(this.pageNumber, this.groupList);
     }
 
     createGroupList(newPageNumber, groupsArray) {
@@ -74,7 +91,9 @@ class GroupList {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
                     let groupName = groups[i].dataset.name;
-                    let groupId = this.groups[i].group_id;
+                    //let groupId = this.groups[i].group_id;
+                    let groupId = this.groupList[i].group_id;
+
                     this.groupInfoElement.showGroupInfo(groupId);
                 }
             });
@@ -87,7 +106,7 @@ class GroupList {
                 this.pageNumber--;
                 this.pageNumberElement.innerHTML = this.pageNumber;
                 this.deleteGroups();
-                this.createGroupList(this.pageNumber, this.groups);
+                this.createGroupList(this.pageNumber, this.groupList);
             }
         });
 
@@ -96,7 +115,21 @@ class GroupList {
                 this.pageNumber++;
                 this.pageNumberElement.innerHTML = this.pageNumber;
                 this.deleteGroups();
-                this.createGroupList(this.pageNumber, this.groups);
+                this.createGroupList(this.pageNumber, this.groupList);
+            }
+        });
+
+        this.myGroupListBtnElement.addEventListener('click', () => {
+            this.pageNumber = 1;
+            this.deleteGroups();
+            if (!this.filterOn) {
+                this.filterOn = true;
+                this.myGroupListBtnElement.innerHTML = "All groups";
+                this.createGroupList(this.pageNumber, this.myGroupList);
+            } else {
+                this.filterOn = false;
+                this.myGroupListBtnElement.innerHTML = "My groups";
+                this.createGroupList(this.pageNumber, this.groupList);
             }
         });
     }
@@ -118,7 +151,6 @@ class GroupList {
         } else {
             group.className = 'group';
         }
-        group.setAttribute('id', gName);
         groupName.innerHTML = gName;
         groupName.className = 'grName';
         groupDirection.innerHTML = gDirection;

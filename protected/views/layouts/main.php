@@ -32,7 +32,6 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupInfo.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupList.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/LocationsList.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/MyGroupListFilter.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -65,16 +64,17 @@
             ],
             groupInfoElement = new GroupInfo(),
             groupListMenu = new GroupList([
-                    "<?= Yii::app()->createUrl('GroupList/GetGroupList'); ?>",
-                    "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>"],
-                <?= Yii::app()->user->location; ?>,
-                groupInfoElement),
+                "<?= Yii::app()->createUrl('GroupList/GetGroupList'); ?>",
+                "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>",
+                "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"],
+                groupInfoElement,
+                <?= Yii::app()->user->location; ?>
+            ),
             addGroupButton = document.querySelector('#groupModal'),
-            myGroupListFilter = new MyGroupListFilter([
-                "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"]),
             deleteGroup = new DeleteGroup([
-                "<?= Yii::app()->createUrl('Group/Delete'); ?>"]),
-        locationsListModal = null;
+                "<?= Yii::app()->createUrl('Group/Delete'); ?>"]), 
+            locationsListModal = null;
+        
         locationsListModal = (locationsListModal === null)
             ? new LocationsList(locationModal, locationsListModalUrlArray, groupListMenu)
             : locationsListModal;

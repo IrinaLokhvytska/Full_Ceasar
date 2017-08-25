@@ -1,7 +1,7 @@
-<?php require Yii::app()->basePath . '/views/site/modal.php'; ?>
 <div class="check-delete">
     <p>Are you really want to delete group?</p>
 </div>
+<?php require Yii::app()->basePath . '/views/site/modal.php'; ?>
 <div class="loc-container">
     <header class="header box">SoftServe
         <img class="profile_picture" src="<?php echo Yii::app()->request->baseUrl; ?><?php echo Yii::app()->user->picture; ?>">
@@ -18,8 +18,11 @@
     </aside>
     <main class="group-area box">
         <div class="gear">
-            <a href="#" class="delete-group">
+            <a href="#">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/gear.png" class="gear-img" alt="gear icon">
+            </a>
+            <a href="#" class="delete-group">
+                <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/trash.jpg" class="trash-img" alt="trash bin icon">
             </a>
         </div>
         <div class="tabs">
