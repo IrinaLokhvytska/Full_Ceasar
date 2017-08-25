@@ -35,7 +35,7 @@ class GroupController extends BaseController
         }
         
         $experts = $data['experts'];
-        if($experts){
+        if(!empty($experts)){
             foreach ($experts as $person){
                 $expert = new Expert();
                 $expert->group = $groupID;
