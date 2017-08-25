@@ -56,8 +56,8 @@
                     "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>"],
                 <?= Yii::app()->user->location; ?>,
                 groupInfoElement),
-//            myGroupListFilter = new MyGroupListFilter([
-//                "<?//= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>//"]),
+            myGroupListFilter = new MyGroupListFilter([
+                "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"]),
             groupModalMenuElement = document.querySelector('#groupModal .groups'),
             groupModalMenu = new GroupModal([
                     "<?= Yii::app()->createUrl('Group/GetLocationsList'); ?>",
