@@ -59,9 +59,9 @@
                 "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
                 "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
                 "<?= Yii::app()->createUrl('Group/Create'); ?>"],
-                groupModalMenuElement);
-//            myGroupListFilter = new MyGroupListFilter([
-//                "<?//= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>//"]);
+                groupModalMenuElement),
+            myGroupListFilter = new MyGroupListFilter([
+                "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"]);
 
         locationsListModal = null;
         locationsListModal = (locationsListModal === null)
