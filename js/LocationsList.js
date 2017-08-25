@@ -71,5 +71,17 @@ class LocationsList {
 
     sendSelectedGroups() {
         this.groupListMenu.getGroupList(this.selectedLocations);
+        this.clearSelectedLocations();
+    }
+
+    clearSelectedLocations() {
+        this.selectedLocations = [];
+        let locations = this.locationModal.querySelectorAll('.loc'),
+            locationsLen = locations.length;
+        for (let i = 0; i < locationsLen; i++) {
+            if (locations[i].classList.contains('checkedLocation')) {
+                locations[i].classList.remove('checkedLocation');
+            }
+        }
     }
 }
