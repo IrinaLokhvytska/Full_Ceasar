@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/studentList.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/groupList.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/error.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/groupDelete.css">
     <link rel="stylesheet" type="text/css"
           href="<?php echo Yii::app()->request->baseUrl; ?>/node_modules/bootstrap/dist/css/bootstrap.css">
 
@@ -25,7 +26,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/TeachersSelect.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/ExpertsInput.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
-    <!--    <script src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/js/group_model_init.js"></script>-->
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/DeleteGroup.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupInfo.js"></script>
@@ -44,6 +45,18 @@
 <script>
     document.addEventListener('DOMContentLoaded', locationsInit);
 
+    function modalGroupInit(){
+        let groupModalMenuElement = document.querySelector('#groupModal .groups'),
+            groupModalMenu = new GroupModal([
+                    "<?= Yii::app()->createUrl('Group/GetLocation'); ?>",
+                    "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
+                    "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
+                    "<?= Yii::app()->createUrl('Group/Create'); ?>",
+                    "<?= Yii::app()->createUrl('Group/Edit'); ?>"
+                ],
+                groupModalMenuElement);
+    }
+
     function locationsInit() {
         let locationModal = document.querySelector('#locationModal'),
             locationsListModalUrlArray = [
@@ -56,23 +69,18 @@
                     "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>"],
                 <?= Yii::app()->user->location; ?>,
                 groupInfoElement),
+            addGroupButton = document.querySelector('#groupModal'),
             myGroupListFilter = new MyGroupListFilter([
                 "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"]),
-            groupModalMenuElement = document.querySelector('#groupModal .groups'),
-            groupModalMenu = new GroupModal([
-                    "<?= Yii::app()->createUrl('Group/GetLocationsList'); ?>",
-                    "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
-                    "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
-                    "<?= Yii::app()->createUrl('Group/Create'); ?>",
-                    "<?= Yii::app()->createUrl('Group/Edit'); ?>"
-                ],
-                groupModalMenuElement);
-
+            deleteGroup = new DeleteGroup([
+                "<?= Yii::app()->createUrl('Group/Delete'); ?>"]),
         locationsListModal = null;
         locationsListModal = (locationsListModal === null)
             ? new LocationsList(locationModal, locationsListModalUrlArray, groupListMenu)
             : locationsListModal;
+        addGroupButton.addEventListener('click', modalGroupInit);
     }
+
 </script>
 
 </body>

@@ -4,12 +4,12 @@ class GroupController extends BaseController
 {
     public function actionCreate()
     {
-        $request_body = file_get_contents('php://input');
+        $requestBody = file_get_contents('php://input');
 
-        if (empty($request_body)) {
+        if (empty($requestBody)) {
             throw new CHttpException(400, 'Invalid data');
         }
-        $data = json_decode($request_body, true);
+        $data = json_decode($requestBody, true);
 
         $group = new Group();
         $group->setAttribute('name', $data['name']);
@@ -24,12 +24,12 @@ class GroupController extends BaseController
         }
 
         $group->save();
-        $groupID = $group->id;
+        $groupId = $group->id;
 
         $groupTeachers = $data['teachers'];
         foreach ($groupTeachers as $person){
             $teacher = new Teacher();
-            $teacher->group = $groupID;
+            $teacher->group = $groupId ;
             $teacher->user = $person;
             $teacher->save();
         }
@@ -38,7 +38,7 @@ class GroupController extends BaseController
         if(!empty($experts)){
             foreach ($experts as $person){
                 $expert = new Expert();
-                $expert->group = $groupID;
+                $expert->group = $groupId;
                 $expert->name = $person;
                 $expert->save();
             }
@@ -49,8 +49,12 @@ class GroupController extends BaseController
 
     public function actionDelete()
     {
-        Yii::app()->db->createCommand()
-            ->delete('groups', 'id=:id', [':id' => Yii::app()->request->getParam('id')]);
+        $id = Yii::app()->request->get('id');
+        $model = new Group();
+        $group = $model->findByPk($id);
+        $group->delete();
+//        Yii::app()->db->createCommand()
+//            ->delete('groups', 'id=:id', [':id' => Yii::app()->request->getParam('id')]);
 
         $this->renderJson(["success" => true]);
     }
@@ -69,26 +73,20 @@ class GroupController extends BaseController
         $this->renderJson($teachers);
     }
 
-    public function actionGetLocationsList()
+    public function actionGetLocation()
     {
-        $user_location = Yii::app()->user->location;
-        $locations = Yii::app()->db->createCommand()
-            ->select('id, full_name')
-            ->from('locations')
-            ->where("id = {$user_location}")
-            ->queryAll();
-        
-        $locations = empty($locations) ? [] : $locations;
-        $this->renderJson($locations);
+        $model = new Locations();
+        $fullName = $model->findByPk(Yii::app()->user->location)->full_name;
+        $output = ['id'=>Yii::app()->user->location, 'full_name'=>$fullName];
+
+        $output = empty($output) ? [] : $output;
+        $this->renderJson($output);
     }
 
     public function actionGetDirectionsList()
     {
-        $directions = Yii::app()->db->createCommand()
-            ->select('name, id')
-            ->from('directions')
-            ->queryAll();
-
+        $model = new Direction();
+        $directions = $model->findAll();
         $directions = empty($directions) ? [] : $directions;
 
         $this->renderJson($directions);

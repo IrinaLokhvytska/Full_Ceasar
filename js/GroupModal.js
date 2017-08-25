@@ -47,12 +47,10 @@ class GroupModal {
     }
 
     initLocation (data) {
-        data.forEach((location)=> {
-            let opt = document.createElement('option');
-            opt.value = location.id;
-            opt.innerHTML = location.full_name;
-            this.location.appendChild(opt);
-        });
+        let opt = document.createElement('option');
+        opt.value = data.id;
+        opt.innerHTML = data.full_name;
+        this.location.appendChild(opt);
     }
 
     validateName () {

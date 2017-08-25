@@ -1,7 +1,9 @@
 'use strict';
 
 class GroupInfo {
+
     showGroupInfo(data) {
+        this.id = data;
         let gearElement = document.querySelector('.gear-img');
         gearElement.dataset.groupId = data;
         console.log(gearElement.dataset.groupId);

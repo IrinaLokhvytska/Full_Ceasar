@@ -73,7 +73,7 @@ class GroupList {
                 if (!groups[i].classList.contains('checkedGroup')) {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
-                    // let groupName = groups[i].dataset.name;
+                    let groupName = groups[i].dataset.name;
                     let groupId = this.groups[i].group_id;
                     this.groupInfoElement.showGroupInfo(groupId);
                 }
