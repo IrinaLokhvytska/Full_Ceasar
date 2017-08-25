@@ -10,7 +10,7 @@ class BudgetOwner {
         this.SsOwner = elements.querySelector('#SsOwner');
         this.OgOwner = elements.querySelector('#OgOwner');
         this.classLabel = "active";
-        this.budgetOwner = 'Soft Serve';
+        this.budgetOwner = 'softserve';
     }
 
     attachEvents () {
@@ -25,13 +25,13 @@ class BudgetOwner {
     setSsOwner () {
         this.SsOwner.classList.add(this.classLabel);
         this.OgOwner.classList.remove(this.classLabel);
-        this.budgetOwner = 'Soft Serve';
+        this.budgetOwner = 'softserve';
     }
 
     setOgOwner () {
         this.OgOwner.classList.add(this.classLabel);
         this.SsOwner.classList.remove(this.classLabel);
-        this.budgetOwner = 'Open group';
+        this.budgetOwner = 'opengroup';
     }
 
 }

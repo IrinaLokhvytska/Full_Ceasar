@@ -14,7 +14,7 @@ class GroupComponent extends CApplicationComponent
         $criteria = new CDbCriteria();
         $criteria->alias = 'group';
         $criteria->select = "{$criteria->alias}.name";
-        $criteria->addInCondition('location', $locations);
+        $criteria->addInCondition('location_id', $locations);
         /** @var Group[] $rows */
         $rows = Group::model()->with('direction')->findAll($criteria);
 
