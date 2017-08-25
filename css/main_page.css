@@ -90,9 +90,20 @@
     padding-top: 10px;
 }
 
+.gear a,
+.gear a:hover,
+.gear a:focus {
+    text-decoration: none;
+}
+
+
 .gear-img {
     width: 30px;
     height: 30px;
+}
+
+.trash-img {
+    height: 28px;
 }
 
 .tabs {
