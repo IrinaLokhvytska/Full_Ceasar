@@ -25,13 +25,11 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/TeachersSelect.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/ExpertsInput.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
-    <!--    <script src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/js/group_model_init.js"></script>-->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupInfo.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupList.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/LocationsList.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/MyGroupListFilter.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -53,11 +51,11 @@
             groupInfoElement = new GroupInfo(),
             groupListMenu = new GroupList([
                     "<?= Yii::app()->createUrl('GroupList/GetGroupList'); ?>",
-                    "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>"],
-                <?= Yii::app()->user->location; ?>,
-                groupInfoElement),
-            myGroupListFilter = new MyGroupListFilter([
-                "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"]),
+                    "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>",
+                    "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"],
+                groupInfoElement,
+                <?= Yii::app()->user->location; ?>
+            ),
             groupModalMenuElement = document.querySelector('#groupModal .groups'),
             groupModalMenu = new GroupModal([
                     "<?= Yii::app()->createUrl('Group/GetLocationsList'); ?>",
