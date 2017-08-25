@@ -45,7 +45,6 @@ class GroupList {
             if (i === arrLen - 1 && i % 2 === 0) {
                 addLastOddGroupClass = true;
             }
-            console.log(groups);
             this.createGroup(groups[firstGroupNumber + i - 1]['group_name'], groups[firstGroupNumber + i - 1]['direction_name'], addLastOddGroupClass);
         }
 
