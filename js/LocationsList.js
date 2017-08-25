@@ -70,7 +70,7 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
-        this.groupListMenu.getGroupList(this.selectedLocations);
+        this.groupListMenu.getGroupList(this.selectedLocations, true);
         this.clearSelectedLocations();
     }
 

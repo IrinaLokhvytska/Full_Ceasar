@@ -31,8 +31,13 @@ class GroupList {
         this.myGroupList = array;
     }
 
-    getGroupList(locations) {
-            if (locations !== this.locationsList) {
+    getGroupList(locations, outerRequest = false) {
+        if (outerRequest === true) {
+            this.filterOn = false;
+            this.myGroupListBtnElement.innerHTML = "My groups";
+        }
+
+        if (locations !== this.locationsList) {
                 this.locationsList = locations;
             }
 
@@ -116,9 +121,11 @@ class GroupList {
             this.deleteGroups();
             if (!this.filterOn) {
                 this.filterOn = true;
+                this.myGroupListBtnElement.innerHTML = "All groups";
                 this.createGroupList(this.pageNumber, this.myGroupList);
             } else {
                 this.filterOn = false;
+                this.myGroupListBtnElement.innerHTML = "My groups";
                 this.createGroupList(this.pageNumber, this.groupList);
             }
         });
