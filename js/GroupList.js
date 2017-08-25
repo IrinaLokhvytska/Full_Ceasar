@@ -1,10 +1,11 @@
 'use strict';
 
 class GroupList {
-    constructor(urlArray, locationsList) {
+    constructor(urlArray, locationsList, groupInfoElement) {
         this.locationsList = locationsList;
         this.urlGetGroupList = urlArray[0];
         this.urlShowGroup = urlArray[1];
+        this.groupInfoElement = groupInfoElement;
         this.groupsNav = document.querySelector('#groupsNav');
         this.pageNumberElement = this.groupsNav.querySelector('.pagination .pageNumber');
         this.pageQuantityElement = this.groupsNav.querySelector('.pagination .numberOfPages');
@@ -72,8 +73,9 @@ class GroupList {
                 if (!groups[i].classList.contains('checkedGroup')) {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
-                    let groupName = groups[i].dataset.name;
-                    Frame.ajaxRequest('GET', this.urlShowGroup + '/par/' + groupName);
+                    // let groupName = groups[i].dataset.name;
+                    let groupId = this.groups[i].group_id;
+                    this.groupInfoElement.showGroupInfo(groupId);
                 }
             });
         }
