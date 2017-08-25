@@ -77,6 +77,7 @@ return [
         ],
 
         'Group' => ['class' => 'GroupComponent'],
+        'Location' => ['class' => 'LocationComponent']
 
     ],
 

@@ -24,9 +24,11 @@ class MyGroupListFilter extends GroupList {
             this.pageNumber = 1;
             this.deleteGroups();
             if (!this.filterOn) {
+                console.log('myGroups');
                 this.filterOn = true;
                 this.createGroupList(this.pageNumber, this.myGroupList);
             } else {
+                console.log('AllGroups');
                 this.filterOn = false;
                 this.createGroupList(this.pageNumber, this.groups);
             }
