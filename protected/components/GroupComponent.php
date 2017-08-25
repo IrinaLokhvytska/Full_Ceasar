@@ -25,7 +25,8 @@ class GroupComponent extends CApplicationComponent
         foreach ($rows as $row) {
             $result[] = [
                 'group_name' => $row->name,
-                'direction_name' => $row->getRelated('direction')->name
+                'direction_name' => $row->getRelated('direction')->name,
+                'group_id' => $row->id,
             ];
         }
 
