@@ -15,13 +15,5 @@ class Locations extends CActiveRecord
     {
         return 'locations';
     }
-
-    public function getLocations()
-    {
-        $criteria = new CDbCriteria();
-        $criteria->select = 'full_name';
-        $locations = self::model()->findAll($criteria);
-
-        return $locations;
-    }
 }
+
