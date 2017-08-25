@@ -13,7 +13,7 @@
  * @property string $type
  *
  * The followings are the available model relations:
- * @property UserGroups[] $userGroups
+ * @property UserGroup[] $userGroups
  * @property UserRoles[] $userRoles
  * @property Locations $location0
  */
@@ -52,7 +52,7 @@ class User extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'userGroups' => array(self::HAS_MANY, 'UserGroups', 'user'),
+            'UserGroup' => array(self::HAS_MANY, 'UserGroup', 'user'),
             'userRoles' => array(self::HAS_MANY, 'UserRoles', 'user'),
             'location0' => array(self::BELONGS_TO, 'Locations', 'location'),
         );

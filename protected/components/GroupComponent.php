@@ -4,7 +4,7 @@ class GroupComponent extends CApplicationComponent
 {
     public function getList($locationNames)
     {
-        if ($locationNames === Yii::app()->user->location) {
+        if ($locationNames === Yii::app()->user->location || $locationNames === '') {
             $locations = [Yii::app()->user->location];
         } else {
             $locationNames = json_encode($locationNames);
@@ -55,26 +55,25 @@ class GroupComponent extends CApplicationComponent
 
     public function getMyList()
     {
+        $userId = Yii::app()->user->id;
+        $userGroups = [];
 
 
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'user_group';
+        $criteria->condition = "$userId = {$criteria->alias}.user";
+        /** @var UserGroup[] $rows */
+        $rows = UserGroup::model()->with('group')->findAll($criteria);
 
-//        $criteria = new CDbCriteria();
-//        $criteria->alias = 'group';
-//        $criteria->select = "{$criteria->alias}.name";
-//        $criteria->addInCondition('location', $locations);
-//        /** @var Group[] $rows */
-//        $rows = Group::model()->with('direction')->findAll($criteria);
-//
-//        $result = [];
-//        if (empty($rows)) {
-//            return $result;
-//        }
-//        foreach ($rows as $row) {
-//            $result[] = [
-//                'group_name' => $row->name,
-//                'direction_name' => $row->getRelated('direction')->name
-//            ];
-//        }
+        $result = [];
+        if (empty($rows)) {
+            return $result;
+        }
+        foreach ($rows as $row) {
+            $result[] = [
+                'group_name' => $row->getRelated('group')->name
+            ];
+        }
 
         return empty($result) ? [] : $result;
     }
