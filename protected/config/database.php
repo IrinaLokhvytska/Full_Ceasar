@@ -8,6 +8,6 @@ return [
 
     //change this lines to use your database
     'username' => 'root',
-    'password' => '',
+    'password' => 'admin',
     'charset' => 'utf8',
 ];

@@ -54,11 +54,46 @@ class ExpertsInput {
         return true;
     }
 
+    validateNewExperts (newExpert) {
+        let expert = newExpert.value,
+            pattern = /^[а-яА-Я-\. ]{5,25}$|^[a-zA-Z-\. ]{5,25}$/;
+
+        if(expert){
+            if(25 < expert.length || expert.length <5) {
+                this.messageBox.style.display = "block";
+                this.messageBox.innerHTML = ('The length of experts:5-25 chars');
+                newExpert.style.borderColor = "red";
+
+                return false;
+
+            } else {
+                if (!pattern.test(expert)) {
+                    this.messageBox.style.display = "block";
+                    this.messageBox.innerHTML = ('You use invalid characters');
+                    newExpert.style.borderColor = "red";
+
+                    return false;
+
+                } else {
+                    this.messageBox.style.display = "none";
+                    newExpert.style.borderColor = "black";
+
+                    return true;
+                }
+            }
+        }
+
+        return true;
+    }
+
     addExpertInput () {
         let newExpertInput = document.createElement('input'),
             span = document.createElement('span'),
             expertsContainer = document.querySelector('.experts-container');
         newExpertInput.classList.add(this.classExperts);
+        newExpertInput.addEventListener('blur', () => {
+            this.validateNewExperts(newExpertInput)
+        });
         expertsContainer.appendChild(newExpertInput);
         span.classList.add(this.glyphicon);
         span.classList.add(this.spanClass);
