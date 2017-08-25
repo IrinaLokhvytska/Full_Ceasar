@@ -35,7 +35,7 @@ class GroupModal {
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' || event.keyCode === 27) {
                 this.close();
-            } else if (event.key === 'Enter' || event.keyCode === 71) {
+            } else if (event.key === 'Enter' || event.keyCode === 13) {
                 event.preventDefault();
                 this.save();
             }
