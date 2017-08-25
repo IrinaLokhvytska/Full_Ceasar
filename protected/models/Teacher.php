@@ -14,5 +14,12 @@ class Teacher extends CActiveRecord
     {
         return 'user_groups';
     }
+
+    public function relations ()
+    {
+        return [
+            'group' => [self::MANY_MANY, 'Group', 'group_experts(group, name)']
+        ];
+    }
    
 }

@@ -71,7 +71,8 @@ class GroupComponent extends CApplicationComponent
         }
         foreach ($rows as $row) {
             $result[] = [
-                'group_name' => $row->getRelated('group')->name
+                'group_name' => $row->getRelated('group')->name,
+                'direction_name'=>$row->getRelated('group')->getRelated('direction')->name
             ];
         }
 
