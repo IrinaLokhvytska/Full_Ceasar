@@ -1,8 +1,11 @@
 <nav id="groupsNav">
     <div>
+        <?php if (Yii::app()->user->type === 'itacademy'): ?>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#groupModal">
             &#43;add group
         </button>
+        <?php endif; ?>
+
         <div class="pagination">
             <button class="prevPage">
                 <span>&laquo;</span>
@@ -23,14 +26,16 @@
     <div class="groupList">
     </div>
 
-    <?php if (Yii::app()->user->type === 'itacademy'): ?>
+
     <div>
-        <button class="myGroups">My groups</button>
+        <?php if (Yii::app()->user->type === 'itacademy'): ?>
+        <button class="myGroupListBtn">My groups</button>
         <div>
             <input type="radio" name="myGroups" value="all" checked/>
             <input type="radio" name="myGroups" value="inProgress"/>
             <input type="radio" name="myGroups" value="planned"/>
         </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
+
 </nav>

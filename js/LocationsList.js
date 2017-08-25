@@ -70,7 +70,6 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
-        console.log(this.selectedLocations);
         this.groupListMenu.getGroupList(this.selectedLocations);
     }
 }

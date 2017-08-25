@@ -18,7 +18,9 @@ class GroupListController extends BaseController
 
     public function actionGetMyGroupList()
     {
-        $groupList = GroupList::model()->getMyGroupList();
-        $this->renderJSON($groupList);
+        /** @var GroupComponent $component */
+        $component = Yii::app()->getComponent('Group');
+        $myGroupList = $component->getMyList();
+        $this->renderJSON($myGroupList);
     }
 }
