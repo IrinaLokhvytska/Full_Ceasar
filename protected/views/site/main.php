@@ -18,6 +18,9 @@
             <a href="#">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/gear.png" class="gear-img" alt="gear icon">
             </a>
+            <a href="#">
+                <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/trash.jpg" class="trash-img" alt="trash bin icon">
+            </a>
         </div>
         <div class="tabs">
             <a href="#">
