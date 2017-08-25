@@ -44,18 +44,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', locationsInit);
 
-    function modalGroupInit(){
-        let groupModalMenuElement = document.querySelector('#groupModal .groups'),
-            groupModalMenu = new GroupModal([
-                    "<?= Yii::app()->createUrl('Group/GetLocation'); ?>",
-                    "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
-                    "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
-                    "<?= Yii::app()->createUrl('Group/Create'); ?>",
-                    "<?= Yii::app()->createUrl('Group/Edit'); ?>"
-                ],
-                groupModalMenuElement);
-    }
-
     function locationsInit() {
         let locationModal = document.querySelector('#locationModal'),
             locationsListModalUrlArray = [
@@ -70,7 +58,15 @@
                 groupInfoElement,
                 <?= Yii::app()->user->location; ?>
             ),
-            addGroupButton = document.querySelector('#groupModal'),
+            groupModalMenuElement = document.querySelector('#groupModal .groups'),
+            groupModalMenu = new GroupModal([
+                    "<?= Yii::app()->createUrl('Group/GetLocation'); ?>",
+                    "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
+                    "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
+                    "<?= Yii::app()->createUrl('Group/Create'); ?>",
+                    "<?= Yii::app()->createUrl('Group/Edit'); ?>"
+                ],
+                groupModalMenuElement),
             deleteGroup = new DeleteGroup([
                 "<?= Yii::app()->createUrl('Group/Delete'); ?>"]), 
             locationsListModal = null;
@@ -78,7 +74,7 @@
         locationsListModal = (locationsListModal === null)
             ? new LocationsList(locationModal, locationsListModalUrlArray, groupListMenu)
             : locationsListModal;
-        addGroupButton.addEventListener('click', modalGroupInit);
+
     }
 
 </script>

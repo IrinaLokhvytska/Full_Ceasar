@@ -49,12 +49,14 @@ class GroupController extends BaseController
 
     public function actionDelete()
     {
-        $id = Yii::app()->request->get('id');
+        $id = file_get_contents('php://input');
+        if (empty($id)) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+        
         $model = new Group();
         $group = $model->findByPk($id);
         $group->delete();
-//        Yii::app()->db->createCommand()
-//            ->delete('groups', 'id=:id', [':id' => Yii::app()->request->getParam('id')]);
 
         $this->renderJson(["success" => true]);
     }

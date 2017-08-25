@@ -43,8 +43,8 @@ class DeleteGroup {
 
     deleteGroup () {
         this.checkDeleteBox.style.display = "none";
-        location.reload();
-        //this._sendData(id);
+        let id = document.querySelector('.gear-img').dataset.groupId;
+        this._sendData(id);
     }
 
     cancelDelete () {
