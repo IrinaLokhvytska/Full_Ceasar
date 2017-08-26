@@ -21,7 +21,6 @@ class UserGroup  extends CActiveRecord
     {
         return [
             'group' =>[self::BELONGS_TO, 'Group', 'group'],
-            'direction' => [self::BELONGS_TO, 'Direction', 'direction_id']
         ];
     }
 }

@@ -206,5 +206,14 @@ return [
         'location_id' => 8,
         'type' => 'itacademy',
         'picture' => '/users_picture/profile_picture.png'
-    ]
+    ],
+    [
+        'first_name' => 'Volodymyr',
+        'last_name' => 'Danchenko',
+        'username' => 'voldan',
+        'password' => 'softserve',
+        'location_id' => 3,
+        'type' => '',
+        'picture' => '/users_picture/profile_picture.png'
+    ],
 ];

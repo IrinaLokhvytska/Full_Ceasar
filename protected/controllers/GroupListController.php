@@ -10,12 +10,6 @@ class GroupListController extends BaseController
         $this->renderJSON($groupList);
     }
 
-    public function actionShowGroup($par)
-    {
-//        $groupInfo = GroupInfo::model()->getGroupInfo($groupName);
-//        $this->renderJSON($groupInfo);
-    }
-
     public function actionGetMyGroupList()
     {
         /** @var GroupComponent $component */
