@@ -90,6 +90,7 @@ class GroupList {
                 if (!groups[i].classList.contains('checkedGroup')) {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
+                    let groupName = this.groupList[i].group_name;
                     let groupId = this.groupList[i].group_id;
 
                     this.groupInfoElement.showGroupInfo(groupId, groupName);
