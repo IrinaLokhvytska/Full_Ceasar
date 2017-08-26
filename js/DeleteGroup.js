@@ -56,6 +56,7 @@ class DeleteGroup {
 
     cancelDelete () {
         this.checkDeleteBox.style.display = "none";
+        this.checkDeleteBox.innerHTML = '';
     }
 
     _sendData (data) {
