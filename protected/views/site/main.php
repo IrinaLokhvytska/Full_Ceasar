@@ -1,6 +1,4 @@
-<div class="check-delete">
-    <p>Are you really want to delete group?</p>
-</div>
+<div class="check-delete"></div>
 <?php require Yii::app()->basePath . '/views/site/modal.php'; ?>
 <div class="loc-container">
     <header class="header box">SoftServe

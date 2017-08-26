@@ -12,12 +12,13 @@ class GroupController extends BaseController
         $data = json_decode($requestBody, true);
 
         $group = new Group();
+//        $group->setAttributes($data);
         $group->setAttribute('name', $data['name']);
-        $group->setAttribute('direction_id', $data['direction']);
-        $group->setAttribute('location_id', $data['location']);
-        $group->setAttribute('budget', $data['budgetOwner']);
-        $group->setAttribute('start_date', $data['startDate']);
-        $group->setAttribute('finish_date', $data['finishDate']);
+        $group->setAttribute('location_id', $data['location_id']);
+        $group->setAttribute('direction_id', $data['direction_id']);
+        $group->setAttribute('start_date', $data['start_date']);
+        $group->setAttribute('finish_date', $data['finish_date']);
+        $group->setAttribute('budget', $data['budget']);
 
         if(!$group->validate()){
             throw new CHttpException(400, 'Invalid data');
@@ -55,8 +56,7 @@ class GroupController extends BaseController
         }
         
         $model = new Group();
-        $group = $model->findByPk($id);
-        $group->delete();
+        $model->findByPk($id)->delete();
 
         $this->renderJson(["success" => true]);
     }

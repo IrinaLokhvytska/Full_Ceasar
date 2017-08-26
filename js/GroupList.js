@@ -94,7 +94,7 @@ class GroupList {
                     //let groupId = this.groups[i].group_id;
                     let groupId = this.groupList[i].group_id;
 
-                    this.groupInfoElement.showGroupInfo(groupId);
+                    this.groupInfoElement.showGroupInfo(groupId, groupName);
                 }
             });
         }

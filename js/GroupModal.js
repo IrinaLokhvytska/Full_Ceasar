@@ -121,11 +121,11 @@ class GroupModal {
     _getFormData () {
         let data = {};
         data.name = this.name.value;
-        data.direction = this.dateCourse.direction.value;
-        data.budgetOwner =  this.budgetOwner.budgetOwner;
-        data.startDate = this.dateCourse.startDate.value;
-        data.location = this.location.value;
-        data.finishDate = this.dateCourse.finishDate.value;
+        data.location_id = this.location.value;
+        data.direction_id = this.dateCourse.direction.value;
+        data.start_date = this.dateCourse.startDate.value;
+        data.finish_date = this.dateCourse.finishDate.value
+        data.budget =  this.budgetOwner.budgetOwner;
 
         let teachersLists = document.querySelectorAll('.teachers'),
             selectedTeachersIDs = [];

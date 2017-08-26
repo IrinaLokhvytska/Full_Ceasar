@@ -1,5 +1,5 @@
 .check-delete {
-    margin-top: 15%;
+    margin-top: 17%;
     font-size: 32px;
     text-align: center;
     background-color: #171B65;
@@ -7,4 +7,5 @@
     width: 100%;
     position: fixed;
     display: none;
+    z-index: 99999;
 }

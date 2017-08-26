@@ -12,6 +12,7 @@ class DeleteGroup {
         this.checkDeleteBox = document.querySelector('.check-delete');
         this.classButton = 'btn';
         this.classDefault = 'btn-default';
+        this.id = document.querySelector('.gear-img').dataset.groupId;
     }
 
     attachEvents () {
@@ -23,33 +24,38 @@ class DeleteGroup {
     checkDelete () {
         let checkDeleteBox = this.checkDeleteBox,
             confirmDeletion = document.createElement('button'),
-            cancelDeletion = document.createElement('button');
-        checkDeleteBox.style.display = "block";
-        confirmDeletion.classList.add(this.classButton);
-        confirmDeletion.classList.add(this.classDefault);
-        cancelDeletion.classList.add(this.classButton);
-        cancelDeletion.classList.add(this.classDefault);
-        confirmDeletion.innerHTML = 'Yes';
-        cancelDeletion.innerHTML = 'No';
-        confirmDeletion.addEventListener('click', () =>{
-            this.deleteGroup();
-        });
-        cancelDeletion.addEventListener('click', () =>{
-            this.cancelDelete();
-        });
-        checkDeleteBox.appendChild(confirmDeletion);
-        checkDeleteBox.appendChild(cancelDeletion);
+            cancelDeletion = document.createElement('button'),
+            text = document.createElement('p'),
+            name = document.querySelector('.trash-img').dataset.groupName,
+            id = document.querySelector('.trash-img').dataset.groupId;
+        if(id){
+            checkDeleteBox.style.display = "block";
+            confirmDeletion.classList.add(this.classButton);
+            confirmDeletion.classList.add(this.classDefault);
+            cancelDeletion.classList.add(this.classButton);
+            cancelDeletion.classList.add(this.classDefault);
+            text.innerHTML = 'Are you really want to delete group ' + name + ' ?';
+            confirmDeletion.innerHTML = 'Yes';
+            cancelDeletion.innerHTML = 'No';
+            confirmDeletion.addEventListener('click', () =>{
+                this.deleteGroup(id);
+            });
+            cancelDeletion.addEventListener('click', () =>{
+                this.cancelDelete();
+            });
+            checkDeleteBox.appendChild(text);
+            checkDeleteBox.appendChild(confirmDeletion);
+            checkDeleteBox.appendChild(cancelDeletion);
+        }
     }
 
-    deleteGroup () {
+    deleteGroup (id) {
         this.checkDeleteBox.style.display = "none";
-        let id = document.querySelector('.gear-img').dataset.groupId;
         this._sendData(id);
     }
 
     cancelDelete () {
         this.checkDeleteBox.style.display = "none";
-        location.reload();
     }
 
     _sendData (data) {

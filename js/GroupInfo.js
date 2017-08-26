@@ -2,10 +2,12 @@
 
 class GroupInfo {
 
-    showGroupInfo(data) {
-        this.id = data;
-        let gearElement = document.querySelector('.gear-img');
-        gearElement.dataset.groupId = data;
-        console.log(gearElement.dataset.groupId);
+    showGroupInfo(id, name) {
+        this.id = id;
+        let gearElement = document.querySelector('.gear-img'),
+            trashElement = document.querySelector('.trash-img');
+        gearElement.dataset.groupId = id;
+        trashElement.dataset.groupId = id;
+        trashElement.dataset.groupName = name;
     }
 }
