@@ -50,13 +50,14 @@ class GroupController extends BaseController
 
     public function actionDelete()
     {
-        $id = file_get_contents('php://input');
-        if (empty($id)) {
+        $groupId = file_get_contents('php://input');
+
+        if (empty($groupId)) {
             throw new CHttpException(400, 'Invalid data');
         }
         
-        $model = new Group();
-        $model->findByPk($id)->delete();
+        $group = new Group();
+        $group->findByPk($groupId)->delete();
 
         $this->renderJson(["success" => true]);
     }
