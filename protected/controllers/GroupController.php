@@ -140,56 +140,42 @@ class GroupController extends BaseController
 
     public function actionEdit()
     {
-        $editFormAttributes = Yii::app()->request->getPost('EditForm', []);
+        $requestBody = file_get_contents('php://input');
 
-        if (empty($editFormAttributes)) {
+        if (empty($requestBody)) {
             throw new CHttpException(400, 'Invalid data');
         }
 
-        $editedGroup = new GroupForm();
-        $editedGroup->scenario = 'edit';
-        $editedGroup->attributes = $editFormAttributes;
+        $data = json_decode($requestBody, true);
+
+        $editedGroup = new Group();
+        $editedGroup->attributes = $data;
 
         if (!$editedGroup->validate()) {
             throw new CHttpException(400, 'error in request');
         }
 
-        $editedGroup->id = Yii::app()->request->getPost('id');
+        $editedGroup->save();
 
-        $attributesGroup = $editedGroup->getAttributes();
+        $groupId = $editedGroup->id;
+        $groupTeachers = $data['teachers'];
+        $experts = $data['experts'];
 
-        Yii::app()->db->createCommand()
-            ->update(
-                'groups',
-                [
-                    'name' => $attributesGroup['groupName'],
-                    'direction_id' => $attributesGroup['directionID'],
-                    'location_id' => $attributesGroup['locationID'],
-                    'budget' => $attributesGroup['budgetOwner'],
-                    'start_date' => $attributesGroup['startDate'],
-                    'finish_date' => $attributesGroup['finishDate']
-                ],
-                'id=:id',
-                [':id' => $attributesGroup['id']]
-            );
+        foreach ($groupTeachers as $person){
+            $teacher = new Teacher();
+            $teacher->group = $groupId ;
+            $teacher->user = $person;
+            $teacher->save();
+        }
 
-        Yii::app()->db->createCommand()
-            ->insert(
-                'user_groups',
-                [
-                    'group' => $attributesGroup['id'],
-                    'user' => $attributesGroup['teacherID']
-                ]
-            );
-
-        Yii::app()->db->createCommand()
-            ->insert(
-                'group_experts',
-                [
-                    'group' => $attributesGroup['id'],
-                    'name' => $attributesGroup['expertName']
-                ]
-            );
+        if(!empty($experts)){
+            foreach ($experts as $person){
+                $expert = new Expert();
+                $expert->group = $groupId;
+                $expert->name = $person;
+                $expert->save();
+            }
+        }
 
         $this->renderJson(["success" => true]);
     }

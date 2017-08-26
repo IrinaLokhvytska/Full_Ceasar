@@ -33,7 +33,7 @@ class Group extends CActiveRecord
     {
         return [
             ['name, direction_id, location_id, start_date, budget, finish_date', 'required'],
-            ['name', 'length', 'min' => 4, 'max'=>20],
+            ['name', 'length', 'min' => 4, 'max'=>20]
 //            ['start_date', 'type', 'type'=>'date', 'dateFormat' => 'dd.MM.yyyy'],
 //            ['finish_date', 'type', 'type'=>'date', 'dateFormat' => 'dd.MM.yyyy']
         ];
