@@ -13,6 +13,7 @@ class ExpertsInput {
         this.classExperts = "experts";
         this.glyphicon = "glyphicon";
         this.spanClass = "glyphicon-remove";
+        this.addGroupBox = elements;
     }
 
     attachEvents () {
@@ -89,7 +90,7 @@ class ExpertsInput {
     addExpertInput () {
         let newExpertInput = document.createElement('input'),
             span = document.createElement('span'),
-            expertsContainer = document.querySelector('.experts-container');
+            expertsContainer = this.addGroupBox.querySelector('.experts-container');
         newExpertInput.classList.add(this.classExperts);
         newExpertInput.addEventListener('blur', () => {
             this.validateNewExperts(newExpertInput)

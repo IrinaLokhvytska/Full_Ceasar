@@ -36,7 +36,7 @@ class DeleteGroup {
             confirmDeletion.classList.add(this.classDefault);
             cancelDeletion.classList.add(this.classButton);
             cancelDeletion.classList.add(this.classDefault);
-            text.innerHTML = 'Are you really want to delete group ' + name + ' ?';
+            text.innerHTML = 'Do you really want to delete group ' + name + ' ?';
             confirmDeletion.innerHTML = 'Yes';
             cancelDeletion.innerHTML = 'No';
             confirmDeletion.addEventListener('click', () =>{
@@ -71,7 +71,8 @@ class DeleteGroup {
 
     _sendData (data) {
 
-        let xmlhttp;
+        let xmlhttp,
+            id = document.querySelector('.trash-img').dataset.groupId;
 
         if (window.XMLHttpRequest) {
             xmlhttp = new XMLHttpRequest();
@@ -79,7 +80,7 @@ class DeleteGroup {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open("POST", this.deleteUrl, false);
+        xmlhttp.open("POST", this.deleteUrl + '/'+id, false);
         xmlhttp.send(data);
 
         location.reload();

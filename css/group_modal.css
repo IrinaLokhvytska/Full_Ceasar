@@ -2,13 +2,14 @@ body {
     min-width: 350px;
 }
 
-div#groupModal{
+#groupModal, #edit-group-modal{
     margin-top: 5%;
     background-color: #171B65;
     width: 100%;
+    height: 470px;
 }
 
-div#dashed{
+#dashed{
     border-bottom: dashed 1px grey;
 }
 

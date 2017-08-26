@@ -1,5 +1,5 @@
 'use strict';
-class GroupModal {
+class EditGroup {
 
     constructor (urlArray, elements) {
         this.getLocationsUrl = urlArray[0];
@@ -8,6 +8,7 @@ class GroupModal {
         this.createUrl = urlArray[3];
         this.editUrl = urlArray[4];
         this.defineElements(elements);
+        this.fillFields();
         this.attachEvents();
         this.getLocationFromDb();
     }
@@ -22,6 +23,11 @@ class GroupModal {
         this.submit = elements.querySelector('.submit');
         this.closeModal = elements.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
+    }
+
+    fillFields() {
+        this.name.value = document.querySelector('.gear-img').dataset.groupName;
+        console.log(document.querySelector('.gear-img').dataset.groupId);
     }
 
     attachEvents () {
