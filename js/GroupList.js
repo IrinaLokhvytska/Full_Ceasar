@@ -90,8 +90,6 @@ class GroupList {
                 if (!groups[i].classList.contains('checkedGroup')) {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
-                    let groupName = groups[i].dataset.name;
-                    //let groupId = this.groups[i].group_id;
                     let groupId = this.groupList[i].group_id;
 
                     this.groupInfoElement.showGroupInfo(groupId, groupName);
@@ -144,7 +142,6 @@ class GroupList {
         let group = this.groupListElement.appendChild(document.createElement('DIV')),
             groupName = group.appendChild(document.createElement('SPAN')),
             groupDirection = group.appendChild(document.createElement('SPAN'));
-        group.dataset.name = gName;
 
         if (addLastOddGroupClass) {
             group.className = 'group lastOddGroup';
