@@ -33,6 +33,7 @@ class GroupList {
 
     getGroupList(locations, outerRequest = false) {
         if (outerRequest === true) {
+            this.pageNumber = 1;
             this.filterOn = false;
             this.myGroupListBtnElement.innerHTML = "My groups";
         }
@@ -55,7 +56,8 @@ class GroupList {
             groupsQuantity = groups.length,
             firstGroupNumber = (newPageNumber - 1) * 10 + 1,
             tempNum = groupsQuantity < 10 ? groupsQuantity : groupsQuantity - (newPageNumber - 1) * 10,
-            arrLen = tempNum < 10 ? tempNum : 10;
+            arrLen = tempNum < 10 ? tempNum : 10,
+            pageGroupList = [];
 
         this.deleteGroups();
 
@@ -65,18 +67,20 @@ class GroupList {
                 addLastOddGroupClass = true;
             }
             this.createGroup(groups[firstGroupNumber + i - 1]['group_name'], groups[firstGroupNumber + i - 1]['direction_name'], addLastOddGroupClass);
+            pageGroupList.push(groups[firstGroupNumber + i - 1]);
         }
 
         this.pageNumberElement.innerHTML = newPageNumber;
         this.pageQuantity = Math.ceil(groupsQuantity / 10);
         this.pageQuantityElement.innerHTML = this.pageQuantity;
 
-        this.attachGroupsEvents();
+        this.attachGroupsEvents(pageGroupList);
     }
 
-    attachGroupsEvents() {
+    attachGroupsEvents(pageGroupList) {
         let groups = this.groupsNav.querySelectorAll('.group'),
-            groupsLen = groups.length;
+            groupsLen = groups.length,
+            groupListArr = pageGroupList;
 
         function uncheckGroups(i) {
             for (let ii = 0; ii < groupsLen; ii++) {
@@ -91,8 +95,8 @@ class GroupList {
                 if (!groups[i].classList.contains('checkedGroup')) {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
-                    let groupName = this.groupList[i].group_name,
-                        groupId = this.groupList[i].group_id;
+                    let groupName = groupListArr[i].group_name,
+                        groupId = groupListArr[i].group_id;
                     this.groupInfoElement.showGroupInfo(groupId, groupName);
                 }
             });
