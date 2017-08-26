@@ -3,6 +3,7 @@ class DeleteGroup {
 
     constructor (urlArray) {
         this.deleteUrl = urlArray[0];
+        this.deleteAction = false;
         this.defineElements();
         this.attachEvents();
     }
@@ -28,7 +29,8 @@ class DeleteGroup {
             text = document.createElement('p'),
             name = document.querySelector('.trash-img').dataset.groupName,
             id = document.querySelector('.trash-img').dataset.groupId;
-        if(id){
+        if(id && this.deleteAction === false){
+            this.deleteAction = true;
             checkDeleteBox.style.display = "block";
             confirmDeletion.classList.add(this.classButton);
             confirmDeletion.classList.add(this.classDefault);
@@ -50,13 +52,21 @@ class DeleteGroup {
     }
 
     deleteGroup (id) {
-        this.checkDeleteBox.style.display = "none";
+        this.deleteAction = false;
         this._sendData(id);
+        this.clearDeleteBox();
     }
 
     cancelDelete () {
-        this.checkDeleteBox.style.display = "none";
-        this.checkDeleteBox.innerHTML = '';
+        let checkDeleteBoxElement = this.checkDeleteBox;
+        this.deleteAction = false;
+        this.clearDeleteBox();
+    }
+
+    clearDeleteBox() {
+        while (this.checkDeleteBox.firstChild) {
+            this.checkDeleteBox.removeChild(this.checkDeleteBox.firstChild);
+        }
     }
 
     _sendData (data) {
