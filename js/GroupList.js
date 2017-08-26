@@ -39,7 +39,6 @@ class GroupList {
 
         if (locations !== this.locationsList) {
             this.locationsList = locations;
-            console.log(this.locationsList);
         }
 
         Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + this.locationsList, this.saveGroupList.bind(this));
@@ -128,7 +127,6 @@ class GroupList {
                     locationListArrLen = this.locationsList.length;
                 for (let i = 0; i < myGroupListArrLen; i++) {
                     let iGroup = this.myGroupList[i];
-                    console.log(this.locationsList);
                     for (let j = 0; j < locationListArrLen; j++) {
                         if (iGroup.group_location === this.locationsList[j]) {
                             groupListArr.push(this.myGroupList[i]);
