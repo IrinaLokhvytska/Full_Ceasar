@@ -23,15 +23,14 @@ class GroupController extends BaseController
         if(!$group->validate()){
             throw new CHttpException(400, 'Invalid data');
         }
-
         $group->save();
         $groupId = $group->id;
 
         $groupTeachers = $data['teachers'];
-        foreach ($groupTeachers as $person){
+        foreach ($groupTeachers as $key=>$value){
             $teacher = new Teacher();
-            $teacher->group = $groupId ;
-            $teacher->user = $person;
+            $teacher->setAttribute('group', $groupId);
+            $teacher->setAttribute('user', $value);
             $teacher->save();
         }
         
