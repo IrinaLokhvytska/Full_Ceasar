@@ -47,7 +47,7 @@
             <p class="user_surname">Surname  <?php echo Yii::app()->user->lastname; ?></p>
 
             <p class="user_role">Type <?php echo Yii::app()->user->type; ?></p>
-        </div>g
+        </div>
 
         <a href="<?php echo Yii::app()->createAbsoluteUrl('site/logout'); ?>">
             <img class="logout" src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/profile_logout.png">
@@ -61,6 +61,7 @@
             </a>
         <?php endif; ?>
     </div>
+
 
 </div>
 <?php require Yii::app()->basePath . '/views/site/locations.php'; ?>

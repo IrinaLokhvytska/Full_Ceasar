@@ -2,32 +2,19 @@
 
 class Profile {
 
-    constructor (profile) {
-        this.defineElements(profile);
+    constructor(profilePicture, profileBlock) {
+        this.picture = profilePicture;
+        this.profileBlock = profileBlock;
         this.attachEvents();
-    }
-
-    defineElements(profile) {
-        this.picture = document.querySelector('.profile_picture');
-        this.profilePopup = document.querySelector('.right-popup');
-        this.profile = profile;
     }
 
     attachEvents() {
         this.picture.addEventListener('click', () => {
             this.showProfile()
         });
-
-        this.profilePopup.addEventListener('mouseover', () => {
-            this.showProfile()
-        });
-
-        this.profile.addEventListener('mouseleave', () => {
-            this.profile.classList.remove("active");
-        });
     }
 
     showProfile() {
-        this.profile.classList.add("active");
+        this.profileBlock.classList.add("profile_block:hover");
     }
 }

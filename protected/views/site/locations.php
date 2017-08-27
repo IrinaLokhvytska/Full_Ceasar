@@ -1,5 +1,3 @@
-
-
 <div class="modal fade" id="locationModal">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
