@@ -33,7 +33,7 @@ class EditGroup {
         this.groupId = this.editGroupBtn.dataset.groupId;
         this.name.value = this.editGroupBtn.dataset.groupName;
         //this.location.value = this.editGroupBtn.dataset.groupLocation;
-        this.dateCourse.direction.value = this.editGroupBtn.dataset.direction;
+        //this.dateCourse.direction.value = this.editGroupBtn.dataset.direction;
         this.dateCourse.startDate.value = this.editGroupBtn.dataset.groupStartDate;
         let budget = this.editGroupBtn.dataset.groupBudget;
         this.setBudgetButton(budget);
@@ -139,7 +139,7 @@ class EditGroup {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open("POST", this.createUrl, false);
+        xmlhttp.open("POST", this.editUrl, false);
         xmlhttp.send(data);
 
         this.close();
@@ -148,11 +148,12 @@ class EditGroup {
 
     _getFormData () {
         let data = {};
+        data.id = this.editGroupBtn.dataset.groupId;
         data.name = this.name.value;
         data.location_id = this.location.value;
         data.direction_id = this.dateCourse.direction.value;
         data.start_date = this.dateCourse.startDate.value;
-        data.finish_date = this.dateCourse.finishDate.value
+        data.finish_date = this.dateCourse.finishDate.value;
         data.budget =  this.budgetOwner.budgetOwner;
 
         let teachersLists = document.querySelectorAll('.teachers'),

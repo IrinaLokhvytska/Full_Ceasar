@@ -115,7 +115,7 @@ class GroupController extends BaseController
 
         $idGroup = $data['id'];
         $model = new Group();
-        $group = $model->findAllByPk($idGroup);
+        $group = $model->findByPk($idGroup);
 
         $group->setAttribute('name', $data['name']);
         $group->setAttribute('location_id', $data['location_id']);
@@ -129,23 +129,23 @@ class GroupController extends BaseController
         }
         $group->update();
 
-        $groupTeachers = $data['teachers'];
-        foreach ($groupTeachers as $value){
-            $modelTeacher = new Teacher();
-            $teacher = $modelTeacher->findAllByAttributes('group', $idGroup);
-            $teacher->setAttribute('user', $value);
-            $teacher->update();
-        }
-
-        $experts = $data['experts'];
-        if(!empty($experts)){
-            foreach ($experts as $person){
-                $modelExpert = new Expert();
-                $expert = $modelExpert->findAllByAttributes('group', $idGroup);
-                $expert->name = $person;
-                $expert->update();
-            }
-        }
+//        $groupTeachers = $data['teachers'];
+//        foreach ($groupTeachers as $value){
+//            $modelTeacher = new Teacher();
+//            $teacher = $modelTeacher->findAllByAttributes('group', $idGroup);
+//            $teacher->setAttribute('user', $value);
+//            $teacher->update();
+//        }
+//
+//        $experts = $data['experts'];
+//        if(!empty($experts)){
+//            foreach ($experts as $person){
+//                $modelExpert = new Expert();
+//                $expert = $modelExpert->findAllByAttributes('group', $idGroup);
+//                $expert->name = $person;
+//                $expert->update();
+//            }
+//        }
 
         $this->renderJson(["success" => true]);
     }

@@ -34,6 +34,7 @@ class DateCourse {
 
     saveDirections(data) {
         this.directionList = data;
+        console.log(this.directionList);
         this.initDirectionList();
     }
 
