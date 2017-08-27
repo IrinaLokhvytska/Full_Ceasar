@@ -23,15 +23,14 @@ class GroupController extends BaseController
         if(!$group->validate()){
             throw new CHttpException(400, 'Invalid data');
         }
-
         $group->save();
         $groupId = $group->id;
 
         $groupTeachers = $data['teachers'];
-        foreach ($groupTeachers as $person){
+        foreach ($groupTeachers as $key=>$value){
             $teacher = new Teacher();
-            $teacher->group = $groupId ;
-            $teacher->user = $person;
+            $teacher->setAttribute('group', $groupId);
+            $teacher->setAttribute('user', $value);
             $teacher->save();
         }
 
@@ -48,11 +47,12 @@ class GroupController extends BaseController
        $this->renderJson(["success" => true]);
     }
 
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        $groupId = file_get_contents('php://input');
+        //$groupId = file_get_contents('php://input');
+        $groupId = $id;
 
-        if (empty($groupId)) {
+        if (!$groupId) {
             throw new CHttpException(400, 'Invalid data');
         }
 
@@ -95,48 +95,13 @@ class GroupController extends BaseController
         $this->renderJson($directions);
     }
 
-    public function actionGetGroup()
+    public function actionGetGroupInformation()
     {
-        $teachers = Yii::app()->db->createCommand()
-            ->select('first_name, last_name')
-            ->from('user_groups ug')
-            ->join('users u', 'ug.id = u.id')
-            ->where('ug.id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
-
-//        $experts = Yii::app()->db->createCommand()
-//            ->select('name')
-//            ->from('group_experts')
-//            ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
-//            ->queryAll();
-
-        $group = Yii::app()->db->createCommand()
-            ->select('g.id, l.full_name, d.name, start_date, finish_date, budget, expert')
-
-            ->from('groups g')
-            ->join('directions d', 'g.direction_id=d.id')
-            ->join('locations l', 'g.location_id=l.id')
-            ->where('g.id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
-
-        $groupName = Yii::app()->db->createCommand()
-            ->select('name')
-            ->from('groups')
-            ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
-
-        $group[] = $groupName;
-
-        $group = empty($group) ? [] : $group;
-
-        $teachers = empty($teachers) ? [] : $teachers;
-        //$experts = empty($experts) ? [] : $experts;
-
-        $group[] = $teachers;
-        //$groups[] = $experts;
+        $id = file_get_contents('php://input');
+        $model = new Group();
+        $group = $model->findAllByPk($id);
 
         $this->renderJson($group);
-
     }
 
     public function actionEdit()

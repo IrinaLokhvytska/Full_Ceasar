@@ -15,14 +15,14 @@ class m170816_120215_create_user_groups_table extends CDbMigration
 
         $this->execute('
             ALTER TABLE `user_groups`
-            ADD CONSTRAINT `user_group` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+            ADD CONSTRAINT `user` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
             ADD CONSTRAINT `group` FOREIGN KEY (`group`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
         ');
 	}
 
 	public function down()
 	{
-		$this->dropForeignKey('user_group', 'user_groups');
+		$this->dropForeignKey('user', 'user_groups');
         $this->dropForeignKey('group', 'user_groups');
         $this->dropTable('user_groups');
 	}

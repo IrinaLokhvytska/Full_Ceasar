@@ -97,6 +97,7 @@ class GroupList {
                     uncheckGroups(i);
                     let groupName = groupListArr[i].group_name,
                         groupId = groupListArr[i].group_id;
+                    console.log(groupListArr);
                     this.groupInfoElement.showGroupInfo(groupId, groupName);
                 }
             });
