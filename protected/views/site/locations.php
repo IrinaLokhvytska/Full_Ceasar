@@ -1,9 +1,3 @@
-<?php if (Yii::app()->user->type === 'itacademy'): ?>
-<a data-toggle="modal" href="#locationModal">
-    <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/globe.png" class="globe-img" alt="globe icon">
-</a>
-<?php endif; ?>
-
 <div class="modal fade" id="locationModal">
     <div class="modal-dialog  modal-lg">
         <div class="modal-content">
