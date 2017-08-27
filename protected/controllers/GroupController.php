@@ -111,35 +111,39 @@ class GroupController extends BaseController
         if (empty($requestBody)) {
             throw new CHttpException(400, 'Invalid data');
         }
-
         $data = json_decode($requestBody, true);
 
-        $editedGroup = new Group();
-        $editedGroup->attributes = $data;
+        $idGroup = $data['id'];
+        $model = new Group();
+        $group = $model->findAllByPk($idGroup);
 
-        if (!$editedGroup->validate()) {
-            throw new CHttpException(400, 'error in request');
+        $group->setAttribute('name', $data['name']);
+        $group->setAttribute('location_id', $data['location_id']);
+        $group->setAttribute('direction_id', $data['direction_id']);
+        $group->setAttribute('start_date', $data['start_date']);
+        $group->setAttribute('finish_date', $data['finish_date']);
+        $group->setAttribute('budget', $data['budget']);
+
+        if(!$group->validate()){
+            throw new CHttpException(400, 'Invalid data');
         }
+        $group->update();
 
-        $editedGroup->save();
-
-        $groupId = $editedGroup->id;
         $groupTeachers = $data['teachers'];
-        $experts = $data['experts'];
-
-        foreach ($groupTeachers as $person){
-            $teacher = new Teacher();
-            $teacher->group = $groupId ;
-            $teacher->user = $person;
-            $teacher->save();
+        foreach ($groupTeachers as $value){
+            $modelTeacher = new Teacher();
+            $teacher = $modelTeacher->findAllByAttributes('group', $idGroup);
+            $teacher->setAttribute('user', $value);
+            $teacher->update();
         }
 
+        $experts = $data['experts'];
         if(!empty($experts)){
             foreach ($experts as $person){
-                $expert = new Expert();
-                $expert->group = $groupId;
+                $modelExpert = new Expert();
+                $expert = $modelExpert->findAllByAttributes('group', $idGroup);
                 $expert->name = $person;
-                $expert->save();
+                $expert->update();
             }
         }
 

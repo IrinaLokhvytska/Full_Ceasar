@@ -24,15 +24,29 @@ class EditGroup {
         this.closeModal = parentEl.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
         this.editGroupBtn = document.querySelector('.gear-img');
+        this.SsOwner = parentEl.querySelector('#SsOwner');
+        this.OgOwner = parentEl.querySelector('#OgOwner');
+        this.classLabel = "active";
     }
 
     fillFields() {
         this.groupId = this.editGroupBtn.dataset.groupId;
         this.name.value = this.editGroupBtn.dataset.groupName;
-        this.location.value = this.editGroupBtn.dataset.groupLocation;
-        this.direction.value = this.editGroupBtn.dataset.direction;
-        this.startDate.value = this.editGroupBtn.dataset.groupStartDate;
-        this.budget.value = this.editGroupBtn.dataset.groupBudget;
+        //this.location.value = this.editGroupBtn.dataset.groupLocation;
+        this.dateCourse.direction.value = this.editGroupBtn.dataset.direction;
+        this.dateCourse.startDate.value = this.editGroupBtn.dataset.groupStartDate;
+        let budget = this.editGroupBtn.dataset.groupBudget;
+        this.setBudgetButton(budget);
+    }
+    
+    setBudgetButton (budget) {
+        if (budget === 'softserve') {
+            this.SsOwner.classList.add(this.classLabel);
+            this.OgOwner.classList.remove(this.classLabel);
+        } else {
+            this.OgOwner.classList.add(this.classLabel);
+            this.SsOwner.classList.remove(this.classLabel);
+        }
     }
 
     attachEvents () {
