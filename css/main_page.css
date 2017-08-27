@@ -1,16 +1,24 @@
 .loc-container {
     display: grid;
-    grid-template-areas:             "header       header     header     header"
-                                     "local-groups loc-name   group-name notif"
-                                     "local-groups group-area group-area notif"
-                                    "local-groups status     message    notif";
-    grid-template-columns: 3fr 4fr 4fr 2fr;
+    grid-template-areas: "left-popup header       header     header     header right-popup"
+                         "left-popup local-groups loc-name   group-name notif  right-popup"
+                         "left-popup local-groups group-area group-area notif  right-popup"
+                         "left-popup local-groups status     message    notif  right-popup";
+    grid-template-columns: 5px 3fr 4fr 4fr 2fr 5px ;
     grid-template-rows: 50px 1fr 6fr 1fr;
-    min-height: 80vh;
+    min-height: 90vh;
+}
+
+.right-popup {
+    grid-area: right-popup;
+}
+
+.left-popup {
+    grid-area: left-popup;
 }
 
 .loc-container a:focus {
-    outline:0;
+    outline: 0;
 }
 
 .header {
@@ -95,7 +103,6 @@
 .gear a:focus {
     text-decoration: none;
 }
-
 
 .gear-img {
     width: 30px;

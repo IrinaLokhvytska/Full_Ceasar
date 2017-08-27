@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/group_modal.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main_page.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/leftside.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/groupInfo.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/locations.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/notifications.css">
@@ -28,6 +29,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/Frame.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/profile_init.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/LeftSideBar.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/GroupInfo.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/DeleteGroup.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/EditGroup.js"></script>
@@ -53,12 +55,19 @@
             ],
             groupInfoElement = new GroupInfo(),
             groupListMenu = new GroupList([
-                "<?= Yii::app()->createUrl('GroupList/GetGroupList'); ?>",
-                "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>",
-                "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"],
+                    "<?= Yii::app()->createUrl('GroupList/GetGroupList'); ?>",
+                    "<?= Yii::app()->createUrl('GroupList/ShowGroup'); ?>",
+                    "<?= Yii::app()->createUrl('GroupList/GetMyGroupList'); ?>"],
                 groupInfoElement,
                 <?= Yii::app()->user->location; ?>
             ),
+
+            leftsideBlock = document.querySelector('.leftside-bar'),
+            leftsideBar = new LeftSideBar(leftsideBlock),
+
+            profileBlock = document.querySelector('.profile_block'),
+            profile = new Profile(profileBlock),
+
             groupModalMenuElement = document.querySelector('#groupModal .groups'),
             groupModalMenu = new GroupModal([
                     "<?= Yii::app()->createUrl('Group/GetLocation'); ?>",
@@ -80,7 +89,7 @@
                 ],
                 editGroupModal),
             locationsListModal = null;
-        
+
         locationsListModal = (locationsListModal === null)
             ? new LocationsList(locationModal, locationsListModalUrlArray, groupListMenu)
             : locationsListModal;
