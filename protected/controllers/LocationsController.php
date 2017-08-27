@@ -7,12 +7,16 @@ class LocationsController extends BaseController
         $component = Yii::app()->getComponent('Location');
         $locationList = $component->getList();
         $this->renderJSON($locationList);
-
-//        $locations = Locations::model()->getLocations();
-//        $this->renderJSON($locations);
     }
+    
     public function actionShowLocations($par)
     {
         $this->renderJSON($par);
+    }
+
+    public function actionGetAllLocations()
+    {
+        $locations = Locations::model()->findAll();
+        $this->renderJSON($locations);
     }
 }

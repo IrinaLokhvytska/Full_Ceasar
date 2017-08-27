@@ -9,7 +9,6 @@ class GroupInfo {
     }
 
     showGroupInfo(array) {
-        console.log(array);
         this.groupId = array[0];
         this.groupName = array[1];
         this.groupLocation = array[2];

@@ -11,6 +11,7 @@ class EditGroup {
         this.defineElements(this.editGroupModalElement);
         this.attachEvents();
         this.getLocationFromDb();
+        this.locationList = [];
     }
 
     defineElements (parentEl) {
@@ -32,9 +33,8 @@ class EditGroup {
     fillFields() {
         this.groupId = this.editGroupBtn.dataset.groupId;
         this.name.value = this.editGroupBtn.dataset.groupName;
-        //this.location.value = this.editGroupBtn.dataset.groupLocation;
-        //this.dateCourse.direction.value = this.editGroupBtn.dataset.direction;
         this.dateCourse.startDate.value = this.editGroupBtn.dataset.groupStartDate;
+        this.dateCourse.processDate();
         let budget = this.editGroupBtn.dataset.groupBudget;
         this.setBudgetButton(budget);
     }
@@ -71,14 +71,21 @@ class EditGroup {
     }
 
     getLocationFromDb () {
-        return Frame.ajaxResponse('GET', this.getLocationsUrl, this.initLocation.bind(this));
+        return Frame.ajaxResponse('GET', this.getLocationsUrl, this.saveLocations.bind(this));
     }
 
-    initLocation (data) {
-        let opt = document.createElement('option');
-        opt.value = data.id;
-        opt.innerHTML = data.full_name;
-        this.location.appendChild(opt);
+    saveLocations(data) {
+        this.locationList = data;
+        this.initLocationList();
+    }
+
+    initLocationList () {
+        this.locationList.forEach((location) => {
+            let opt = document.createElement('option');
+            opt.value = location.id;
+            opt.innerHTML = location.full_name;
+            this.location.appendChild(opt);
+        });
     }
 
     validateName () {

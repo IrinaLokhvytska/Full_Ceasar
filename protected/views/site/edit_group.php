@@ -45,7 +45,7 @@
                             <label for="location">Location</label>
                         </div>
                         <div class="col-md-4 col-xs-12 col-sm-12">
-                            <select class="location" title="location" disabled></select>
+                            <select class="location" title="location"></select>
                         </div>
                         <div class="col-md-2 col-xs-12 col-sm-12">
                             <label for="finishDate">Finish date:</label>

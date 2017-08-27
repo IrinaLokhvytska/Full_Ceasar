@@ -12,7 +12,6 @@ class GroupController extends BaseController
         $data = json_decode($requestBody, true);
 
         $group = new Group();
-//        $group->setAttributes($data);
         $group->setAttribute('name', $data['name']);
         $group->setAttribute('location_id', $data['location_id']);
         $group->setAttribute('direction_id', $data['direction_id']);
@@ -49,7 +48,6 @@ class GroupController extends BaseController
 
     public function actionDelete($id)
     {
-        //$groupId = file_get_contents('php://input');
         $groupId = $id;
 
         if (!$groupId) {
