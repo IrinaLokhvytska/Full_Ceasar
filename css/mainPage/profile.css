@@ -30,6 +30,11 @@ header {
     opacity: 1;
 }
 
+.profile_block.clicked {
+    right: 0px;
+    opacity: 1;
+}
+
 .cogwheel_picture,
 .logout {
     position: absolute;
