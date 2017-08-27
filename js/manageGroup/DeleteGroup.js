@@ -58,7 +58,6 @@ class DeleteGroup {
     }
 
     cancelDelete () {
-        let checkDeleteBoxElement = this.checkDeleteBox;
         this.deleteAction = false;
         this.clearDeleteBox();
     }
@@ -70,7 +69,6 @@ class DeleteGroup {
     }
 
     _sendData (data) {
-
         let xmlhttp,
             id = document.querySelector('.trash-img').dataset.groupId;
 

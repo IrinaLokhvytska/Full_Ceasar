@@ -13,18 +13,21 @@ header {
 }
 
 .profile_block {
-    display: none;
     position: fixed;
     top: 0;
-    right: 0;
+    right: -9%;
     z-index: 2;
     background-color: #323232;
     height: 100%;
     width: 10%;
+    opacity: 0;
+    -webkit-transition: right 0.5s ease-out, opacity 0.5s;
+    transition: right 0.5s ease-out, opacity 0.5s;
 }
 
-.active {
-    display: block;
+.profile_block:hover {
+    right: 0px;
+    opacity: 1;
 }
 
 .cogwheel_picture,
@@ -68,4 +71,3 @@ header {
 .user_role {
     margin-top: 20px;
 }
-

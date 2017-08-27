@@ -95,10 +95,14 @@ class GroupList {
                 if (!groups[i].classList.contains('checkedGroup')) {
                     groups[i].classList.add('checkedGroup');
                     uncheckGroups(i);
-                    let groupName = groupListArr[i].group_name,
-                        groupId = groupListArr[i].group_id;
-                    console.log(groupListArr);
-                    this.groupInfoElement.showGroupInfo(groupId, groupName);
+                    let groupId = groupListArr[i].group_id,
+                        groupName = groupListArr[i].group_name,
+                        groupLocation = groupListArr[i].group_location,
+                        groupDirection = groupListArr[i].direction_name,
+                        groupStartDate = groupListArr[i].start_date,
+                        groupBudget = groupListArr[i].budget,
+                        groupInfo = [groupId, groupName, groupLocation, groupDirection, groupStartDate, groupBudget];
+                    this.groupInfoElement.showGroupInfo(groupInfo);
                 }
             });
         }

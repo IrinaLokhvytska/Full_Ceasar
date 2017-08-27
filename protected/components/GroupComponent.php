@@ -20,9 +20,12 @@ class GroupComponent extends CApplicationComponent
         }
         foreach ($rows as $row) {
             $groupList[] = [
-                'group_name' => $row->name,
-                'direction_name' => $row->getRelated('direction')->name,
                 'group_id' => $row->id,
+                'group_name' => $row->name,
+                'group_location' => $row->getRelated('location')->full_name,
+                'direction_name' => $row->getRelated('direction')->name,
+                'start_date' => $row->start_date,
+                'budget' => $row->budget,
             ];
             $locationName = $row->getRelated('location')->full_name;
             if (array_search($locationName, $locationNameList, true) === false) {
@@ -83,9 +86,12 @@ class GroupComponent extends CApplicationComponent
         }
         foreach ($rows as $row) {
             $result[] = [
+                'group_id' => $row->getRelated('group')->id,
                 'group_name' => $row->getRelated('group')->name,
-                'direction_name' => $row->getRelated('group')->getRelated('direction')->name,
                 'group_location' => $row->getRelated('group')->getRelated('location')->full_name,
+                'direction_name' => $row->getRelated('group')->getRelated('direction')->name,
+                'start_date' => $row->getRelated('group')->start_date,
+                'budget' => $row->getRelated('group')->budget,
             ];
         }
 

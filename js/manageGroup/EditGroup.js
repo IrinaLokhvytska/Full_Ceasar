@@ -1,36 +1,44 @@
 'use strict';
 class EditGroup {
 
-    constructor (urlArray, elements) {
+    constructor (urlArray, editGroupModalElement) {
         this.getLocationsUrl = urlArray[0];
         this.getTeachersListUrl = urlArray[1];
         this.getDirectionsListUrl = urlArray[2];
         this.createUrl = urlArray[3];
         this.editUrl = urlArray[4];
-        this.defineElements(elements);
-        this.fillFields();
+        this.editGroupModalElement = editGroupModalElement;
+        this.defineElements(this.editGroupModalElement);
         this.attachEvents();
         this.getLocationFromDb();
     }
 
-    defineElements (elements) {
-        this.dateCourse = new DateCourse(this.getDirectionsListUrl, elements);
-        this.budgetOwner = new BudgetOwner(elements);
-        this.teachers = new TeachersSelect(this.getTeachersListUrl, elements);
-        this.experts = new ExpertsInput(elements);
-        this.name = elements.querySelector('.groupName');
-        this.location = elements.querySelector('.location');
-        this.submit = elements.querySelector('.submit');
-        this.closeModal = elements.querySelector('.close-modal');
+    defineElements (parentEl) {
+        this.dateCourse = new DateCourse(this.getDirectionsListUrl, parentEl);
+        this.budgetOwner = new BudgetOwner(parentEl);
+        this.teachers = new TeachersSelect(this.getTeachersListUrl, parentEl);
+        this.experts = new ExpertsInput(parentEl);
+        this.name = parentEl.querySelector('.groupName');
+        this.location = parentEl.querySelector('.location');
+        this.submit = parentEl.querySelector('.submit');
+        this.closeModal = parentEl.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
+        this.editGroupBtn = document.querySelector('.gear-img');
     }
 
     fillFields() {
-        this.name.value = document.querySelector('.gear-img').dataset.groupName;
-        console.log(document.querySelector('.gear-img').dataset.groupId);
+        this.groupId = this.editGroupBtn.dataset.groupId;
+        this.name.value = this.editGroupBtn.dataset.groupName;
+        this.location.value = this.editGroupBtn.dataset.groupLocation;
+        this.direction.value = this.editGroupBtn.dataset.direction;
+        this.startDate.value = this.editGroupBtn.dataset.groupStartDate;
+        this.budget.value = this.editGroupBtn.dataset.groupBudget;
     }
 
     attachEvents () {
+        this.editGroupBtn.addEventListener('click', () =>{
+            this.fillFields();
+        });
         this.name.addEventListener('blur', () => {
             this.validateName();
         });
