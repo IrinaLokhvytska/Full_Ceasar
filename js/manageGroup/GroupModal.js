@@ -21,7 +21,9 @@ class GroupModal {
         this.location = elements.querySelector('.location');
         this.submit = elements.querySelector('.submit');
         this.closeModal = elements.querySelector('.close-modal');
-        this.messageBox = document.querySelector('.errorName');
+        this.messageBox = elements.querySelector('.errorName');
+        this.teachersLists = elements.querySelectorAll('.teachers');
+        this.expertsInputs = document.querySelectorAll('.experts')
     }
 
     attachEvents () {
@@ -124,10 +126,10 @@ class GroupModal {
         data.location_id = this.location.value;
         data.direction_id = this.dateCourse.direction.value;
         data.start_date = this.dateCourse.startDate.value;
-        data.finish_date = this.dateCourse.finishDate.value
+        data.finish_date = this.dateCourse.finishDate.value;
         data.budget =  this.budgetOwner.budgetOwner;
 
-        let teachersLists = document.querySelectorAll('.teachers'),
+        let teachersLists = this.teachersLists,
             selectedTeachersIDs = [];
 
         teachersLists.forEach((teacherList) => {
@@ -135,7 +137,7 @@ class GroupModal {
         });
         data.teachers = selectedTeachersIDs;
 
-        let expertsInputs = document.querySelectorAll('.experts'),
+        let expertsInputs = this.expertsInputs,
             expertsIDs = [];
 
         expertsInputs.forEach((expertInput) => {

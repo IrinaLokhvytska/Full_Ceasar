@@ -28,6 +28,8 @@ class EditGroup {
         this.SsOwner = parentEl.querySelector('#SsOwner');
         this.OgOwner = parentEl.querySelector('#OgOwner');
         this.classLabel = "active";
+        this.teachersLists = parentEl.querySelectorAll('.teachers')
+        this.expertsInputs = parentEl.querySelectorAll('.experts')
     }
 
     fillFields() {
@@ -163,7 +165,7 @@ class EditGroup {
         data.finish_date = this.dateCourse.finishDate.value;
         data.budget =  this.budgetOwner.budgetOwner;
 
-        let teachersLists = document.querySelectorAll('.teachers'),
+        let teachersLists = this.teachersLists,
             selectedTeachersIDs = [];
 
         teachersLists.forEach((teacherList) => {
@@ -171,7 +173,7 @@ class EditGroup {
         });
         data.teachers = selectedTeachersIDs;
 
-        let expertsInputs = document.querySelectorAll('.experts'),
+        let expertsInputs = this.expertsInputs,
             expertsIDs = [];
 
         expertsInputs.forEach((expertInput) => {
