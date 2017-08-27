@@ -31,9 +31,9 @@
         <?php if (Yii::app()->user->type === 'itacademy'): ?>
         <button class="myGroupListBtn">My groups</button>
         <div>
-            <input type="radio" name="myGroups" value="all" checked/>
-            <input type="radio" name="myGroups" value="inProgress"/>
-            <input type="radio" name="myGroups" value="planned"/>
+            <input type="radio" name="myGroups" value="finished"/>
+            <input type="radio" name="myGroups" value="current" checked/>
+            <input type="radio" name="myGroups" value="future"/>
         </div>
         <?php endif; ?>
     </div>

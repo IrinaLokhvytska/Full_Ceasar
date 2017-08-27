@@ -34,7 +34,7 @@ class GroupController extends BaseController
             $teacher->user = $person;
             $teacher->save();
         }
-        
+
         $experts = $data['experts'];
         if(!empty($experts)){
             foreach ($experts as $person){
@@ -55,7 +55,7 @@ class GroupController extends BaseController
         if (empty($groupId)) {
             throw new CHttpException(400, 'Invalid data');
         }
-        
+
         $group = new Group();
         $group->findByPk($groupId)->delete();
 
