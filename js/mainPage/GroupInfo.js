@@ -2,6 +2,8 @@
 
 class GroupInfo {
     constructor() {
+        this.groupLocationText = document.querySelector('.loc-name');
+        this.groupNameText = document.querySelector('.group-name');
         this.editGroupBtnElement = document.querySelector('.gear-img');
         this.deleteGroupBtnElement = document.querySelector('.trash-img');
         this.groupId = '';
@@ -17,6 +19,7 @@ class GroupInfo {
         this.groupStartDate = array[4];
         this.groupBudget = array[5];
         this.setGroupActionBtns([this.editGroupBtnElement, this.deleteGroupBtnElement]);
+        this.fillGroupFields();
     }
 
     setGroupActionBtns(arr) {
@@ -28,5 +31,10 @@ class GroupInfo {
             el.dataset.groupStartDate = this.groupStartDate;
             el.dataset.groupBudget = this.groupBudget;
         });
+    }
+
+    fillGroupFields() {
+        this.groupLocationText.innerHTML = this.groupLocation;
+        this.groupNameText.innerHTML = this.groupName;
     }
 }
