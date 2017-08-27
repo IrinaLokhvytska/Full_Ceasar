@@ -12,9 +12,15 @@ class Profile {
         this.picture.addEventListener('click', () => {
             this.showProfile()
         });
+
+        this.profileBlock.addEventListener('mouseout', () => {
+            if (this.profileBlock.classList.contains("clicked")){
+                this.profileBlock.classList.remove("clicked");
+            }
+        });
     }
 
     showProfile() {
-        this.profileBlock.classList.add("profile_block:hover");
+        this.profileBlock.classList.add("clicked");
     }
 }
