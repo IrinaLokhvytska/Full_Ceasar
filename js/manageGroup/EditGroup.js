@@ -20,7 +20,8 @@ class EditGroup {
         this.teachers = new TeachersSelect(this.getTeachersListUrl, parentEl);
         this.experts = new ExpertsInput(parentEl);
         this.name = parentEl.querySelector('.groupName');
-        this.location = parentEl.querySelector('.location');
+        this.location = parentEl.querySelector('select.location');
+        this.direction = parentEl.querySelector('select.direction');
         this.submit = parentEl.querySelector('.submit');
         this.closeModal = parentEl.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
@@ -39,8 +40,10 @@ class EditGroup {
         this.dateCourse.processDate();
         let budget = this.editGroupBtn.dataset.groupBudget;
         this.setBudgetButton(budget);
+        this.location.value = this.editGroupBtn.dataset.groupLocation;
+        this.direction.value = this.editGroupBtn.dataset.groupDirection;
     }
-    
+
     setBudgetButton (budget) {
         if (budget === 'softserve') {
             this.SsOwner.classList.add(this.classLabel);
@@ -84,7 +87,7 @@ class EditGroup {
     initLocationList () {
         this.locationList.forEach((location) => {
             let opt = document.createElement('option');
-            opt.value = location.id;
+            opt.value = location.full_name;
             opt.innerHTML = location.full_name;
             this.location.appendChild(opt);
         });
