@@ -17,6 +17,8 @@ class GroupInfo {
         this.groupDirection = array[3];
         this.groupStartDate = array[4];
         this.groupBudget = array[5];
+        this.groupDirectionId = array[6];
+        this.groupLocationId =array[7];
         this.setGroupActionBtns([this.editGroupBtnElement, this.deleteGroupBtnElement]);
         this.fillGroupFields();
     }
@@ -29,6 +31,8 @@ class GroupInfo {
             el.dataset.groupDirection = this.groupDirection;
             el.dataset.groupStartDate = this.groupStartDate;
             el.dataset.groupBudget = this.groupBudget;
+            el.dataset.groupDirectionId = this.groupDirectionId;
+            el.dataset.groupLocationId = this.groupLocationId;
         });
     }
 

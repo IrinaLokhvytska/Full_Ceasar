@@ -40,8 +40,8 @@ class EditGroup {
         this.dateCourse.processDate();
         let budget = this.editGroupBtn.dataset.groupBudget;
         this.setBudgetButton(budget);
-        // this.location.value = this.editGroupBtn.dataset.groupLocation;
-        // this.direction.value = this.editGroupBtn.dataset.groupDirection;
+        this.location.value = this.editGroupBtn.dataset.groupLocationId;
+        this.direction.value = this.editGroupBtn.dataset.groupDirectionId;
     }
 
     setBudgetButton (budget) {
