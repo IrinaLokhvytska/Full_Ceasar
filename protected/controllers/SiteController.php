@@ -20,7 +20,7 @@ class SiteController extends Controller
             // validate user input and redirect to the previous page if valid
             if($model->validate() && $model->login())
 
-                $this->redirect("site/main");
+                $this->redirect(Yii::app()->request->baseUrl ."/site/main");
 
         }
 
@@ -37,7 +37,7 @@ class SiteController extends Controller
 
             $this->render('main');
         } else {
-            $this->redirect(Yii::app()->request->baseUrl . "/site/index");
+            $this->redirect(Yii::app()->request->baseUrl . '/site/index');
         }
 
     }

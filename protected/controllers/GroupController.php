@@ -96,17 +96,12 @@ class GroupController extends BaseController
     public function actionGetGroupInformation()
     {
         //$id = file_get_contents('php://input');
-        $id = 22;
+        $id = 23;
         $model = new Group();
         $group = $model->findByPk($id);
         $teachers = $group->getRelated('teachers');
-        $name = [];
-        foreach($teachers as $teacher) {
-            $name[]=$teacher->first_name;
 
-        }
-        var_dump($name);
-        $this->renderJson($name);
+        $this->renderJson($teachers);
     }
 
     public function actionEdit()
@@ -134,23 +129,39 @@ class GroupController extends BaseController
         }
         $group->update();
 
-//        $groupTeachers = $data['teachers'];
-//        foreach ($groupTeachers as $value){
-//            $modelTeacher = new Teacher();
-//            $teacher = $modelTeacher->findAllByAttributes('group', $idGroup);
-//            $teacher->setAttribute('user', $value);
-//            $teacher->update();
-//        }
-//
-//        $experts = $data['experts'];
-//        if(!empty($experts)){
-//            foreach ($experts as $person){
-//                $modelExpert = new Expert();
-//                $expert = $modelExpert->findAllByAttributes('group', $idGroup);
-//                $expert->name = $person;
-//                $expert->update();
-//            }
-//        }
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'user_group';
+        $criteria->condition = "$idGroup = {$criteria->alias}.group";
+        $rows = UserGroup::model()->with('group')->findAll($criteria);
+        foreach ($rows as $row) {
+            $row->delete();
+        }
+
+        $groupTeachers = $data['teachers'];
+        foreach ($groupTeachers as $value){
+            $teacher = new Teacher();
+            $teacher->setAttribute('group', $idGroup);
+            $teacher->setAttribute('user', $value);
+            $teacher->save();
+        }
+
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'group_experts';
+        $criteria->condition = "$idGroup = {$criteria->alias}.group";
+        $rows = Expert::model()->findAll($criteria);
+        foreach ($rows as $row) {
+            $row->delete();
+        }
+
+        $experts = $data['experts'];
+        if(!empty($experts)){
+            foreach ($experts as $person){
+                $expert = new Expert();
+                $expert->group = $idGroup;
+                $expert->name = $person;
+                $expert->save();
+            }
+        }
 
         $this->renderJson(["success" => true]);
     }
