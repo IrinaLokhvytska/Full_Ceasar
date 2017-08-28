@@ -98,8 +98,9 @@ class GroupController extends BaseController
         $id = file_get_contents('php://input');
         $model = new Group();
         $group = $model->findAllByPk($id);
+        $teacher = $group->teacher;
 
-        $this->renderJson($group);
+        $this->renderJson($teacher);
     }
 
     public function actionEdit()

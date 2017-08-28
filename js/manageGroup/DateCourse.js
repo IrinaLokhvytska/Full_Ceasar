@@ -40,7 +40,7 @@ class DateCourse {
     initDirectionList () {
         this.directionList.forEach((direction) => {
             let opt = document.createElement('option');
-            opt.value = direction.name;
+            opt.value = direction.id;
             opt.innerHTML = direction.name;
             this.direction.appendChild(opt);
         });

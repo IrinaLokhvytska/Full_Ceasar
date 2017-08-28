@@ -40,8 +40,8 @@ class EditGroup {
         this.dateCourse.processDate();
         let budget = this.editGroupBtn.dataset.groupBudget;
         this.setBudgetButton(budget);
-        this.location.value = this.editGroupBtn.dataset.groupLocation;
-        this.direction.value = this.editGroupBtn.dataset.groupDirection;
+        // this.location.value = this.editGroupBtn.dataset.groupLocation;
+        // this.direction.value = this.editGroupBtn.dataset.groupDirection;
     }
 
     setBudgetButton (budget) {
@@ -87,7 +87,7 @@ class EditGroup {
     initLocationList () {
         this.locationList.forEach((location) => {
             let opt = document.createElement('option');
-            opt.value = location.full_name;
+            opt.value = location.id;
             opt.innerHTML = location.full_name;
             this.location.appendChild(opt);
         });
