@@ -26,6 +26,8 @@ class GroupComponent extends CApplicationComponent
                 'direction_name' => $row->getRelated('direction')->name,
                 'start_date' => $row->start_date,
                 'budget' => $row->budget,
+                'direction_id' => $row->getRelated('direction')->id,
+                'group_location_id' => $row->getRelated('location')->id,
             ];
             $locationName = $row->getRelated('location')->full_name;
             if (array_search($locationName, $locationNameList, true) === false) {
@@ -92,6 +94,8 @@ class GroupComponent extends CApplicationComponent
                 'direction_name' => $row->getRelated('group')->getRelated('direction')->name,
                 'start_date' => $row->getRelated('group')->start_date,
                 'budget' => $row->getRelated('group')->budget,
+                'direction_id' => $row->getRelated('group')->getRelated('direction')->id,
+                'group_location_id' => $row->getRelated('group')->getRelated('location')->id,
             ];
         }
 

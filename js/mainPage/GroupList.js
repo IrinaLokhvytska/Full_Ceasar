@@ -101,7 +101,9 @@ class GroupList {
                         groupDirection = groupListArr[i].direction_name,
                         groupStartDate = groupListArr[i].start_date,
                         groupBudget = groupListArr[i].budget,
-                        groupInfo = [groupId, groupName, groupLocation, groupDirection, groupStartDate, groupBudget];
+                        groupDirectionId = groupListArr[i].direction_id,
+                        groupLocationId = groupListArr[i].group_location_id,
+                        groupInfo = [groupId, groupName, groupLocation, groupDirection, groupStartDate, groupBudget, groupDirectionId, groupLocationId];
                     this.groupInfoElement.showGroupInfo(groupInfo);
                 }
             });
