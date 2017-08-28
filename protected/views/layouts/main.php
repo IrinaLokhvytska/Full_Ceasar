@@ -74,7 +74,7 @@
             editGroupModal = document.querySelector('#edit-group-modal .groups'),
             editGroup = new EditGroup([
                     "<?= Yii::app()->createUrl('Locations/GetAllLocations'); ?>",
-                    "<?= Yii::app()->createUrl('Group/GetTeachersList'); ?>",
+                    "<?= Yii::app()->createUrl('Group/GetAllTeachersList'); ?>",
                     "<?= Yii::app()->createUrl('Group/GetDirectionsList'); ?>",
                     "<?= Yii::app()->createUrl('Group/Create'); ?>",
                     "<?= Yii::app()->createUrl('Group/Edit'); ?>"
