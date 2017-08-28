@@ -1,29 +1,63 @@
 'use strict';
-class GroupModal {
+class EditGroup {
 
-    constructor (urlArray, elements) {
+    constructor (urlArray, editGroupModalElement) {
         this.getLocationsUrl = urlArray[0];
         this.getTeachersListUrl = urlArray[1];
         this.getDirectionsListUrl = urlArray[2];
-        this.sendUrl = urlArray[3];
-        this.defineElements(elements);
+        this.createUrl = urlArray[3];
+        this.editUrl = urlArray[4];
+        this.editGroupModalElement = editGroupModalElement;
+        this.defineElements(this.editGroupModalElement);
         this.attachEvents();
         this.getLocationFromDb();
+        this.locationList = [];
     }
 
-    defineElements (elements) {
-        this.dateCourse = new DateCourse(this.getDirectionsListUrl, elements);
-        this.budgetOwner = new BudgetOwner(elements);
-        this.teachers = new TeachersSelect(this.getTeachersListUrl, elements);
-        this.experts = new ExpertsInput(elements);
-        this.name = elements.querySelector('.groupName');
-        this.location = elements.querySelector('.location');
-        this.submit = elements.querySelector('.submit');
-        this.closeModal = elements.querySelector('.close-modal');
+    defineElements (parentEl) {
+        this.dateCourse = new DateCourse(this.getDirectionsListUrl, parentEl);
+        this.budgetOwner = new BudgetOwner(parentEl);
+        this.teachers = new TeachersSelect(this.getTeachersListUrl, parentEl);
+        this.experts = new ExpertsInput(parentEl);
+        this.name = parentEl.querySelector('.groupName');
+        this.location = parentEl.querySelector('select.location');
+        this.direction = parentEl.querySelector('select.direction');
+        this.submit = parentEl.querySelector('.submit');
+        this.closeModal = parentEl.querySelector('.close-modal');
         this.messageBox = document.querySelector('.errorName');
+        this.editGroupBtn = document.querySelector('.gear-img');
+        this.SsOwner = parentEl.querySelector('#SsOwner');
+        this.OgOwner = parentEl.querySelector('#OgOwner');
+        this.classLabel = "active";
+        this.teachersLists = parentEl.querySelectorAll('.teachers')
+        this.expertsInputs = parentEl.querySelectorAll('.experts')
+    }
+
+    fillFields() {
+        this.groupId = this.editGroupBtn.dataset.groupId;
+        this.name.value = this.editGroupBtn.dataset.groupName;
+        this.dateCourse.startDate.value = this.editGroupBtn.dataset.groupStartDate;
+        this.dateCourse.processDate();
+        let budget = this.editGroupBtn.dataset.groupBudget;
+        this.setBudgetButton(budget);
+        this.location.value = this.editGroupBtn.dataset.groupLocationId;
+        this.direction.value = this.editGroupBtn.dataset.groupDirectionId;
+    }
+
+    setBudgetButton (budget) {
+        if (budget === 'softserve') {
+            this.SsOwner.classList.add(this.classLabel);
+            this.OgOwner.classList.remove(this.classLabel);
+        } else {
+            this.OgOwner.classList.add(this.classLabel);
+            this.SsOwner.classList.remove(this.classLabel);
+        }
     }
 
     attachEvents () {
+        this.editGroupBtn.addEventListener('click', () =>{
+            this.fillFields();
+        });
         this.name.addEventListener('blur', () => {
             this.validateName();
         });
@@ -34,7 +68,7 @@ class GroupModal {
         document.addEventListener('keydown', event => {
             if (event.key === 'Escape' || event.keyCode === 27) {
                 this.close();
-            } else if (event.key === 'Enter' || event.keyCode === 71) {
+            } else if (event.key === 'Enter' || event.keyCode === 13) {
                 event.preventDefault();
                 this.save();
             }
@@ -42,11 +76,16 @@ class GroupModal {
     }
 
     getLocationFromDb () {
-        return Frame.ajaxResponse('GET', this.getLocationsUrl, this.initLocation.bind(this));
+        return Frame.ajaxResponse('GET', this.getLocationsUrl, this.saveLocations.bind(this));
     }
 
-    initLocation (data) {
-        data.forEach((location)=> {
+    saveLocations(data) {
+        this.locationList = data;
+        this.initLocationList();
+    }
+
+    initLocationList () {
+        this.locationList.forEach((location) => {
             let opt = document.createElement('option');
             opt.value = location.id;
             opt.innerHTML = location.full_name;
@@ -112,7 +151,7 @@ class GroupModal {
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open("POST", this.sendUrl, false);
+        xmlhttp.open("POST", this.editUrl, false);
         xmlhttp.send(data);
 
         this.close();
@@ -121,14 +160,15 @@ class GroupModal {
 
     _getFormData () {
         let data = {};
+        data.id = this.editGroupBtn.dataset.groupId;
         data.name = this.name.value;
-        data.direction = this.dateCourse.direction.value;
-        data.budgetOwner =  this.budgetOwner.budgetOwner;
-        data.startDate = this.dateCourse.startDate.value;
-        data.location = this.location.value;
-        data.finishDate = this.dateCourse.finishDate.value;
+        data.location_id = this.location.value;
+        data.direction_id = this.dateCourse.direction.value;
+        data.start_date = this.dateCourse.startDate.value;
+        data.finish_date = this.dateCourse.finishDate.value;
+        data.budget =  this.budgetOwner.budgetOwner;
 
-        let teachersLists = document.querySelectorAll('.teachers'),
+        let teachersLists = this.teachersLists,
             selectedTeachersIDs = [];
 
         teachersLists.forEach((teacherList) => {
@@ -136,7 +176,7 @@ class GroupModal {
         });
         data.teachers = selectedTeachersIDs;
 
-        let expertsInputs = document.querySelectorAll('.experts'),
+        let expertsInputs = this.expertsInputs,
             expertsIDs = [];
 
         expertsInputs.forEach((expertInput) => {
@@ -144,7 +184,9 @@ class GroupModal {
         });
         data.experts = expertsIDs;
         data = JSON.stringify(data);
+        console.log(data);
 
         return data;
     }
+
 }

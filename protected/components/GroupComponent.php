@@ -4,32 +4,50 @@ class GroupComponent extends CApplicationComponent
 {
     public function getList($locationNames)
     {
-        if ($locationNames !== 'undefined') {
-            $locationNames = json_encode($locationNames);
-            $locations = $this->getLocationsId($locationNames);
-        } else {
-            $locations = [Yii::app()->user->location];
-        }
+        $locationsIdList = $this->checkLocations($locationNames);
 
         $criteria = new CDbCriteria();
         $criteria->alias = 'group';
-        $criteria->select = "{$criteria->alias}.name";
-        $criteria->addInCondition('location', $locations);
+        $criteria->addInCondition('location_id', $locationsIdList);
         /** @var Group[] $rows */
         $rows = Group::model()->with('direction')->findAll($criteria);
 
         $result = [];
+        $groupList = [];
+        $locationNameList = [];
         if (empty($rows)) {
             return $result;
         }
         foreach ($rows as $row) {
-            $result[] = [
+            $groupList[] = [
+                'group_id' => $row->id,
                 'group_name' => $row->name,
-                'direction_name' => $row->getRelated('direction')->name
+                'group_location' => $row->getRelated('location')->full_name,
+                'direction_name' => $row->getRelated('direction')->name,
+                'start_date' => $row->start_date,
+                'budget' => $row->budget,
+                'direction_id' => $row->getRelated('direction')->id,
+                'group_location_id' => $row->getRelated('location')->id,
             ];
+            $locationName = $row->getRelated('location')->full_name;
+            if (array_search($locationName, $locationNameList, true) === false) {
+                $locationNameList[] = $locationName;
+            }
         }
+        $result = [$groupList, $locationNameList];
 
         return empty($result) ? [] : $result;
+    }
+
+    public function checkLocations($locationNames)
+    {
+        if ($locationNames === Yii::app()->user->location || $locationNames === '') {
+            $locations = [Yii::app()->user->location];
+        } else {
+            $locationNames = json_encode($locationNames);
+            $locations = $this->getLocationsId($locationNames);
+        }
+        return $locations;
     }
 
     public function getLocationsId($locationNames)
@@ -49,6 +67,38 @@ class GroupComponent extends CApplicationComponent
                 }
             }
         }
+
         return $locationIdList;
+    }
+
+    public function getMyList()
+    {
+        $userId = Yii::app()->user->id;
+        $userGroups = [];
+
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'user_group';
+        $criteria->condition = "$userId = {$criteria->alias}.user";
+        /** @var UserGroup[] $rows */
+        $rows = UserGroup::model()->with('group')->findAll($criteria);
+
+        $result = [];
+        if (empty($rows)) {
+            return $result;
+        }
+        foreach ($rows as $row) {
+            $result[] = [
+                'group_id' => $row->getRelated('group')->id,
+                'group_name' => $row->getRelated('group')->name,
+                'group_location' => $row->getRelated('group')->getRelated('location')->full_name,
+                'direction_name' => $row->getRelated('group')->getRelated('direction')->name,
+                'start_date' => $row->getRelated('group')->start_date,
+                'budget' => $row->getRelated('group')->budget,
+                'direction_id' => $row->getRelated('group')->getRelated('direction')->id,
+                'group_location_id' => $row->getRelated('group')->getRelated('location')->id,
+            ];
+        }
+
+        return empty($result) ? [] : $result;
     }
 }

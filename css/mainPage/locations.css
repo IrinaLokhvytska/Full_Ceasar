@@ -46,11 +46,6 @@
     background-color: #003366;
 }
 
-.globe-img {
-    width: 30px;
-    height: 30px;
-}
-
 @media screen and (max-width: 992px) {
     .loc-list {
         display: grid;

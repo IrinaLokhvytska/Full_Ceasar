@@ -1,6 +1,7 @@
 #groupsNav *{
     margin: 0;
     padding: 0;
+    font: 16px "Times New Roman";
     box-sizing: border-box;
 }
 #groupsNav {
@@ -25,11 +26,10 @@
     height: 10%;
 }
 #groupsNav>div:first-child button {
-    height: 20px;
     margin: 0 4px;
 }
-#groupsNav>div:first-child button>span {
-    top: -4px;
+#groupsNav>div:first-child div>span {
+    line-height: 30px;
 }
 #groupsNav div.pagination, #groupsNav div.pagination div {
     display: flex;
@@ -50,10 +50,12 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     cursor: pointer;
-    font: 16px "Times New Roman";
     color: white;
     text-align: center;
     background-color: #3c78b5;
+    box-shadow: 2px 2px #b8c2cd;
+    border: 1px groove #3c78b5;
+    border-radius: 4px;
 }
 #groupsNav .lastOddGroup {
     position: relative;
@@ -62,22 +64,19 @@
 
 /*groupNav buttons and inputs*/
 #groupsNav>div button {
+    height: 30px;
     color: white;
     padding: 4px;
     text-align: center;
     text-decoration: none;
-    font: 14px "Times New Roman";
     cursor: pointer;
     border: 1px groove #3c78b5;
     border-radius: 4px;
     background-color: #3c78b5;
+    box-shadow: 2px 2px #b8c2cd;
 }
 #groupsNav>div button:hover, #groupsNav .group:hover {
     background-color: #4684ec;
-}
-#groupsNav>div button:active, #groupsNav .group:active {
-    background-color: #4b8cfa;
-    border: 1px ridge #3c78b5;
 }
 #groupsNav>div button:focus {
     outline:0;
@@ -86,10 +85,18 @@
     cursor: pointer;
     margin: 4px;
 }
-
 #groupsNav .checkedGroup {
     background-color: #003366;
 }
 #groupsNav .checkedGroup:hover {
     background-color: #0f4e8c;
+}
+#groupsNav>div button:active, #groupsNav .group:active {
+    background-color: #4b8cfa;
+    border: 1px ridge #3c78b5;
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+#groupsNav .group:active {
+    background-color: #185999;
 }

@@ -70,7 +70,18 @@ class LocationsList {
     }
 
     sendSelectedGroups() {
-        console.log(this.selectedLocations);
-        this.groupListMenu.getGroupList(this.selectedLocations);
+        this.groupListMenu.getGroupList(this.selectedLocations, true);
+        this.clearSelectedLocations();
+    }
+
+    clearSelectedLocations() {
+        this.selectedLocations = [];
+        let locations = this.locationModal.querySelectorAll('.loc'),
+            locationsLen = locations.length;
+        for (let i = 0; i < locationsLen; i++) {
+            if (locations[i].classList.contains('checkedLocation')) {
+                locations[i].classList.remove('checkedLocation');
+            }
+        }
     }
 }

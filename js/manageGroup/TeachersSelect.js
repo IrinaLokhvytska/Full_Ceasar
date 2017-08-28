@@ -14,6 +14,7 @@ class TeachersSelect {
         this.glyphicon = "glyphicon";
         this.spanClass = "glyphicon-remove";
         this.teachersClass = "teachers";
+        this.addGroupBox = elements;
     }
 
     attachEvents () {
@@ -43,7 +44,7 @@ class TeachersSelect {
 
     addTeachersSelect () {
         let newTeachersSelect = document.createElement('select'),
-                teachersSelectContainer = document.querySelector('.teachers-selects-container'),
+                teachersSelectContainer = this.addGroupBox.querySelector('.teachers-selects-container'),
                 span = document.createElement('span');
             newTeachersSelect.classList.add(this.teachersClass);
             teachersSelectContainer.appendChild(newTeachersSelect);

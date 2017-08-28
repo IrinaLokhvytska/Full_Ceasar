@@ -9,15 +9,16 @@
     <p class="errorLoginForm"></p>
     <div class="row">
         <?php echo $form->error($model,'username'); ?>
-        <?php echo $form->labelEx($model,'username');?>
-        <?php echo $form->textField($model,'username',['class'=>'input-login']); ?>
+        <label>Login
+            <?php echo $form->textField($model,'username',['class'=>'input-login']); ?>
+        </label>    
     </div>
 
     <div class="row">
         <?php echo $form->error($model,'password'); ?>
-        <?php echo $form->labelEx($model,'password'); ?>
-        <?php echo $form->passwordField($model,'password',['class'=>'input-password']);?>
-
+        <label>Password
+            <?php echo $form->passwordField($model,'password',['class'=>'input-password']);?>
+        </label>
     </div>
 
     <div class="row buttons">

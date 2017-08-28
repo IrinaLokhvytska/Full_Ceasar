@@ -10,15 +10,11 @@ class GroupListController extends BaseController
         $this->renderJSON($groupList);
     }
 
-    public function actionShowGroup($par)
-    {
-//        $groupInfo = GroupInfo::model()->getGroupInfo($groupName);
-//        $this->renderJSON($groupInfo);
-    }
-
     public function actionGetMyGroupList()
     {
-        $groupList = GroupList::model()->getMyGroupList();
-        $this->renderJSON($groupList);
+        /** @var GroupComponent $component */
+        $component = Yii::app()->getComponent('Group');
+        $myGroupList = $component->getMyList();
+        $this->renderJSON($myGroupList);
     }
 }

@@ -1,12 +1,16 @@
 .loc-container {
     display: grid;
-    grid-template-areas:             "header       header     header     header"
-                                     "local-groups loc-name   group-name notif"
-                                     "local-groups group-area group-area notif"
-                                    "local-groups status     message    notif";
+    grid-template-areas: "header       header     header     header"
+    "local-groups loc-name   group-name notif "
+    "local-groups group-area group-area notif "
+    "local-groups status     message    notif ";
     grid-template-columns: 3fr 4fr 4fr 2fr;
     grid-template-rows: 50px 1fr 6fr 1fr;
-    min-height: 80vh;
+    min-height: 90vh;
+}
+
+.loc-container a:focus {
+    outline: 0;
 }
 
 .header {
@@ -53,21 +57,25 @@
 .local-groups {
     grid-area: local-groups;
     border: 4px solid #3C78B5;
-    border-radius: 5%;
+    border-radius: 10px;
     margin: 10px;
 }
 
 .notif {
     grid-area: notif;
     border: 4px solid #3C78B5;
-    border-radius: 5%;
+    border-radius: 10px;
     margin: 10px;
+}
+
+.notif > a > img {
+    margin: 4px;
 }
 
 .group-area {
     grid-area: group-area;
     border: 4px solid #3C78B5;
-    border-radius: 5%;
+    border-radius: 10px;
     margin-right: 5px;
 
     display: grid;
@@ -82,9 +90,19 @@
     padding-top: 10px;
 }
 
+.gear a,
+.gear a:hover,
+.gear a:focus {
+    text-decoration: none;
+}
+
 .gear-img {
     width: 30px;
     height: 30px;
+}
+
+.trash-img {
+    height: 28px;
 }
 
 .tabs {

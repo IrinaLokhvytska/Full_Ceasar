@@ -4,69 +4,59 @@ class GroupController extends BaseController
 {
     public function actionCreate()
     {
-        
-        $request_body = file_get_contents('php://input');
-        $data = json_decode($request_body, true);
 
+        $requestBody = file_get_contents('php://input');
 
+        if (empty($requestBody)) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+        $data = json_decode($requestBody, true);
 
-//        if (empty($createFormAttributes)) {
-//            throw new CHttpException(400, 'Invalid data');
-//        }
-//
-//        $newGroup = new GroupForm();
-//        $newGroup->attributes = $data;
+        $group = new Group();
+        $group->setAttribute('name', $data['name']);
+        $group->setAttribute('location_id', $data['location_id']);
+        $group->setAttribute('direction_id', $data['direction_id']);
+        $group->setAttribute('start_date', $data['start_date']);
+        $group->setAttribute('finish_date', $data['finish_date']);
+        $group->setAttribute('budget', $data['budget']);
 
-//        if (!$newGroup->validate()) {
-//            throw new CHttpException(400, 'error in request');
-//        }
+        if(!$group->validate()){
+            throw new CHttpException(400, 'Invalid data');
+        }
+        $group->save();
+        $groupId = $group->id;
 
-//        $attributesGroup = $newGroup->getAttributes();
+        $groupTeachers = $data['teachers'];
+        foreach ($groupTeachers as $key=>$value){
+            $teacher = new Teacher();
+            $teacher->setAttribute('group', $groupId);
+            $teacher->setAttribute('user', $value);
+            $teacher->save();
+        }
 
-        Yii::app()->db->createCommand()
-            ->insert(
-                'groups',
-                [
-                    'name' => $data['name'],
-                    'direction' => $data['direction'],
-                    'location' => $data['location'],
-                    'budget' => $data['budgetOwner'],
-                    'start_date' => $data['startDate'],
-                    'finish_date' => $data['finishDate']
-                ]
-            );
+        $experts = $data['experts'];
+        if(!empty($experts)){
+            foreach ($experts as $person){
+                $expert = new Expert();
+                $expert->group = $groupId;
+                $expert->name = $person;
+                $expert->save();
+            }
+        }
 
-//        $groupID = Yii::app()->db->createCommand()
-//            ->select('id')
-//            ->from('groups')
-//            ->where('name=:name', [':name' => $attributesGroup['groupName']])
-//            ->queryAll();
-//
-//        Yii::app()->db->createCommand()
-//            ->insert(
-//                'user_groups',
-//                [
-//                    'group' => $groupID[0]['id'],
-//                    'user' => $attributesGroup['teacherID']
-//                ]
-//            );
-//
-//        Yii::app()->db->createCommand()
-//            ->insert(
-//                'group_experts',
-//                [
-//                    'group' => $groupID,
-//                    'name' => $attributesGroup['expertName']
-//                ]
-//            );
-//
-//        $this->renderJson(["success" => true]);
+       $this->renderJson(["success" => true]);
     }
 
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        Yii::app()->db->createCommand()
-            ->delete('groups', 'id=:id', [':id' => Yii::app()->request->getParam('id')]);
+        $groupId = $id;
+
+        if (!$groupId) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+
+        $group = new Group();
+        $group->findByPk($groupId)->delete();
 
         $this->renderJson(["success" => true]);
     }
@@ -85,127 +75,83 @@ class GroupController extends BaseController
         $this->renderJson($teachers);
     }
 
-    public function actionGetLocationsList()
+    public function actionGetLocation()
     {
-        $user_location = Yii::app()->user->location;
-        $locations = Yii::app()->db->createCommand()
-            ->select('id, full_name')
-            ->from('locations')
-            ->where("id = {$user_location}")
-            ->queryAll();
-        
-        $locations = empty($locations) ? [] : $locations;
-        $this->renderJson($locations);
+        $model = new Locations();
+        $fullName = $model->findByPk(Yii::app()->user->location)->full_name;
+        $output = ['id'=>Yii::app()->user->location, 'full_name'=>$fullName];
+
+        $output = empty($output) ? [] : $output;
+        $this->renderJson($output);
     }
 
     public function actionGetDirectionsList()
     {
-        $directions = Yii::app()->db->createCommand()
-            ->select('name, id')
-            ->from('directions')
-            ->queryAll();
-
+        $model = new Direction();
+        $directions = $model->findAll();
         $directions = empty($directions) ? [] : $directions;
 
         $this->renderJson($directions);
     }
 
-    public function actionGetGroup()
+    public function actionGetGroupInformation()
     {
-        $teachers = Yii::app()->db->createCommand()
-            ->select('first_name, last_name')
-            ->from('user_groups ug')
-            ->join('users u', 'ug.id = u.id')
-            ->where('ug.id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
+        //$id = file_get_contents('php://input');
+        $id = 22;
+        $model = new Group();
+        $group = $model->findByPk($id);
+        $teachers = $group->getRelated('teachers');
+        $name = [];
+        foreach($teachers as $teacher) {
+            $name[]=$teacher->first_name;
 
-//        $experts = Yii::app()->db->createCommand()
-//            ->select('name')
-//            ->from('group_experts')
-//            ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
-//            ->queryAll();
-
-        $group = Yii::app()->db->createCommand()
-            ->select('g.id, l.full_name, d.name, start_date, finish_date, budget, expert')
-
-            ->from('groups g')
-            ->join('directions d', 'g.direction_id=d.id')
-            ->join('locations l', 'g.location_id=l.id')
-            ->where('g.id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
-
-        $groupName = Yii::app()->db->createCommand()
-            ->select('name')
-            ->from('groups')
-            ->where('id=:id', [':id' => Yii::app()->request->getParam('id')])
-            ->queryAll();
-
-        $group[] = $groupName;
-
-        $group = empty($group) ? [] : $group;
-
-        $teachers = empty($teachers) ? [] : $teachers;
-        //$experts = empty($experts) ? [] : $experts;
-
-        $group[] = $teachers;
-        //$groups[] = $experts;
-
-        $this->renderJson($group);
-
+        }
+        var_dump($name);
+        $this->renderJson($name);
     }
 
     public function actionEdit()
     {
-        $editFormAttributes = Yii::app()->request->getPost('EditForm', []);
+        $requestBody = file_get_contents('php://input');
 
-        if (empty($editFormAttributes)) {
+        if (empty($requestBody)) {
             throw new CHttpException(400, 'Invalid data');
         }
+        $data = json_decode($requestBody, true);
 
-        $editedGroup = new GroupForm();
-        $editedGroup->scenario = 'edit';
-        $editedGroup->attributes = $editFormAttributes;
+        $idGroup = $data['id'];
+        $model = new Group();
+        $group = $model->findByPk($idGroup);
 
-        if (!$editedGroup->validate()) {
-            throw new CHttpException(400, 'error in request');
+        $group->setAttribute('name', $data['name']);
+        $group->setAttribute('location_id', $data['location_id']);
+        $group->setAttribute('direction_id', $data['direction_id']);
+        $group->setAttribute('start_date', $data['start_date']);
+        $group->setAttribute('finish_date', $data['finish_date']);
+        $group->setAttribute('budget', $data['budget']);
+
+        if(!$group->validate()){
+            throw new CHttpException(400, 'Invalid data');
         }
+        $group->update();
 
-        $editedGroup->id = Yii::app()->request->getPost('id');
-
-        $attributesGroup = $editedGroup->getAttributes();
-
-        Yii::app()->db->createCommand()
-            ->update(
-                'groups',
-                [
-                    'name' => $attributesGroup['groupName'],
-                    'direction_id' => $attributesGroup['directionID'],
-                    'location_id' => $attributesGroup['locationID'],
-                    'budget' => $attributesGroup['budgetOwner'],
-                    'start_date' => $attributesGroup['startDate'],
-                    'finish_date' => $attributesGroup['finishDate']
-                ],
-                'id=:id',
-                [':id' => $attributesGroup['id']]
-            );
-
-        Yii::app()->db->createCommand()
-            ->insert(
-                'user_groups',
-                [
-                    'group' => $attributesGroup['id'],
-                    'user' => $attributesGroup['teacherID']
-                ]
-            );
-
-        Yii::app()->db->createCommand()
-            ->insert(
-                'group_experts',
-                [
-                    'group' => $attributesGroup['id'],
-                    'name' => $attributesGroup['expertName']
-                ]
-            );
+//        $groupTeachers = $data['teachers'];
+//        foreach ($groupTeachers as $value){
+//            $modelTeacher = new Teacher();
+//            $teacher = $modelTeacher->findAllByAttributes('group', $idGroup);
+//            $teacher->setAttribute('user', $value);
+//            $teacher->update();
+//        }
+//
+//        $experts = $data['experts'];
+//        if(!empty($experts)){
+//            foreach ($experts as $person){
+//                $modelExpert = new Expert();
+//                $expert = $modelExpert->findAllByAttributes('group', $idGroup);
+//                $expert->name = $person;
+//                $expert->update();
+//            }
+//        }
 
         $this->renderJson(["success" => true]);
     }
