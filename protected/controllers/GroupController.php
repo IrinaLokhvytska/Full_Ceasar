@@ -95,12 +95,18 @@ class GroupController extends BaseController
 
     public function actionGetGroupInformation()
     {
-        $id = file_get_contents('php://input');
+        //$id = file_get_contents('php://input');
+        $id = 22;
         $model = new Group();
-        $group = $model->findAllByPk($id);
-        $teacher = $group->teacher;
+        $group = $model->findByPk($id);
+        $teachers = $group->getRelated('teachers');
+        $name = [];
+        foreach($teachers as $teacher) {
+            $name[]=$teacher->first_name;
 
-        $this->renderJson($teacher);
+        }
+        var_dump($name);
+        $this->renderJson($name);
     }
 
     public function actionEdit()
