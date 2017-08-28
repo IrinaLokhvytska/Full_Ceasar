@@ -11,4 +11,15 @@ class LocationComponent extends CApplicationComponent
 
         return $locations;
     }
+
+    public function getLocation()
+    {
+        $model = new Locations();
+        $fullName = $model->findByPk(Yii::app()->user->location)->full_name;
+        $output = ['id'=>Yii::app()->user->location, 'full_name'=>$fullName];
+
+        $output = empty($output) ? [] : $output;
+        
+        return $output;
+    }
 }

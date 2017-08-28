@@ -77,8 +77,9 @@ return [
         ],
 
         'Group' => ['class' => 'GroupComponent'],
-        'Location' => ['class' => 'LocationComponent']
-
+        'Location' => ['class' => 'LocationComponent'],
+        'Direction' => ['class' => 'DirectionComponent'],
+        'Teacher' => ['class' => 'TeacherComponent']
     ],
 
     // application-level parameters that can be accessed

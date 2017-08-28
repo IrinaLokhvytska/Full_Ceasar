@@ -25,49 +25,29 @@ class GroupController extends BaseController
 
     public function actionGetTeachersList()
     {
-        $location_id = Yii::app()->user->location;
-        $teachers = Yii::app()->db->createCommand()
-            ->select('first_name, last_name, u.id')
-            ->from('user_roles ur')
-            ->join('users u', 'u.id=ur.id')
-            ->where('role=1 AND location_id = :location_id', [':location_id'=>$location_id])
-            ->queryAll();
-
-        $teachers = empty($teachers) ? [] : $teachers;
-
+        $component = Yii::app()->getComponent('Teacher');
+        $teachers = $component->getTeachersList();
         $this->renderJson($teachers);
     }
 
     public function actionGetAllTeachersList()
     {
-        $teachers = Yii::app()->db->createCommand()
-            ->select('first_name, last_name, u.id')
-            ->from('user_roles ur')
-            ->join('users u', 'u.id=ur.id')
-            ->where('role=1')
-            ->queryAll();
-
-        $teachers = empty($teachers) ? [] : $teachers;
-
+        $component = Yii::app()->getComponent('Teacher');
+        $teachers = $component->getAllTeachersList();
         $this->renderJson($teachers);
     }
 
     public function actionGetLocation()
     {
-        $model = new Locations();
-        $fullName = $model->findByPk(Yii::app()->user->location)->full_name;
-        $output = ['id'=>Yii::app()->user->location, 'full_name'=>$fullName];
-
-        $output = empty($output) ? [] : $output;
+        $component = Yii::app()->getComponent('Location');
+        $output = $component->getLocation();
         $this->renderJson($output);
     }
 
     public function actionGetDirectionsList()
     {
-        $model = new Direction();
-        $directions = $model->findAll();
-        $directions = empty($directions) ? [] : $directions;
-
+        $component = Yii::app()->getComponent('Direction');
+        $directions = $component->getDirectionsList();
         $this->renderJson($directions);
     }
 
@@ -81,6 +61,4 @@ class GroupController extends BaseController
 
         $this->renderJson($teachers);
     }
-
-
 }
