@@ -5,8 +5,8 @@
     </header>
     <div class="left-popup"></div>
     <div class="right-popup"></div>
-    <div class="loc-name box">Dnipro</div>
-    <div class="group-name box">Dp-119 Php</div>
+    <div class="loc-name box"></div>
+    <div class="group-name box"></div>
     <div class="status box">Stage: in process</div>
     <div class="message box">Some message</div>
     <aside class="local-groups box">
