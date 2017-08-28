@@ -43,11 +43,15 @@ return [
                 '<controller:\w+>/<action:\w+>/<par:' => '<controller>/<action>',
             ],
         ],
-
+        'authManager'=>[
+        'class'=>'CDbAuthManager',
+        'connectionID'=>'db',
+        ],
+        /*
         'user' => [
             // enable cookie-based authentication
             'allowAutoLogin' => true,
-        ],
+        ],*/
 
             // database settings are configured in database.php
         'db' => require(dirname(__FILE__) . '/database.php'),

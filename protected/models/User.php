@@ -54,7 +54,7 @@ class User extends CActiveRecord
         return array(
             'userGroups' => array(self::HAS_MANY, 'UserGroups', 'user'),
             'userRoles' => array(self::HAS_MANY, 'UserRoles', 'user'),
-            'location0' => array(self::BELONGS_TO, 'Locations', 'location'),
+            'location_id' => array(self::BELONGS_TO, 'Locations', 'full_name'),
         );
     }
 

@@ -43,7 +43,8 @@
             <p class="user_name">Name: <?php echo Yii::app()->user->firstname; ?></p>
             <p class="user_surname">Surname:  <?php echo Yii::app()->user->lastname; ?></p>
             <p class="user_role">Type: <?php echo Yii::app()->user->type; ?></p>
-            
+            <p class="user_role">Location: <?php echo Yii::app()->user->location;  ?></p>
+            <p class="user_role">Role: <?php echo Yii::app()->user->role;  ?></p>
         </div>
 
         <a href="<?php echo Yii::app()->createAbsoluteUrl('site/logout'); ?>">
