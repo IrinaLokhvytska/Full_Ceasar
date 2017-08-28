@@ -214,7 +214,5 @@ class GroupComponent extends CApplicationComponent
                 $expert->save();
             }
         }
-
-        $this->renderJson(["success" => true]);
     }
 }
