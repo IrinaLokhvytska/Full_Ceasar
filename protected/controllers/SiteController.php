@@ -39,7 +39,6 @@ class SiteController extends Controller
         } else {
             $this->redirect(Yii::app()->request->baseUrl . '/site/index');
         }
-
     }
 
     public function actionLogout()

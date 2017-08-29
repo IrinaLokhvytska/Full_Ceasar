@@ -6,8 +6,7 @@ class GroupInfo {
         this.groupNameText = document.querySelector('.group-name');
         this.groupStartDateText = document.querySelector('.start-date-table');
         this.groupFinishDateText = document.querySelector('.finish-date-table');
-        this.editGroupBtnElement = document.querySelector('.gear-img');
-        this.deleteGroupBtnElement = document.querySelector('.trash-img');
+        this.groupsListBox = document.querySelector('.local-groups');
         this.groupId = '';
         this.groupName = '';
     }
@@ -22,22 +21,20 @@ class GroupInfo {
         this.groupDirectionId = array[6];
         this.groupLocationId = array[7];
         this.groupFinishDate = array[8];
-        this.setGroupActionBtns([this.editGroupBtnElement, this.deleteGroupBtnElement]);
+        this.setGroupActionBtns(this.groupsListBox);
         this.fillGroupFields();
     }
 
-    setGroupActionBtns(arr) {
-        arr.forEach((el) => {
-            el.dataset.groupId = this.groupId;
-            el.dataset.groupName = this.groupName;
-            el.dataset.groupLocation = this.groupLocation;
-            el.dataset.groupDirection = this.groupDirection;
-            el.dataset.groupStartDate = this.groupStartDate;
-            el.dataset.groupBudget = this.groupBudget;
-            el.dataset.groupDirectionId = this.groupDirectionId;
-            el.dataset.groupLocationId = this.groupLocationId;
-            el.dataset.groupFinishDate = this.groupFinishDate;
-        });
+    setGroupActionBtns(el) {
+        el.dataset.groupId = this.groupId;
+        el.dataset.groupName = this.groupName;
+        el.dataset.groupLocation = this.groupLocation;
+        el.dataset.groupDirection = this.groupDirection;
+        el.dataset.groupStartDate = this.groupStartDate;
+        el.dataset.groupBudget = this.groupBudget;
+        el.dataset.groupDirectionId = this.groupDirectionId;
+        el.dataset.groupLocationId = this.groupLocationId;
+        el.dataset.groupFinishDate = this.groupFinishDate;
     }
 
     fillGroupFields() {
