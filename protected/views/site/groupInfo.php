@@ -22,11 +22,11 @@
         </tr>
         <tr>
             <td>Date start:</td>
-            <td>03/07/2013</td>
+            <td class="start-date-table">undefined</td>
         </tr>
         <tr>
             <td>Date finish:</td>
-            <td>06/21/2013</td>
+            <td class="finish-date-table">undefined</td>
         </tr>
     </table>
     <div class="middle-space"></div>

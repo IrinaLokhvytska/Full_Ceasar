@@ -28,6 +28,7 @@ class GroupComponent extends CApplicationComponent
                 'budget' => $row->budget,
                 'direction_id' => $row->getRelated('direction')->id,
                 'group_location_id' => $row->getRelated('location')->id,
+                'finish_date' => $row->finish_date,
             ];
             $locationName = $row->getRelated('location')->full_name;
             if (array_search($locationName, $locationNameList, true) === false) {
@@ -36,7 +37,7 @@ class GroupComponent extends CApplicationComponent
         }
         $result = [$groupList, $locationNameList];
 
-        return empty($result) ? [] : $result;
+        return $result;
     }
 
     public function checkLocations($locationNames)
@@ -47,7 +48,7 @@ class GroupComponent extends CApplicationComponent
             $locationNames = json_encode($locationNames);
             $locations = $this->getLocationsId($locationNames);
         }
-        return $locations;
+        return empty($locations) ? [] : $locations;
     }
 
     public function getLocationsId($locationNames)
@@ -96,9 +97,124 @@ class GroupComponent extends CApplicationComponent
                 'budget' => $row->getRelated('group')->budget,
                 'direction_id' => $row->getRelated('group')->getRelated('direction')->id,
                 'group_location_id' => $row->getRelated('group')->getRelated('location')->id,
+                'finish_date' => $row->getRelated('group')->finish_date,
             ];
         }
 
-        return empty($result) ? [] : $result;
+        return $result;
+    }
+
+    public function createGroup()
+    {
+        $requestBody = file_get_contents('php://input');
+
+        if (empty($requestBody)) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+        $data = json_decode($requestBody, true);
+
+        $group = new Group();
+        $group->setAttribute('name', $data['name']);
+        $group->setAttribute('location_id', $data['location_id']);
+        $group->setAttribute('direction_id', $data['direction_id']);
+        $group->setAttribute('start_date', $data['start_date']);
+        $group->setAttribute('finish_date', $data['finish_date']);
+        $group->setAttribute('budget', $data['budget']);
+
+        if (!$group->validate()) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+        $group->save();
+        $groupId = $group->id;
+
+        $groupTeachers = $data['teachers'];
+        foreach ($groupTeachers as $key => $value) {
+            $teacher = new Teacher();
+            $teacher->setAttribute('group', $groupId);
+            $teacher->setAttribute('user', $value);
+            $teacher->save();
+        }
+
+        $experts = $data['experts'];
+        if (!empty($experts)) {
+            foreach ($experts as $person) {
+                $expert = new Expert();
+                $expert->group = $groupId;
+                $expert->name = $person;
+                $expert->save();
+            }
+        }
+    }
+
+    public function deleteGroup($id)
+    {
+        $groupId = $id;
+
+        if (!$groupId) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+
+        $group = new Group();
+        $group->findByPk($groupId)->delete();
+    }
+
+    public function editGroup()
+    {
+        $requestBody = file_get_contents('php://input');
+
+        if (empty($requestBody)) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+        $data = json_decode($requestBody, true);
+
+        $idGroup = $data['id'];
+        $model = new Group();
+        $group = $model->findByPk($idGroup);
+
+        $group->setAttribute('name', $data['name']);
+        $group->setAttribute('location_id', $data['location_id']);
+        $group->setAttribute('direction_id', $data['direction_id']);
+        $group->setAttribute('start_date', $data['start_date']);
+        $group->setAttribute('finish_date', $data['finish_date']);
+        $group->setAttribute('budget', $data['budget']);
+
+        if (!$group->validate()) {
+            throw new CHttpException(400, 'Invalid data');
+        }
+        $group->update();
+
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'user_group';
+        $criteria->condition = "$idGroup = {$criteria->alias}.group";
+        $rows = UserGroup::model()->with('group')->findAll($criteria);
+        foreach ($rows as $row) {
+            $row->delete();
+        }
+
+        $groupTeachers = $data['teachers'];
+        foreach ($groupTeachers as $value) {
+            $teacher = new Teacher();
+            $teacher->setAttribute('group', $idGroup);
+            $teacher->setAttribute('user', $value);
+            $teacher->save();
+        }
+
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'group_experts';
+        $criteria->condition = "$idGroup = {$criteria->alias}.group";
+        $rows = Expert::model()->findAll($criteria);
+        foreach ($rows as $row) {
+            $row->delete();
+        }
+
+        $experts = $data['experts'];
+        if (!empty($experts)) {
+            foreach ($experts as $person) {
+                $expert = new Expert();
+                $expert->group = $idGroup;
+                $expert->name = $person;
+                $expert->save();
+            }
+        }
     }
 }

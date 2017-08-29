@@ -4,6 +4,8 @@ class GroupInfo {
     constructor() {
         this.groupLocationText = document.querySelector('.loc-name');
         this.groupNameText = document.querySelector('.group-name');
+        this.groupStartDateText = document.querySelector('.start-date-table');
+        this.groupFinishDateText = document.querySelector('.finish-date-table');
         this.editGroupBtnElement = document.querySelector('.gear-img');
         this.deleteGroupBtnElement = document.querySelector('.trash-img');
         this.groupId = '';
@@ -18,7 +20,8 @@ class GroupInfo {
         this.groupStartDate = array[4];
         this.groupBudget = array[5];
         this.groupDirectionId = array[6];
-        this.groupLocationId =array[7];
+        this.groupLocationId = array[7];
+        this.groupFinishDate = array[8];
         this.setGroupActionBtns([this.editGroupBtnElement, this.deleteGroupBtnElement]);
         this.fillGroupFields();
     }
@@ -33,11 +36,23 @@ class GroupInfo {
             el.dataset.groupBudget = this.groupBudget;
             el.dataset.groupDirectionId = this.groupDirectionId;
             el.dataset.groupLocationId = this.groupLocationId;
+            el.dataset.groupFinishDate = this.groupFinishDate;
         });
     }
 
     fillGroupFields() {
         this.groupLocationText.innerHTML = this.groupLocation;
         this.groupNameText.innerHTML = this.groupName;
+        if (this.groupStartDate === null) {
+            this.groupStartDateText.innerHTML = "undefined";
+        } else {
+            this.groupStartDateText.innerHTML = this.groupStartDate;
+        }
+
+        if (this.groupFinishDate === null) {
+            this.groupFinishDateText.innerHTML = "undefined";
+        } else {
+            this.groupFinishDateText.innerHTML = this.groupFinishDate;
+        }
     }
 }

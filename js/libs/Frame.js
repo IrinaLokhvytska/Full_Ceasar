@@ -19,9 +19,6 @@ class Frame {
                 if (callback !== undefined) {
                     callback(data);
                 }
-            } else {
-                data = 'Server is not responding';
-                return data;
             }
         };
         xhr.send();

@@ -15,6 +15,7 @@ class TeachersSelect {
         this.spanClass = "glyphicon-remove";
         this.teachersClass = "teachers";
         this.addGroupBox = elements;
+        this.location = elements.querySelector('.location');
     }
 
     attachEvents () {

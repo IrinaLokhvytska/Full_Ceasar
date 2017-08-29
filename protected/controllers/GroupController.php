@@ -4,6 +4,7 @@ class GroupController extends BaseController
 {
     public function actionCreate()
     {
+<<<<<<< HEAD
 
         $requestBody = file_get_contents('php://input');
 
@@ -45,114 +46,63 @@ class GroupController extends BaseController
         }
 
        $this->renderJson(["success" => true]);
+=======
+        $component = Yii::app()->getComponent('Group');
+        $component->createGroup();
+        $this->renderJson(["success" => true]);
+>>>>>>> bb91a505d3386552cc98859260ba2c805fe9bd21
     }
 
     public function actionDelete($id)
     {
-        $groupId = $id;
+        $component = Yii::app()->getComponent('Group');
+        $component->deleteGroup($id);
+        $this->renderJson(["success" => true]);
+    }
 
-        if (!$groupId) {
-            throw new CHttpException(400, 'Invalid data');
-        }
-
-        $group = new Group();
-        $group->findByPk($groupId)->delete();
-
+    public function actionEdit()
+    {
+        $component = Yii::app()->getComponent('Group');
+        $component->editGroup();
         $this->renderJson(["success" => true]);
     }
 
     public function actionGetTeachersList()
     {
-        $teachers = Yii::app()->db->createCommand()
-            ->select('first_name, last_name, u.id')
-            ->from('user_roles ur')
-            ->join('users u', 'u.id=ur.id')
-            ->where('role=1')
-            ->queryAll();
+        $component = Yii::app()->getComponent('Teacher');
+        $teachers = $component->getTeachersList();
+        $this->renderJson($teachers);
+    }
 
-        $teachers = empty($teachers) ? [] : $teachers;
-
+    public function actionGetAllTeachersList()
+    {
+        $component = Yii::app()->getComponent('Teacher');
+        $teachers = $component->getAllTeachersList();
         $this->renderJson($teachers);
     }
 
     public function actionGetLocation()
     {
-        $model = new Locations();
-        $fullName = $model->findByPk(Yii::app()->user->location)->full_name;
-        $output = ['id'=>Yii::app()->user->location, 'full_name'=>$fullName];
-
-        $output = empty($output) ? [] : $output;
+        $component = Yii::app()->getComponent('Location');
+        $output = $component->getLocation();
         $this->renderJson($output);
     }
 
     public function actionGetDirectionsList()
     {
-        $model = new Direction();
-        $directions = $model->findAll();
-        $directions = empty($directions) ? [] : $directions;
-
+        $component = Yii::app()->getComponent('Direction');
+        $directions = $component->getDirectionsList();
         $this->renderJson($directions);
     }
 
     public function actionGetGroupInformation()
     {
         //$id = file_get_contents('php://input');
-        $id = 22;
+        $id = 23;
         $model = new Group();
         $group = $model->findByPk($id);
         $teachers = $group->getRelated('teachers');
-        $name = [];
-        foreach($teachers as $teacher) {
-            $name[]=$teacher->first_name;
 
-        }
-        var_dump($name);
-        $this->renderJson($name);
-    }
-
-    public function actionEdit()
-    {
-        $requestBody = file_get_contents('php://input');
-
-        if (empty($requestBody)) {
-            throw new CHttpException(400, 'Invalid data');
-        }
-        $data = json_decode($requestBody, true);
-
-        $idGroup = $data['id'];
-        $model = new Group();
-        $group = $model->findByPk($idGroup);
-
-        $group->setAttribute('name', $data['name']);
-        $group->setAttribute('location_id', $data['location_id']);
-        $group->setAttribute('direction_id', $data['direction_id']);
-        $group->setAttribute('start_date', $data['start_date']);
-        $group->setAttribute('finish_date', $data['finish_date']);
-        $group->setAttribute('budget', $data['budget']);
-
-        if(!$group->validate()){
-            throw new CHttpException(400, 'Invalid data');
-        }
-        $group->update();
-
-//        $groupTeachers = $data['teachers'];
-//        foreach ($groupTeachers as $value){
-//            $modelTeacher = new Teacher();
-//            $teacher = $modelTeacher->findAllByAttributes('group', $idGroup);
-//            $teacher->setAttribute('user', $value);
-//            $teacher->update();
-//        }
-//
-//        $experts = $data['experts'];
-//        if(!empty($experts)){
-//            foreach ($experts as $person){
-//                $modelExpert = new Expert();
-//                $expert = $modelExpert->findAllByAttributes('group', $idGroup);
-//                $expert->name = $person;
-//                $expert->update();
-//            }
-//        }
-
-        $this->renderJson(["success" => true]);
+        $this->renderJson($teachers);
     }
 }
