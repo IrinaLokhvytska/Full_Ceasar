@@ -2,14 +2,19 @@
 
 class GroupInfo {
     constructor() {
-        this.groupLocationText = document.querySelector('.loc-name');
-        this.groupNameText = document.querySelector('.group-name');
-        this.groupStartDateText = document.querySelector('.start-date-table');
-        this.groupFinishDateText = document.querySelector('.finish-date-table');
-        this.editGroupBtnElement = document.querySelector('.gear-img');
-        this.deleteGroupBtnElement = document.querySelector('.trash-img');
         this.groupId = '';
         this.groupName = '';
+        this.defineElements();
+    }
+
+    defineElements()
+    {
+        this.groupLocationText = document.querySelector('.loc-name');
+        this.groupNameText = document.querySelector('.group-name');
+        this.groupListBox = document.querySelector('.local-groups');
+        this.groupStatusBox = document.querySelector('.status');
+        this.groupStartDateText = document.querySelector('.start-date-table');
+        this.groupFinishDateText = document.querySelector('.finish-date-table');
     }
 
     showGroupInfo(array) {
@@ -22,22 +27,20 @@ class GroupInfo {
         this.groupDirectionId = array[6];
         this.groupLocationId = array[7];
         this.groupFinishDate = array[8];
-        this.setGroupActionBtns([this.editGroupBtnElement, this.deleteGroupBtnElement]);
+        this.setGroupActionBtns(this.groupListBox);
         this.fillGroupFields();
     }
 
-    setGroupActionBtns(arr) {
-        arr.forEach((el) => {
-            el.dataset.groupId = this.groupId;
-            el.dataset.groupName = this.groupName;
-            el.dataset.groupLocation = this.groupLocation;
-            el.dataset.groupDirection = this.groupDirection;
-            el.dataset.groupStartDate = this.groupStartDate;
-            el.dataset.groupBudget = this.groupBudget;
-            el.dataset.groupDirectionId = this.groupDirectionId;
-            el.dataset.groupLocationId = this.groupLocationId;
-            el.dataset.groupFinishDate = this.groupFinishDate;
-        });
+    setGroupActionBtns(el) {
+        el.dataset.groupId = this.groupId;
+        el.dataset.groupName = this.groupName;
+        el.dataset.groupLocation = this.groupLocation;
+        el.dataset.groupDirection = this.groupDirection;
+        el.dataset.groupStartDate = this.groupStartDate;
+        el.dataset.groupBudget = this.groupBudget;
+        el.dataset.groupDirectionId = this.groupDirectionId;
+        el.dataset.groupLocationId = this.groupLocationId;
+        el.dataset.groupFinishDate = this.groupFinishDate;
     }
 
     fillGroupFields() {
@@ -54,5 +57,34 @@ class GroupInfo {
         } else {
             this.groupFinishDateText.innerHTML = this.groupFinishDate;
         }
+
+        this.setGroupStatus();
+    }
+
+    setGroupStatus()
+    {
+        let today = new Date(),
+            groupStartDate = new Date(),
+            groupFinishDate = new Date(),
+            groupStartDateArr = this.groupStartDate.split('-'),
+            groupFinishDateArr = this.groupFinishDate.split('-'),
+            startMonth = parseInt(groupStartDateArr[1]) - 1,
+            finishMonth = parseInt(groupFinishDateArr[1]) - 1,
+            status = '';
+
+        groupStartDate.setFullYear(groupStartDateArr[0], startMonth, groupStartDateArr[2]);
+        groupFinishDate.setFullYear(groupFinishDateArr[0], finishMonth, groupFinishDateArr[2]);
+
+        if (groupStartDate <= today && groupFinishDate >= today) {
+            status = 'in process';
+        }
+        if (groupStartDate < today && groupFinishDate < today) {
+            status = 'finished';
+        }
+        if (groupStartDate > today) {
+            status = 'future';
+        }
+
+        this.groupStatusBox.innerHTML = 'Stage: ' + status;
     }
 }

@@ -133,7 +133,7 @@ class GroupList {
                 this.createGroupList(this.pageNumber, this.groupList);
             }
         });
-        
+
         if (this.myGroupListBtnElement !== null) {
             this.myGroupListBtnElement.addEventListener('click', () => {
                 this.pageNumber = 1;

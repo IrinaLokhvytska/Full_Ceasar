@@ -2,12 +2,6 @@
 
 class SiteController extends Controller
 {
-    /*public function actionIndex()
-    {
-        $this->layout = "login_layout_caesar";
-
-        $this->render('login_page_caesar');
-    }*/
 
 
     public function actionIndex()
