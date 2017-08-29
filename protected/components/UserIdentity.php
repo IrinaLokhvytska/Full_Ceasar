@@ -25,16 +25,16 @@ class UserIdentity extends CUserIdentity
             $this->setState('picture', $user->picture);
             $this->errorCode=self::ERROR_NONE;
             
-           // SiteController::actionSetup($role->name); 
             /*
+            $auth = SiteController::actionSetup();             
             if ($role->name === 'teacher') {
                 $auth->assign('teacher', $user->id);
             } elseif ($role->name === 'coordinator') {
                 $auth->assign('coordinator', $user->id);
             } elseif ($role->name === 'administrator') {
                 $auth->assign('administrator', $user->id);
-            }*/
-               
+            }
+              $auth->save();*/
           }
               
         return !$this->errorCode;
