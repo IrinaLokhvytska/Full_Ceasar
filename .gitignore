@@ -3,7 +3,7 @@ node_modules/
 dist/
 .idea
 bower_components/
-
+nbproject/
 
 ### Yii template
 assets/*

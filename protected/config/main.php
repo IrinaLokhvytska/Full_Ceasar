@@ -21,14 +21,13 @@ return [
 
     'modules' => [
         // uncomment the following to enable the Gii tool
-        /*
         'gii'=>array(
             'class'=>'system.gii.GiiModule',
-            'password'=>'Enter Your Password Here',
+            'password'=>'admin',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters'=>array('127.0.0.1','::1'),
         ),
-        */
+        
     ],
 
 
@@ -44,11 +43,15 @@ return [
                 '<controller:\w+>/<action:\w+>/<par:' => '<controller>/<action>',
             ],
         ],
-
+        'authManager'=>[
+        'class'=>'CDbAuthManager',
+        'connectionID'=>'db',
+        ],
+        /*
         'user' => [
             // enable cookie-based authentication
             'allowAutoLogin' => true,
-        ],
+        ],*/
 
             // database settings are configured in database.php
         'db' => require(dirname(__FILE__) . '/database.php'),

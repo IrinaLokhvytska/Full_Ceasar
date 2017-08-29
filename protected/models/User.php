@@ -54,7 +54,7 @@ class User extends CActiveRecord
         return array(
             'UserGroup' => array(self::HAS_MANY, 'UserGroup', 'user'),
             'userRoles' => array(self::HAS_MANY, 'UserRoles', 'user'),
-            'location0' => array(self::BELONGS_TO, 'Locations', 'location'),
+            'location_id' => array(self::BELONGS_TO, 'Locations', 'full_name'),
         );
     }
 
@@ -114,5 +114,16 @@ class User extends CActiveRecord
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+    
+    public function afterSave() 
+    {
+        $user_roles = UserRoles::model()->findByAttributes(['user_id'=>$this->id]);
+        $role = Roles::model()->findByAttributes(['id'=>$user_roles->role_id]);
+        if (!Yii::app()->authManager->isAssigned($role,$this->id)) {
+            Yii::app()->authManager->assign($role,$this->id);
+        }
+        
+    return parent::afterSave();
     }
 }
