@@ -156,10 +156,6 @@ class GroupList {
         });
     }
 
-    formMyGroupList() {
-
-    }
-
     deleteGroups() {
         while (this.groupListElement.firstChild) {
             this.groupListElement.removeChild(this.groupListElement.firstChild);
