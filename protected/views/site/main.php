@@ -76,3 +76,4 @@
 <?php require Yii::app()->basePath . '/views/site/locations.php'; ?>
 <?php require Yii::app()->basePath . '/views/site/modal.php'; ?>
 <?php require Yii::app()->basePath . '/views/site/edit_group.php'; ?>
+

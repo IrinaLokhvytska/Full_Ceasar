@@ -1,24 +1,19 @@
 <?php
-
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
-
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return [
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Caesar',
-
     // preloading 'log' component
     'preload' => ['log'],
-
     // autoloading model and component classes
     'import' => [
         'application.models.*',
         'application.components.*',
         'application.controllers.*',
     ],
-
     'modules' => [
         // uncomment the following to enable the Gii tool
         /*
@@ -30,8 +25,6 @@ return [
         ),
         */
     ],
-
-
     // application components
     'components' => [
         'urlManager' => [
@@ -44,22 +37,18 @@ return [
                 '<controller:\w+>/<action:\w+>/<par:' => '<controller>/<action>',
             ],
         ],
-
         'user' => [
             // enable cookie-based authentication
             'allowAutoLogin' => true,
         ],
-
-            // database settings are configured in database.php
+        // database settings are configured in database.php
         'db' => require(dirname(__FILE__) . '/database.php'),
-
         'errorHandler' => [
             // use 'site/error' action to display errors
             'errorAction' => YII_DEBUG
                 ? null
                 : 'site/error',
         ],
-
         'log' => [
             'class' => 'CLogRouter',
             'routes' => [
@@ -75,13 +64,11 @@ return [
                 */
             ],
         ],
-
         'Group' => ['class' => 'GroupComponent'],
         'Location' => ['class' => 'LocationComponent'],
         'Direction' => ['class' => 'DirectionComponent'],
         'Teacher' => ['class' => 'TeacherComponent']
     ],
-
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => [
