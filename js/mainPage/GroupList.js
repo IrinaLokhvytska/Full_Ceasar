@@ -7,6 +7,17 @@ class GroupList {
         this.urlShowGroup = urlArray[1];
         this.urlShowMyGroupList = urlArray[2];
         this.groupInfoElement = groupInfoElement;
+        this.groupList = [];
+        this.myGroupList = [];
+        this.pageNumber = 1;
+        this.pageQuantity = 1;
+        this.defineElements();
+        this.getGroupList(this.locationsList);
+        this.getMyGroupList();
+        this.attachNavMenuEvents();
+    }
+
+    defineElements() {
         this.groupsNav = document.querySelector('#groupsNav');
         this.pageNumberElement = this.groupsNav.querySelector('.pagination .pageNumber');
         this.pageQuantityElement = this.groupsNav.querySelector('.pagination .numberOfPages');
@@ -14,21 +25,6 @@ class GroupList {
         this.pageNextElement = this.groupsNav.querySelector('.pagination .nextPage');
         this.groupListElement = this.groupsNav.querySelector('.groupList');
         this.myGroupListBtnElement = document.querySelector('.myGroupListBtn');
-        this.groupList = [];
-        this.myGroupList = [];
-        this.pageNumber = 1;
-        this.pageQuantity = 1;
-        this.getGroupList(this.locationsList);
-        this.getMyGroupList();
-        this.attachNavMenuEvents();
-    }
-
-    getMyGroupList() {
-        Frame.ajaxResponse('GET', this.urlShowMyGroupList, this.saveMyGroupList.bind(this));
-    }
-
-    saveMyGroupList(array) {
-        this.myGroupList = array;
     }
 
     getGroupList(locations, outerRequest = false) {
@@ -111,6 +107,14 @@ class GroupList {
         }
     }
 
+    getMyGroupList() {
+        Frame.ajaxResponse('GET', this.urlShowMyGroupList, this.saveMyGroupList.bind(this));
+    }
+
+    saveMyGroupList(array) {
+        this.myGroupList = array;
+    }
+
     attachNavMenuEvents() {
         this.pagePrevElement.addEventListener('click', () => {
             if (this.pageNumber > 1) {
@@ -129,31 +133,33 @@ class GroupList {
                 this.createGroupList(this.pageNumber, this.groupList);
             }
         });
-
-        this.myGroupListBtnElement.addEventListener('click', () => {
-            this.pageNumber = 1;
-            this.deleteGroups();
-            if (!this.filterOn) {
-                let groupListArr = [],
-                    myGroupListArrLen = this.myGroupList.length,
-                    locationListArrLen = this.locationsList.length;
-                for (let i = 0; i < myGroupListArrLen; i++) {
-                    let iGroup = this.myGroupList[i];
-                    for (let j = 0; j < locationListArrLen; j++) {
-                        if (iGroup.group_location === this.locationsList[j]) {
-                            groupListArr.push(this.myGroupList[i]);
+        
+        if (this.myGroupListBtnElement !== null) {
+            this.myGroupListBtnElement.addEventListener('click', () => {
+                this.pageNumber = 1;
+                this.deleteGroups();
+                if (!this.filterOn) {
+                    let groupListArr = [],
+                        myGroupListArrLen = this.myGroupList.length,
+                        locationListArrLen = this.locationsList.length;
+                    for (let i = 0; i < myGroupListArrLen; i++) {
+                        let iGroup = this.myGroupList[i];
+                        for (let j = 0; j < locationListArrLen; j++) {
+                            if (iGroup.group_location === this.locationsList[j]) {
+                                groupListArr.push(this.myGroupList[i]);
+                            }
                         }
                     }
+                    this.filterOn = true;
+                    this.myGroupListBtnElement.innerHTML = "All groups";
+                    this.createGroupList(this.pageNumber, groupListArr);
+                } else {
+                    this.filterOn = false;
+                    this.myGroupListBtnElement.innerHTML = "My groups";
+                    this.createGroupList(this.pageNumber, this.groupList);
                 }
-                this.filterOn = true;
-                this.myGroupListBtnElement.innerHTML = "All groups";
-                this.createGroupList(this.pageNumber, groupListArr);
-            } else {
-                this.filterOn = false;
-                this.myGroupListBtnElement.innerHTML = "My groups";
-                this.createGroupList(this.pageNumber, this.groupList);
-            }
-        });
+            });
+        }
     }
 
     deleteGroups() {
