@@ -17,7 +17,7 @@ class Frame {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 data = JSON.parse(xhr.responseText);
                 if (callback !== undefined) {
-                    callback(data);
+                    return callback(data);
                 }
             }
         };

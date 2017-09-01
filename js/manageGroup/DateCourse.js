@@ -18,13 +18,13 @@ class DateCourse {
 
     attachEvents () {
         this.direction.addEventListener('change', () => {
-            this.processDate()
+            this.processDate();
         });
         this.startDate.addEventListener('change', () => {
-            this.processDate()
+            this.processDate();
         });
         this.startDate.addEventListener('blur', () => {
-            this.validateDate()
+            this.validateDate();
         });
     }
 
@@ -84,9 +84,9 @@ class DateCourse {
         day = finish.getUTCDay();
 
         if (day === saturday) {
-            finish = new Date(finish.getTime() + 2 * msPerDay)
+            finish = new Date(finish.getTime() + 2 * msPerDay);
         } else if (day === sunday) {
-            finish = new Date(finish.getTime() + msPerDay)
+            finish = new Date(finish.getTime() + msPerDay);
         }
 
         return finish;

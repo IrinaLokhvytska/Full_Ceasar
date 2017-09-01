@@ -128,7 +128,7 @@ class GroupComponent extends CApplicationComponent
         $groupId = $group->id;
 
         $groupTeachers = $data['teachers'];
-        foreach ($groupTeachers as $key => $value) {
+        foreach ($groupTeachers as $value) {
             $teacher = new Teacher();
             $teacher->setAttribute('group', $groupId);
             $teacher->setAttribute('user', $value);

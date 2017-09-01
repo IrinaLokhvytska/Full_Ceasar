@@ -10,7 +10,7 @@ class Profile {
 
     attachEvents() {
         this.picture.addEventListener('click', () => {
-            this.showProfile()
+            this.showProfile();
         });
 
         this.profileBlock.addEventListener('mouseout', () => {

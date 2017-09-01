@@ -68,8 +68,8 @@ class GroupInfo {
             groupFinishDate = new Date(),
             groupStartDateArr = this.groupStartDate.split('-'),
             groupFinishDateArr = this.groupFinishDate.split('-'),
-            startMonth = parseInt(groupStartDateArr[1]) - 1,
-            finishMonth = parseInt(groupFinishDateArr[1]) - 1,
+            startMonth = parseInt(groupStartDateArr[1], 10) - 1,
+            finishMonth = parseInt(groupFinishDateArr[1], 10) - 1,
             status = '';
 
         groupStartDate.setFullYear(groupStartDateArr[0], startMonth, groupStartDateArr[2]);

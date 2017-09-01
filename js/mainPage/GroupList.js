@@ -38,7 +38,7 @@ class GroupList {
             this.locationsList = locations;
         }
 
-        Frame.ajaxResponse('GET', this.urlGetGroupList + '/par/' + this.locationsList, this.saveGroupList.bind(this));
+        Frame.ajaxResponse('GET', this.urlGetGroupList + '/locations/' + this.locationsList, this.saveGroupList.bind(this));
     }
 
     saveGroupList(array) {

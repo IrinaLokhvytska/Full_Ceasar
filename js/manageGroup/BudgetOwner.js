@@ -15,10 +15,10 @@ class BudgetOwner {
 
     attachEvents () {
         this.SsOwner.addEventListener('click', () => {
-            this.setSsOwner()
+            this.setSsOwner();
         });
         this.OgOwner.addEventListener('click', () => {
-            this.setOgOwner()
+            this.setOgOwner();
         });
     }
 

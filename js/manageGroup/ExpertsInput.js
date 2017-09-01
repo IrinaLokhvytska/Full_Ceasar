@@ -19,10 +19,10 @@ class ExpertsInput {
     attachEvents () {
         this.addExpert.addEventListener('click', (e) => {
             e.preventDefault();
-            this.addExpertInput()
+            this.addExpertInput();
         });
         this.experts.addEventListener('blur', () => {
-            this.validateExperts()
+            this.validateExperts();
         });
     }
 
@@ -93,7 +93,7 @@ class ExpertsInput {
             expertsContainer = this.addGroupBox.querySelector('.experts-container');
         newExpertInput.classList.add(this.classExperts);
         newExpertInput.addEventListener('blur', () => {
-            this.validateNewExperts(newExpertInput)
+            this.validateNewExperts(newExpertInput);
         });
         expertsContainer.appendChild(newExpertInput);
         span.classList.add(this.glyphicon);
