@@ -11,7 +11,7 @@ class StudentListController extends BaseController
     public function actionGetStudentsFromGroup($id)
     {
         $component = Yii::app()->getComponent('Student');
-        $teachers = $component->getStudentList($id);
-        $this->renderJson($teachers);
+        $students = $component->getStudentList($id);
+        $this->renderJson($students);
     }
 }
