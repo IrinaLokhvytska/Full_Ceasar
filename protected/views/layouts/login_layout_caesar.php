@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="en">
 
+    <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/css/img/favicon.ico" type="image/x-icon">
+    
     <link rel="stylesheet" type="text/css" href="<?= Yii::app()->request->baseUrl; ?>/css/login.css">
     <link rel="stylesheet" type="text/css" href="<?= Yii::app()->request->baseUrl; ?>/css/mainPage/main_page.css">
 
