@@ -23,6 +23,7 @@ class DemoDataCommand extends CConsoleCommand
         foreach ($users as $user) {
             $command->insert('users', $user);
         }
+
     }
 
     public function actionFillOutTableDirections() {
@@ -52,8 +53,16 @@ class DemoDataCommand extends CConsoleCommand
     public function actionFillOutTableUserRoles() {
         $user_roles = require_once Yii::app()->basePath . '/data/demo/user_roles.php';
         $command = Yii::app()->db->createCommand();
+
+
+        $auth = Yii::app()->authManager;
+
+
         foreach ($user_roles as $user_role) {
             $command->insert('user_roles', $user_role);
+            $user = User::model()->findByPk($user_role['user']);
+            $role = //;
+            $auth->assign($role->name, $user->id);
         }
     }
 }

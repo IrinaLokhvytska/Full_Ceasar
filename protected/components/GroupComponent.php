@@ -102,7 +102,7 @@ class GroupComponent extends CApplicationComponent
         return empty($result) ? [] : $result;
     }
 
-    public function createGroup()
+    public function createGroup(CreateGroupDTO $createGroup)
     {
         $requestBody = file_get_contents('php://input');
 
