@@ -30,4 +30,11 @@ class StudentList extends CActiveRecord
 
         return $students;
     }
+
+    public function relations ()
+    {
+        return [
+            'english' =>[self::BELONGS_TO, 'English', 'english_lvl']
+        ];
+    }
 }
