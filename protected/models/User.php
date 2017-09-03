@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This is the model class for table "users".
  *
@@ -26,7 +25,6 @@ class User extends CActiveRecord
     {
         return 'users';
     }
-
     /**
      * @return array validation rules for model attributes.
      */
@@ -43,7 +41,6 @@ class User extends CActiveRecord
             array('id, firstname, lastname, username, password, location, type', 'safe', 'on'=>'search'),
         );
     }
-
     /**
      * @return array relational rules.
      */
@@ -57,7 +54,6 @@ class User extends CActiveRecord
             'location0' => array(self::BELONGS_TO, 'Locations', 'location'),
         );
     }
-
     /**
      * @return array customized attribute labels (name=>label)
      */
@@ -73,7 +69,6 @@ class User extends CActiveRecord
             'type' => 'type',
         );
     }
-
     /**
      * Retrieves a list of models based on the current search/filter conditions.
      *
@@ -89,9 +84,7 @@ class User extends CActiveRecord
     public function search()
     {
         // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria=new CDbCriteria;
-
         $criteria->compare('id',$this->id);
         $criteria->compare('first_name',$this->firstname,true);
         $criteria->compare('last_name',$this->lastname,true);
@@ -99,12 +92,10 @@ class User extends CActiveRecord
         $criteria->compare('password',$this->password,true);
         $criteria->compare('location',$this->location);
         $criteria->compare('type',$this->type,true);
-
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
         ));
     }
-
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!

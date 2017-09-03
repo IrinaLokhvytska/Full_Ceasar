@@ -8,11 +8,6 @@ class LocationsController extends BaseController
         $locationList = $component->getList();
         $this->renderJSON($locationList);
     }
-    
-    public function actionShowLocations($par)
-    {
-        $this->renderJSON($par);
-    }
 
     public function actionGetAllLocations()
     {

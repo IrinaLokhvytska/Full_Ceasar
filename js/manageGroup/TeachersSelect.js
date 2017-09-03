@@ -21,7 +21,7 @@ class TeachersSelect {
     attachEvents () {
         this.addTeacher.addEventListener('click', (e) => {
             e.preventDefault();
-            this.addTeachersSelect()
+            this.addTeachersSelect();
         });
     }
 

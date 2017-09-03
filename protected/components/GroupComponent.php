@@ -28,6 +28,7 @@ class GroupComponent extends CApplicationComponent
                 'budget' => $row->budget,
                 'direction_id' => $row->getRelated('direction')->id,
                 'group_location_id' => $row->getRelated('location')->id,
+                'finish_date' => $row->finish_date,
             ];
             $locationName = $row->getRelated('location')->full_name;
             if (array_search($locationName, $locationNameList, true) === false) {
@@ -36,7 +37,7 @@ class GroupComponent extends CApplicationComponent
         }
         $result = [$groupList, $locationNameList];
 
-        return empty($result) ? [] : $result;
+        return $result;
     }
 
     public function checkLocations($locationNames)
@@ -47,7 +48,7 @@ class GroupComponent extends CApplicationComponent
             $locationNames = json_encode($locationNames);
             $locations = $this->getLocationsId($locationNames);
         }
-        return $locations;
+        return empty($locations) ? [] : $locations;
     }
 
     public function getLocationsId($locationNames)
@@ -96,10 +97,11 @@ class GroupComponent extends CApplicationComponent
                 'budget' => $row->getRelated('group')->budget,
                 'direction_id' => $row->getRelated('group')->getRelated('direction')->id,
                 'group_location_id' => $row->getRelated('group')->getRelated('location')->id,
+                'finish_date' => $row->getRelated('group')->finish_date,
             ];
         }
 
-        return empty($result) ? [] : $result;
+        return $result;
     }
 
     public function createGroup(CreateGroupDTO $createGroup)
@@ -119,14 +121,14 @@ class GroupComponent extends CApplicationComponent
         $group->setAttribute('finish_date', $data['finish_date']);
         $group->setAttribute('budget', $data['budget']);
 
-        if(!$group->validate()){
+        if (!$group->validate()) {
             throw new CHttpException(400, 'Invalid data');
         }
         $group->save();
         $groupId = $group->id;
 
         $groupTeachers = $data['teachers'];
-        foreach ($groupTeachers as $key=>$value){
+        foreach ($groupTeachers as $value) {
             $teacher = new Teacher();
             $teacher->setAttribute('group', $groupId);
             $teacher->setAttribute('user', $value);
@@ -134,8 +136,8 @@ class GroupComponent extends CApplicationComponent
         }
 
         $experts = $data['experts'];
-        if(!empty($experts)){
-            foreach ($experts as $person){
+        if (!empty($experts)) {
+            foreach ($experts as $person) {
                 $expert = new Expert();
                 $expert->group = $groupId;
                 $expert->name = $person;
@@ -176,7 +178,7 @@ class GroupComponent extends CApplicationComponent
         $group->setAttribute('finish_date', $data['finish_date']);
         $group->setAttribute('budget', $data['budget']);
 
-        if(!$group->validate()){
+        if (!$group->validate()) {
             throw new CHttpException(400, 'Invalid data');
         }
         $group->update();
@@ -190,7 +192,7 @@ class GroupComponent extends CApplicationComponent
         }
 
         $groupTeachers = $data['teachers'];
-        foreach ($groupTeachers as $value){
+        foreach ($groupTeachers as $value) {
             $teacher = new Teacher();
             $teacher->setAttribute('group', $idGroup);
             $teacher->setAttribute('user', $value);
@@ -206,8 +208,8 @@ class GroupComponent extends CApplicationComponent
         }
 
         $experts = $data['experts'];
-        if(!empty($experts)){
-            foreach ($experts as $person){
+        if (!empty($experts)) {
+            foreach ($experts as $person) {
                 $expert = new Expert();
                 $expert->group = $idGroup;
                 $expert->name = $person;
