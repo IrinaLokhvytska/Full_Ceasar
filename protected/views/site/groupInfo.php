@@ -1,9 +1,3 @@
-<!--<link rel="stylesheet" type="text/css" href="--><?php //echo Yii::app()->request->baseUrl; ?><!--/css/mainPage/groupInfo.css">-->
-<?php
-$baseUrl = Yii::app()->baseUrl;
-$cs = Yii::app()->getClientScript();
-$cs->registerCssFile($baseUrl . '/css/mainPage/groupInfo.css');
-?>
 
 <div class="group-coordination"><span class="text">Group coordination:</span></div>
 <div class="group-info"><span class="text">Group info:</span></div>
@@ -35,4 +29,3 @@ $cs->registerCssFile($baseUrl . '/css/mainPage/groupInfo.css');
         <td class="finish-date-table">undefined</td>
     </tr>
 </table>
-<div class="middle-space"></div>

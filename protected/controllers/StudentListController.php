@@ -15,13 +15,13 @@ class StudentListController extends Controller
                 ),
             ),
             'pagination' => array(
-                'pageSize' => 10,
+                'pageSize' => 5,
             ),
         ));
         $params = array(
             'arrayDataProvider' => $arrayDataProvider,
         );
-        $this->render('../site/studentList', $params);
+        $this->renderPartial('../site/studentList', $params);
     }
 
     public function actionScoreTable($group_id)
