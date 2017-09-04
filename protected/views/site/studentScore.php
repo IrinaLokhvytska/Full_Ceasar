@@ -22,9 +22,19 @@
                     ))'
                 ],
                 [
-                    'name' => 'English level',
+                    'name' => 'Incoming test',
                     'type' => 'raw',
-                    'value' => 'CHtml::encode($data["english_lvl"])',
+                    'value' => 'CHtml::encode($data["incoming_test"])',
+                ],
+                [
+                    'name' => 'Entry score',
+                    'type' => 'raw',
+                    'value' => 'CHtml::encode($data["entry_score"])',
+                ],
+                [
+                    'name' => 'Approved by',
+                    'type' => 'raw',
+                    'value' => 'CHtml::encode($data["approved_by"])',
                 ],
             ],
         ]);
