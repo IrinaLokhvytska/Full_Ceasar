@@ -37,7 +37,7 @@
                 'class' => 'studentIcon',
             ]);
         echo CHtml::ajaxLink($rightShifterImg,
-            ['StudentList/GridView/group_id/2'],
+            ['StudentList/ScoreTable/group_id/2'],
             [
                 'update' => '.group-area-content',
             ]);
