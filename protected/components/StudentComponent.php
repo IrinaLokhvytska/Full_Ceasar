@@ -2,12 +2,12 @@
 
 class StudentComponent extends CApplicationComponent
 {
-   public function getStudentList($id)
+   public function getStudentList($group_id)
    {
        $criteria = new CDbCriteria();
        $criteria->alias = 'students';
-       $criteria->condition = "$id = {$criteria->alias}.group_id";
-       $rows = StudentList::model()->with('english_lvl')->findAll($criteria);
+       $criteria->condition = "$group_id = {$criteria->alias}.group_id";
+       $rows = Student::model()->with('english')->findAll($criteria);
        $result = [];
        if (empty($rows)) {
            return $result;

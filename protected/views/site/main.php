@@ -30,10 +30,19 @@
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/information-checked.png"
                      class="tab-icons tabInfo" alt="info icon">
             </a>
-            <a href="#">
-                <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/students.png"
-                     class="tab-icons tabStudents" alt="students icon">
-            </a>
+
+            <?php
+            $studentsImg = CHtml::image(Yii::app()->request->baseUrl . "/css/img/students.png", 'students.png',
+                array(
+                    'class' => 'tab-icons',
+                ));
+            echo CHtml::ajaxLink($studentsImg,
+                array('StudentList/EnglishTable/group_id/2'),
+                array(
+                    'update' => '.group-area-content',
+                ));
+            ?>
+
             <a href="#">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/css/img/schedule.png"
                      class="tab-icons tabSchedule" alt="schedule icon">
@@ -43,7 +52,9 @@
                      class="tab-icons tabNotification" alt="envelope icon">
             </a>
         </div>
+        <div class="group-area-content">
         <?php require Yii::app()->basePath . '/views/site/groupInfo.php'; ?>
+        </div>
     </main>
 
     <div class="profile_block">

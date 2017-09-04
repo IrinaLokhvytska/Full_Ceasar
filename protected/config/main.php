@@ -35,6 +35,7 @@ return [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<locations:' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<group_id:' => '<controller>/<action>',
             ],
         ],
         'user' => [
@@ -67,7 +68,8 @@ return [
         'Group' => ['class' => 'GroupComponent'],
         'Location' => ['class' => 'LocationComponent'],
         'Direction' => ['class' => 'DirectionComponent'],
-        'Teacher' => ['class' => 'TeacherComponent']
+        'Teacher' => ['class' => 'TeacherComponent'],
+        'Student' => ['class' => 'StudentComponent'],
     ],
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

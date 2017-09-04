@@ -1,17 +1,26 @@
 <?php
 
-class StudentListController extends BaseController
+class StudentListController extends Controller
 {
-    public function actionGetStudentList()
+
+    public function actionEnglishTable($group_id)
     {
-        $students = StudentList::model()->getStudentList();
-        $this->renderJSON($students);
-    }
-    
-    public function actionGetStudentsFromGroup($id)
-    {
-        $component = Yii::app()->getComponent('Student');
-        $students = $component->getStudentList($id);
-        $this->renderJson($students);
+        /** @var StudentComponent $component */
+        $rawData = Yii::app()->getComponent('Student')->getStudentList($group_id);
+        $arrayDataProvider = new CArrayDataProvider($rawData, array(
+            'id' => 'id',
+            'sort' => array(
+                'attributes' => array(
+                    'Name', 'English level',
+                ),
+            ),
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
+        ));
+        $params = array(
+            'arrayDataProvider' => $arrayDataProvider,
+        );
+        $this->render('../site/studentList', $params);
     }
 }

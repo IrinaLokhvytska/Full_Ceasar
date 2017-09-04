@@ -1,4 +1,4 @@
-.loc-container {
+    .loc-container {
     display: grid;
     grid-template-areas: "header       header     header     header"
     "local-groups loc-name   group-name notif "
@@ -79,7 +79,8 @@
     margin-right: 5px;
 
     display: grid;
-    grid-template-areas: "gear               tabs" "group-area-content group-area-content";
+    grid-template-areas: "gear               tabs"
+    "group-area-content group-area-content";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 8fr;
 }
@@ -112,7 +113,8 @@
     text-align: right;
 }
 
-.tabs > a {
+.tabs a:hover,
+.tabs a:focus {
     text-decoration: none;
 }
 
