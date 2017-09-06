@@ -1,6 +1,6 @@
 <?php
 
-class English extends CActiveRecord
+class EnglishLevel extends CActiveRecord
 {
     public $id;
     public $name;
@@ -14,5 +14,4 @@ class English extends CActiveRecord
     {
         return 'english_lvl';
     }
-    
 }

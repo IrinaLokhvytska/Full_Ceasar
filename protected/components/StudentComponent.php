@@ -7,7 +7,7 @@ class StudentComponent extends CApplicationComponent
        $criteria = new CDbCriteria();
        $criteria->alias = 'students';
        $criteria->condition = "$group_id = {$criteria->alias}.group_id";
-       $rows = Student::model()->with('english')->findAll($criteria);
+       $rows = Student::model()->with('english_lvl')->findAll($criteria);
        $result = [];
        if (empty($rows)) {
            return $result;
@@ -18,7 +18,7 @@ class StudentComponent extends CApplicationComponent
                'first_name' => $row->first_name,
                'last_name' => $row->last_name,
                'photo_url' => $row->photo_url,
-               'english_lvl' => $row->getRelated('english')->name,
+               'english_lvl' => $row->getRelated('english_lvl')->name,
                'incoming_test' => $row->incoming_test,
                'entry_score' => $row->entry_score,
                'approved_by' => $row->approved_by,
