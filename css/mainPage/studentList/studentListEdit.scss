@@ -1,0 +1,68 @@
+.studentListEdit-modal {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .studentIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .studentListEdit-side {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .studentListEdit-middle {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+
+    * {
+      margin: 2px;
+      padding: 2px;
+    }
+
+    .studentListEdit-middle-header, .studentListEdit-middle-footer {
+      display: flex;
+      width: 100%;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+    .studentListEdit-middle-studentList {
+      width: 100%;
+
+      table {
+        width: 100%;
+
+        th {
+          text-align: center;
+          border: 3px solid grey;
+        }
+        td {
+          border: 1px solid grey;
+
+          .studentPhoto {
+            height: 60px;
+          }
+        }
+        td.align-left {
+          text-align: left;
+        }
+        td.align-center {
+          text-align: center;
+        }
+      }
+    }
+
+    .studentListEdit-middle-footer {
+      width: 80px;
+      position: relative;
+      left: -5%;
+    }
+  }
+}

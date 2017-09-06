@@ -1,6 +1,6 @@
 <?php
 
-class StudentListController extends Controller
+class StudentListController extends CController
 {
 
     public function actionEnglishTable($group_id)
